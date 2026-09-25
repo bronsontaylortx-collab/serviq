@@ -3,135 +3,703 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>ServIQ</title>
+<title>ServIQ | AI Quality Assurance</title>
+
 <style>
 *{box-sizing:border-box}
-body{margin:0;background:#f5f7fa;color:#182230;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
-header{background:#101828;color:white;padding:20px}
-.brand{font-size:25px;font-weight:800}
-.sub{color:#98a2b3;font-size:12px;margin-top:3px}
-main{max-width:1000px;margin:auto;padding:16px}
-.card{background:white;border:1px solid #e4e7ec;border-radius:14px;padding:18px;margin-bottom:15px}
-h2,h3{margin-top:0}
-label{font-size:12px;font-weight:800;color:#475467}
-textarea{width:100%;min-height:280px;margin-top:8px;padding:12px;border:1px solid #d0d5dd;border-radius:10px;font:14px/1.45 monospace}
-button{width:100%;padding:14px;border:0;border-radius:10px;background:#175cd3;color:white;font-weight:800;font-size:15px;margin-top:12px}
-.top{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px}
-.metric{background:#f8fafc;border-radius:10px;padding:14px}
-.big{font-size:31px;font-weight:800}
-.muted{color:#667085;font-size:12px}
-.row{padding:15px 0;border-top:1px solid #eaecf0;display:flex;justify-content:space-between;gap:15px}
-.name{font-weight:800}
-.why{font-size:13px;color:#475467;margin-top:5px}
-.pill{display:inline-block;padding:5px 9px;border-radius:999px;font-size:11px;font-weight:800}
-.pass{background:#e7f6ec;color:#067647}
-.fail{background:#fee4e2;color:#b42318}
-.review{background:#fff1e7;color:#b54708}
-@media(max-width:650px){.top{grid-template-columns:1fr}.row{display:block}.row>div:last-child{margin-top:8px}}
-  /* ServIQ Dashboard Upgrade */
+
+:root{
+  --navy:#071426;
+  --navy2:#0b1d35;
+  --panel:#102541;
+  --blue:#3b82f6;
+  --blue2:#2563eb;
+  --cyan:#38bdf8;
+  --purple:#8b5cf6;
+  --green:#22c55e;
+  --orange:#f59e0b;
+  --red:#ef4444;
+  --bg:#f3f6fb;
+  --text:#142033;
+  --muted:#718096;
+  --border:#e3e9f2;
+}
+
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--text);
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+}
+
+/* HEADER */
+
+header{
+  background:
+    radial-gradient(circle at 80% -40%,#174e91 0%,transparent 45%),
+    linear-gradient(135deg,#071426,#0b1d35);
+  color:white;
+  padding:22px 18px 0;
+}
+
+.header-inner{
+  max-width:1180px;
+  margin:auto;
+}
+
+.brand-row{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:20px;
+}
+
+.logo-wrap{
+  display:flex;
+  align-items:center;
+  gap:11px;
+}
+
+.logo{
+  width:42px;
+  height:42px;
+  border-radius:12px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-weight:900;
+  font-size:20px;
+  background:linear-gradient(135deg,#3b82f6,#7c3aed);
+  box-shadow:0 8px 24px rgba(59,130,246,.35);
+}
+
+.brand{
+  font-size:26px;
+  font-weight:850;
+  letter-spacing:-.6px;
+}
+
+.sub{
+  color:#94a3b8;
+  font-size:12px;
+  margin-top:2px;
+}
+
+.live{
+  background:rgba(34,197,94,.12);
+  color:#86efac;
+  border:1px solid rgba(34,197,94,.25);
+  padding:7px 11px;
+  border-radius:999px;
+  font-size:11px;
+  font-weight:800;
+}
+
+.live-dot{
+  display:inline-block;
+  width:7px;
+  height:7px;
+  border-radius:50%;
+  background:#22c55e;
+  margin-right:5px;
+}
+
+/* NAV */
+
 .nav{
   display:flex;
-  gap:8px;
-  margin-top:16px;
+  gap:5px;
+  margin-top:22px;
   overflow-x:auto;
+  scrollbar-width:none;
 }
+
+.nav::-webkit-scrollbar{display:none}
+
 .nav a{
-  color:#cbd5e1;
+  color:#94a3b8;
   text-decoration:none;
-  padding:8px 12px;
-  border-radius:8px;
+  padding:12px 14px;
   font-size:13px;
-  font-weight:700;
+  font-weight:750;
   white-space:nowrap;
+  border-bottom:3px solid transparent;
 }
+
 .nav a.active{
-  background:#2563eb;
   color:white;
+  border-bottom-color:#3b82f6;
 }
+
+/* PAGE */
+
+main{
+  max-width:1180px;
+  margin:auto;
+  padding:20px 16px;
+}
+
+.page-head{
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-end;
+  margin-bottom:18px;
+}
+
+.page-title{
+  font-size:25px;
+  font-weight:850;
+  letter-spacing:-.5px;
+}
+
+.page-sub{
+  color:#718096;
+  font-size:13px;
+  margin-top:4px;
+}
+
+/* KPI CARDS */
+
 .dashboard{
   display:grid;
   grid-template-columns:repeat(4,1fr);
-  gap:12px;
-  margin-bottom:16px;
+  gap:14px;
+  margin-bottom:18px;
 }
+
 .stat{
-  background:white;
-  border:1px solid #e4e7ec;
-  border-radius:14px;
+  position:relative;
+  overflow:hidden;
+  min-height:145px;
+  color:white;
+  border-radius:18px;
   padding:18px;
+  box-shadow:0 8px 25px rgba(15,23,42,.08);
 }
+
+.stat.blue{
+  background:linear-gradient(135deg,#2563eb,#3b82f6);
+}
+
+.stat.purple{
+  background:linear-gradient(135deg,#6d28d9,#8b5cf6);
+}
+
+.stat.red{
+  background:linear-gradient(135deg,#dc2626,#f87171);
+}
+
+.stat.orange{
+  background:linear-gradient(135deg,#d97706,#f59e0b);
+}
+
+.stat:after{
+  content:"";
+  position:absolute;
+  width:120px;
+  height:120px;
+  border-radius:50%;
+  background:rgba(255,255,255,.08);
+  right:-35px;
+  top:-45px;
+}
+
+.stat-icon{
+  width:36px;
+  height:36px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:rgba(255,255,255,.15);
+  border-radius:10px;
+  font-size:18px;
+  margin-bottom:12px;
+}
+
 .stat-title{
-  color:#667085;
-  font-size:12px;
+  font-size:11px;
   font-weight:800;
   text-transform:uppercase;
+  letter-spacing:.5px;
+  opacity:.8;
 }
+
 .stat-number{
+  font-size:32px;
+  line-height:1;
+  font-weight:850;
+  margin-top:7px;
+}
+
+.stat-foot{
+  font-size:11px;
+  margin-top:11px;
+  opacity:.8;
+}
+
+/* ANALYTICS */
+
+.analytics{
+  display:grid;
+  grid-template-columns:1.3fr .7fr;
+  gap:14px;
+  margin-bottom:18px;
+}
+
+.card{
+  background:white;
+  border:1px solid var(--border);
+  border-radius:18px;
+  padding:20px;
+  margin-bottom:16px;
+  box-shadow:0 4px 16px rgba(15,23,42,.035);
+}
+
+.card-title{
+  font-size:16px;
+  font-weight:850;
+  margin-bottom:3px;
+}
+
+.card-sub{
+  font-size:12px;
+  color:#8491a5;
+}
+
+/* MINI GRAPH */
+
+.chart{
+  height:160px;
+  display:flex;
+  align-items:flex-end;
+  gap:10px;
+  padding-top:20px;
+}
+
+.bar-wrap{
+  flex:1;
+  text-align:center;
+}
+
+.bar{
+  width:100%;
+  max-width:42px;
+  margin:auto;
+  border-radius:7px 7px 3px 3px;
+  background:linear-gradient(180deg,#3b82f6,#2563eb);
+}
+
+.bar-label{
+  color:#94a3b8;
+  font-size:10px;
+  margin-top:7px;
+}
+
+/* SCORE RING */
+
+.score-area{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  min-height:180px;
+}
+
+.score-ring{
+  width:135px;
+  height:135px;
+  border-radius:50%;
+  background:conic-gradient(#22c55e 0 91%,#e9eef5 91% 100%);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  position:relative;
+}
+
+.score-ring:before{
+  content:"";
+  position:absolute;
+  width:100px;
+  height:100px;
+  border-radius:50%;
+  background:white;
+}
+
+.score-ring-content{
+  position:relative;
+  text-align:center;
+}
+
+.score-ring-number{
+  font-size:27px;
+  font-weight:850;
+}
+
+.score-ring-label{
+  color:#8491a5;
+  font-size:10px;
+}
+
+/* ANALYZER */
+
+.analyzer-head{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:10px;
+  margin-bottom:18px;
+}
+
+.analyzer-title{
+  font-size:21px;
+  font-weight:850;
+}
+
+.ai-badge{
+  background:#eef4ff;
+  color:#2563eb;
+  padding:7px 10px;
+  border-radius:999px;
+  font-size:10px;
+  font-weight:850;
+}
+
+label{
+  font-size:11px;
+  font-weight:850;
+  color:#596579;
+  letter-spacing:.4px;
+}
+
+.scorecard-box{
+  margin:7px 0 17px;
+  background:#f7f9fc;
+  border:1px solid #e5eaf1;
+  padding:13px;
+  border-radius:10px;
+  font-weight:750;
+  font-size:14px;
+}
+
+textarea{
+  width:100%;
+  min-height:260px;
+  margin-top:8px;
+  padding:14px;
+  border:1px solid #d7dee8;
+  border-radius:12px;
+  font:13px/1.55 monospace;
+  background:#fbfcfe;
+  color:#172033;
+  outline:none;
+}
+
+textarea:focus{
+  border-color:#3b82f6;
+  box-shadow:0 0 0 3px rgba(59,130,246,.1);
+}
+
+button{
+  width:100%;
+  padding:15px;
+  border:0;
+  border-radius:11px;
+  color:white;
+  background:linear-gradient(90deg,#2563eb,#4f46e5);
+  font-weight:850;
+  font-size:14px;
+  margin-top:12px;
+  box-shadow:0 7px 18px rgba(37,99,235,.18);
+}
+
+/* RESULTS */
+
+.top{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:12px;
+}
+
+.metric{
+  background:#f7f9fc;
+  border:1px solid #edf0f5;
+  border-radius:13px;
+  padding:16px;
+}
+
+.big{
   font-size:30px;
+  font-weight:850;
+  margin-top:5px;
+}
+
+.muted{
+  color:#7c899d;
+  font-size:11px;
+}
+
+.row{
+  padding:17px 0;
+  border-top:1px solid #edf0f4;
+  display:flex;
+  justify-content:space-between;
+  gap:15px;
+}
+
+.name{
   font-weight:800;
-  margin-top:6px;
+  font-size:14px;
 }
-.section-title{
-  font-size:20px;
-  font-weight:800;
-  margin:6px 0 14px;
+
+.why{
+  font-size:13px;
+  color:#586579;
+  margin-top:5px;
+  line-height:1.45;
 }
-@media(max-width:650px){
-  .dashboard{grid-template-columns:1fr 1fr;}
+
+.pill{
+  display:inline-block;
+  padding:6px 9px;
+  border-radius:999px;
+  font-size:10px;
+  font-weight:850;
 }
+
+.pass{
+  background:#e7f6ec;
+  color:#067647;
+}
+
+.fail{
+  background:#fee4e2;
+  color:#b42318;
+}
+
+.review{
+  background:#fff1e7;
+  color:#b54708;
+  margin-left:4px;
+}
+
+/* MOBILE */
+
+@media(max-width:760px){
+
+  header{
+    padding-top:18px;
+  }
+
+  .dashboard{
+    grid-template-columns:1fr 1fr;
+    gap:10px;
+  }
+
+  .stat{
+    min-height:135px;
+    padding:15px;
+  }
+
+  .stat-number{
+    font-size:29px;
+  }
+
+  .analytics{
+    grid-template-columns:1fr;
+  }
+
+  .top{
+    grid-template-columns:1fr;
+  }
+
+  .row{
+    display:block;
+  }
+
+  .row>div:last-child{
+    margin-top:10px;
+  }
+
+  .page-title{
+    font-size:22px;
+  }
+
+  main{
+    padding:16px 12px;
+  }
+
+  .card{
+    padding:17px;
+  }
+}
+
 </style>
 </head>
 
 <body>
 
 <header>
+<div class="header-inner">
+
+<div class="brand-row">
+
+<div class="logo-wrap">
+<div class="logo">S</div>
+
+<div>
 <div class="brand">ServIQ</div>
 <div class="sub">AI Quality Assurance for Mortgage Servicing</div>
-</header>
+</div>
+</div>
 
-  <nav class="nav">
-  <a class="active" href="#">Dashboard</a>
-  <a href="#">Calls</a>
-  <a href="#">Scorecards</a>
-  <a href="#">Coaching</a>
-  <a href="#">Analytics</a>
+<div class="live">
+<span class="live-dot"></span>
+AI ONLINE
+</div>
+
+</div>
+
+<nav class="nav">
+<a class="active" href="#">Dashboard</a>
+<a href="#">Calls</a>
+<a href="#">Scorecards</a>
+<a href="#">Coaching</a>
+<a href="#">Analytics</a>
+<a href="#">Team</a>
 </nav>
 
-<main>
-  <div class="section-title">QA Dashboard</div>
+</div>
+</header>
 
-  <div class="dashboard">
-    <div class="stat">
-      <div class="stat-title">Calls Analyzed</div>
-      <div class="stat-number">1,248</div>
-    </div>
-
-    <div class="stat">
-      <div class="stat-title">Average QA Score</div>
-      <div class="stat-number">91%</div>
-    </div>
-
-    <div class="stat">
-      <div class="stat-title">Critical Failures</div>
-      <div class="stat-number">18</div>
-    </div>
-
-    <div class="stat">
-      <div class="stat-title">Needs Review</div>
-      <div class="stat-number">42</div>
-    </div>
-  </div>
-</main>
 
 <main>
+
+<div class="page-head">
+<div>
+<div class="page-title">QA Command Center</div>
+<div class="page-sub">Mortgage servicing quality intelligence</div>
+</div>
+</div>
+
+
+<div class="dashboard">
+
+<div class="stat blue">
+<div class="stat-icon">◉</div>
+<div class="stat-title">Calls Analyzed</div>
+<div class="stat-number">1,248</div>
+<div class="stat-foot">↑ 12% this month</div>
+</div>
+
+<div class="stat purple">
+<div class="stat-icon">✓</div>
+<div class="stat-title">Average QA Score</div>
+<div class="stat-number">91%</div>
+<div class="stat-foot">↑ 3.2% vs last month</div>
+</div>
+
+<div class="stat red">
+<div class="stat-icon">!</div>
+<div class="stat-title">Critical Failures</div>
+<div class="stat-number">18</div>
+<div class="stat-foot">1.4% of analyzed calls</div>
+</div>
+
+<div class="stat orange">
+<div class="stat-icon">⌕</div>
+<div class="stat-title">Needs Review</div>
+<div class="stat-number">42</div>
+<div class="stat-foot">AI confidence threshold</div>
+</div>
+
+</div>
+
+
+<div class="analytics">
 
 <div class="card">
-<h2>Analyze a Call</h2>
+
+<div class="card-title">QA Performance</div>
+<div class="card-sub">Average quality score over the last 7 days</div>
+
+<div class="chart">
+
+<div class="bar-wrap">
+<div class="bar" style="height:72px"></div>
+<div class="bar-label">Mon</div>
+</div>
+
+<div class="bar-wrap">
+<div class="bar" style="height:88px"></div>
+<div class="bar-label">Tue</div>
+</div>
+
+<div class="bar-wrap">
+<div class="bar" style="height:82px"></div>
+<div class="bar-label">Wed</div>
+</div>
+
+<div class="bar-wrap">
+<div class="bar" style="height:105px"></div>
+<div class="bar-label">Thu</div>
+</div>
+
+<div class="bar-wrap">
+<div class="bar" style="height:112px"></div>
+<div class="bar-label">Fri</div>
+</div>
+
+<div class="bar-wrap">
+<div class="bar" style="height:118px"></div>
+<div class="bar-label">Sat</div>
+</div>
+
+<div class="bar-wrap">
+<div class="bar" style="height:124px"></div>
+<div class="bar-label">Sun</div>
+</div>
+
+</div>
+</div>
+
+
+<div class="card">
+
+<div class="card-title">Quality Score</div>
+<div class="card-sub">Overall performance</div>
+
+<div class="score-area">
+
+<div class="score-ring">
+<div class="score-ring-content">
+<div class="score-ring-number">91%</div>
+<div class="score-ring-label">QA SCORE</div>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+
+
+<div class="card">
+
+<div class="analyzer-head">
+
+<div>
+<div class="analyzer-title">Analyze a Call</div>
+<div class="card-sub">Run a conversation through ServIQ AI</div>
+</div>
+
+<div class="ai-badge">✦ AI QA ENGINE</div>
+
+</div>
 
 <form method="post">
 
 <label>SCORECARD</label>
-<div style="margin:7px 0 15px;font-weight:700">
+
+<div class="scorecard-box">
 Mortgage Servicing — General v1
 </div>
 
@@ -139,14 +707,22 @@ Mortgage Servicing — General v1
 
 <textarea name="transcript">{{ transcript }}</textarea>
 
-<button type="submit">Analyze Call</button>
+<button type="submit">
+✦ Analyze Call with ServIQ
+</button>
 
 </form>
+
 </div>
+
 
 {% if result %}
 
 <div class="card">
+
+<div class="card-title" style="margin-bottom:15px">
+Evaluation Summary
+</div>
 
 <div class="top">
 
@@ -162,15 +738,24 @@ Mortgage Servicing — General v1
 
 <div class="metric">
 <div class="muted">CRITICAL FAILURE</div>
-<div class="big">{{ "YES" if result.critical else "NO" }}</div>
+<div class="big">
+{{ "YES" if result.critical else "NO" }}
+</div>
 </div>
 
 </div>
+
 </div>
+
 
 <div class="card">
 
-<h3>AI Evaluation</h3>
+<div class="card-title">AI Evaluation</div>
+
+<div class="card-sub" style="margin-bottom:14px">
+ServIQ scorecard analysis and confidence
+</div>
+
 
 {% for r in result["items"] %}
 
@@ -192,6 +777,7 @@ AI confidence {{ r.confidence }}%
 
 </div>
 
+
 <div>
 
 <span class="pill {{ 'pass' if r.result=='PASS' else 'fail' }}">
@@ -199,7 +785,9 @@ AI confidence {{ r.confidence }}%
 </span>
 
 {% if r.review %}
-<span class="pill review">HUMAN REVIEW</span>
+<span class="pill review">
+HUMAN REVIEW
+</span>
 {% endif %}
 
 </div>
@@ -213,5 +801,6 @@ AI confidence {{ r.confidence }}%
 {% endif %}
 
 </main>
+
 </body>
 </html>
