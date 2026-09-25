@@ -28,6 +28,57 @@ button{width:100%;padding:14px;border:0;border-radius:10px;background:#175cd3;co
 .fail{background:#fee4e2;color:#b42318}
 .review{background:#fff1e7;color:#b54708}
 @media(max-width:650px){.top{grid-template-columns:1fr}.row{display:block}.row>div:last-child{margin-top:8px}}
+  /* ServIQ Dashboard Upgrade */
+.nav{
+  display:flex;
+  gap:8px;
+  margin-top:16px;
+  overflow-x:auto;
+}
+.nav a{
+  color:#cbd5e1;
+  text-decoration:none;
+  padding:8px 12px;
+  border-radius:8px;
+  font-size:13px;
+  font-weight:700;
+  white-space:nowrap;
+}
+.nav a.active{
+  background:#2563eb;
+  color:white;
+}
+.dashboard{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:12px;
+  margin-bottom:16px;
+}
+.stat{
+  background:white;
+  border:1px solid #e4e7ec;
+  border-radius:14px;
+  padding:18px;
+}
+.stat-title{
+  color:#667085;
+  font-size:12px;
+  font-weight:800;
+  text-transform:uppercase;
+}
+.stat-number{
+  font-size:30px;
+  font-weight:800;
+  margin-top:6px;
+}
+.section-title{
+  font-size:20px;
+  font-weight:800;
+  margin:6px 0 14px;
+}
+@media(max-width:650px){
+  .dashboard{grid-template-columns:1fr 1fr;}
+}
 </style>
 </head>
 
@@ -37,6 +88,40 @@ button{width:100%;padding:14px;border:0;border-radius:10px;background:#175cd3;co
 <div class="brand">ServIQ</div>
 <div class="sub">AI Quality Assurance for Mortgage Servicing</div>
 </header>
+
+  <nav class="nav">
+  <a class="active" href="#">Dashboard</a>
+  <a href="#">Calls</a>
+  <a href="#">Scorecards</a>
+  <a href="#">Coaching</a>
+  <a href="#">Analytics</a>
+</nav>
+
+<main>
+  <div class="section-title">QA Dashboard</div>
+
+  <div class="dashboard">
+    <div class="stat">
+      <div class="stat-title">Calls Analyzed</div>
+      <div class="stat-number">1,248</div>
+    </div>
+
+    <div class="stat">
+      <div class="stat-title">Average QA Score</div>
+      <div class="stat-number">91%</div>
+    </div>
+
+    <div class="stat">
+      <div class="stat-title">Critical Failures</div>
+      <div class="stat-number">18</div>
+    </div>
+
+    <div class="stat">
+      <div class="stat-title">Needs Review</div>
+      <div class="stat-number">42</div>
+    </div>
+  </div>
+</main>
 
 <main>
 
