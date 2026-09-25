@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Call Review | ServIQ</title>
+<title>{{ call.agent }} | Call Review | ServIQ</title>
 
 <style>
 *{box-sizing:border-box}
@@ -24,9 +24,7 @@
   --border:#dfe7f1;
 }
 
-html{
-  -webkit-text-size-adjust:100%;
-}
+html{-webkit-text-size-adjust:100%}
 
 body{
   margin:0;
@@ -37,9 +35,7 @@ body{
   font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;
 }
 
-/* =========================
-   HEADER
-========================= */
+/* HEADER */
 
 header{
   position:relative;
@@ -61,7 +57,6 @@ header{
   border-radius:50%;
   border-bottom:2px solid rgba(20,120,255,.9);
   transform:rotate(-7deg);
-  filter:drop-shadow(0 0 8px rgba(20,120,255,.22));
 }
 
 .header-swirl:after{
@@ -73,7 +68,6 @@ header{
   top:17px;
   border-radius:50%;
   border-bottom:2px solid rgba(255,121,0,.95);
-  filter:drop-shadow(0 0 7px rgba(255,121,0,.30));
 }
 
 .header-inner{
@@ -96,8 +90,6 @@ header{
   align-items:center;
   gap:12px;
 }
-
-/* LOGO */
 
 .logo-icon{
   position:relative;
@@ -177,9 +169,7 @@ header{
   letter-spacing:-1.1px;
 }
 
-.brand-iq{
-  color:var(--orange);
-}
+.brand-iq{color:var(--orange)}
 
 .sub{
   color:#aebbd0;
@@ -243,9 +233,7 @@ header{
   -webkit-overflow-scrolling:touch;
 }
 
-.nav-shell::-webkit-scrollbar{
-  display:none;
-}
+.nav-shell::-webkit-scrollbar{display:none}
 
 .nav{
   display:flex;
@@ -265,18 +253,11 @@ header{
   white-space:nowrap;
 }
 
-.nav-icon{
-  font-size:13px;
-  opacity:.9;
-}
+.nav-icon{font-size:13px}
 
-.nav a.active{
-  color:white;
-}
+.nav a.active{color:white}
 
-.nav a.active .nav-icon{
-  color:var(--orange);
-}
+.nav a.active .nav-icon{color:var(--orange)}
 
 .nav a.active:after{
   content:"";
@@ -289,9 +270,7 @@ header{
   background:var(--orange);
 }
 
-/* =========================
-   PAGE
-========================= */
+/* PAGE */
 
 main{
   max-width:1400px;
@@ -328,22 +307,21 @@ h1{
   margin-top:5px;
 }
 
-.call-nav{
-  display:flex;
-  gap:7px;
-}
-
-.small-btn{
-  border:1px solid #d8e1ec;
-  border-radius:9px;
-  background:white;
-  color:#26364d;
-  padding:9px 12px;
-  font-size:10px;
+.call-id{
+  color:#91a0b4;
+  font-size:9px;
   font-weight:800;
+  margin-top:5px;
+  text-transform:uppercase;
+  letter-spacing:.5px;
 }
 
-/* SAVED */
+.card{
+  background:white;
+  border:1px solid var(--border);
+  border-radius:15px;
+  box-shadow:0 7px 24px rgba(15,35,65,.05);
+}
 
 .saved{
   margin-top:14px;
@@ -356,18 +334,7 @@ h1{
   line-height:1.5;
 }
 
-/* COMMON */
-
-.card{
-  background:white;
-  border:1px solid var(--border);
-  border-radius:15px;
-  box-shadow:0 7px 24px rgba(15,35,65,.05);
-}
-
-/* =========================
-   OVERVIEW
-========================= */
+/* OVERVIEW */
 
 .overview{
   margin-top:15px;
@@ -424,27 +391,10 @@ h1{
   font-weight:900;
 }
 
-.green{
-  background:#dcfce7;
-  color:#15803d;
-}
-
-.blue{
-  background:#dbeafe;
-  color:#1264d6;
-}
-
-.orange{
-  background:#fff0d8;
-  color:#dc6803;
-}
-
-.red{
-  background:#fee2e2;
-  color:#b91c1c;
-}
-
-/* SCORE RING */
+.green{background:#dcfce7;color:#15803d}
+.blue{background:#dbeafe;color:#1264d6}
+.orange{background:#fff0d8;color:#dc6803}
+.red{background:#fee2e2;color:#b91c1c}
 
 .score-ring{
   width:108px;
@@ -456,8 +406,8 @@ h1{
   justify-content:center;
   background:conic-gradient(
     var(--orange) 0deg,
-    var(--orange2) 338deg,
-    #edf1f6 338deg,
+    var(--orange) calc(var(--score) * 3.6deg),
+    #edf1f6 calc(var(--score) * 3.6deg),
     #edf1f6 360deg
   );
   box-shadow:0 6px 17px rgba(255,121,0,.14);
@@ -486,8 +436,6 @@ h1{
   font-weight:900;
 }
 
-/* STATS */
-
 .stats{
   padding:10px 13px;
   border:1px solid #e3e9f1;
@@ -504,9 +452,7 @@ h1{
   font-size:11px;
 }
 
-.stat strong{
-  font-size:15px;
-}
+.stat strong{font-size:15px}
 
 .stat-label{
   display:flex;
@@ -530,9 +476,7 @@ h1{
 .si-orange{background:#ffedd5;color:#ea580c}
 .si-red{background:#fee2e2;color:#b91c1c}
 
-/* =========================
-   MAIN GRID
-========================= */
+/* GRID */
 
 .grid{
   display:grid;
@@ -548,9 +492,7 @@ h1{
   gap:15px;
 }
 
-/* =========================
-   RECORDING
-========================= */
+/* RECORDING */
 
 .recording{
   padding:16px;
@@ -609,13 +551,8 @@ h1{
   background:#1685ff;
 }
 
-.wave span:nth-child(3n){
-  background:#5daaff;
-}
-
-.wave span:nth-child(n+15){
-  opacity:.35;
-}
+.wave span:nth-child(3n){background:#5daaff}
+.wave span:nth-child(n+15){opacity:.35}
 
 .time{
   color:#d6e2ef;
@@ -623,19 +560,7 @@ h1{
   white-space:nowrap;
 }
 
-.player-option{
-  border:1px solid #31506e;
-  border-radius:8px;
-  padding:8px 10px;
-  color:white;
-  background:rgba(255,255,255,.03);
-  font-size:10px;
-  font-weight:800;
-}
-
-/* =========================
-   SECTION HEADERS
-========================= */
+/* SECTIONS */
 
 .card-pad{
   padding:16px 17px;
@@ -679,17 +604,7 @@ h1{
   margin-left:35px;
 }
 
-.view-link{
-  color:#0875ed;
-  text-decoration:none;
-  font-size:10px;
-  font-weight:900;
-  white-space:nowrap;
-}
-
-/* =========================
-   SCORECARD
-========================= */
+/* SCORECARD */
 
 .question{
   position:relative;
@@ -710,9 +625,8 @@ h1{
   background:var(--green);
 }
 
-.question.partial:before{
-  background:var(--orange);
-}
+.question.partial:before{background:var(--orange)}
+.question.fail:before{background:var(--red)}
 
 .qgrid{
   display:grid;
@@ -741,9 +655,8 @@ h1{
   font-size:11px;
 }
 
-.partial .check{
-  background:var(--orange);
-}
+.partial .check{background:var(--orange)}
+.fail .check{background:var(--red)}
 
 .critical{
   padding:3px 6px;
@@ -768,11 +681,17 @@ h1{
   background:#eff6ff;
 }
 
+.fail .evidence{background:#fff1f2}
+.partial .evidence{background:#fff7ed}
+
 .evidence-title{
   color:#0875ed;
   font-size:8px;
   font-weight:900;
 }
+
+.fail .evidence-title{color:#b91c1c}
+.partial .evidence-title{color:#d96800}
 
 .quote{
   color:#42536b;
@@ -787,9 +706,10 @@ h1{
   margin-right:6px;
 }
 
-.qresult{
-  text-align:right;
-}
+.fail .timestamp{color:#b91c1c}
+.partial .timestamp{color:#d96800}
+
+.qresult{text-align:right}
 
 .points{
   font-size:15px;
@@ -819,24 +739,39 @@ h1{
   color:#e96a00;
 }
 
-/* =========================
-   AI SUMMARY
-========================= */
+.fail .override{
+  border-color:#ef4444;
+  color:#b91c1c;
+}
+
+/* SUMMARY */
 
 .summary-text{
   color:#53657e;
   font-size:11px;
-  line-height:1.5;
+  line-height:1.55;
   margin-top:9px;
 }
 
-/* =========================
-   TRANSCRIPT
-========================= */
-
-.search{
+.review-alert{
   margin-top:11px;
+  padding:9px 10px;
+  border-radius:8px;
+  background:#fff7ed;
+  color:#c45b00;
+  font-size:9px;
+  font-weight:800;
+  line-height:1.4;
 }
+
+.critical-alert{
+  background:#fff1f2;
+  color:#b91c1c;
+}
+
+/* TRANSCRIPT */
+
+.search{margin-top:11px}
 
 .search input{
   width:100%;
@@ -886,9 +821,7 @@ h1{
   line-height:1.4;
 }
 
-/* =========================
-   ACTIONS
-========================= */
+/* ACTIONS */
 
 .actions{
   display:grid;
@@ -916,9 +849,7 @@ h1{
   color:white;
 }
 
-/* =========================
-   OVERRIDE MODAL
-========================= */
+/* MODAL */
 
 .modal{
   display:none;
@@ -932,9 +863,7 @@ h1{
   backdrop-filter:blur(5px);
 }
 
-.modal.show{
-  display:flex;
-}
+.modal.show{display:flex}
 
 .modal-box{
   width:100%;
@@ -1028,9 +957,7 @@ h1{
   font-weight:900;
 }
 
-/* =========================
-   TABLET
-========================= */
+/* TABLET */
 
 @media(max-width:900px){
 
@@ -1045,12 +972,9 @@ h1{
   .grid{
     grid-template-columns:1fr;
   }
-
 }
 
-/* =========================
-   MOBILE
-========================= */
+/* MOBILE */
 
 @media(max-width:650px){
 
@@ -1071,9 +995,7 @@ h1{
     padding:14px 14px 0;
   }
 
-  .logo-wrap{
-    gap:9px;
-  }
+  .logo-wrap{gap:9px}
 
   .logo-icon{
     width:43px;
@@ -1087,37 +1009,25 @@ h1{
     border-width:2.5px;
   }
 
-  .blue-bubble:after{
-    border-left-width:2px;
-  }
+  .blue-bubble:after{border-left-width:2px}
+  .orange-bubble:after{border-right-width:2px}
 
-  .orange-bubble:after{
-    border-right-width:2px;
-  }
-
-  .brand{
-    font-size:23px;
-  }
+  .brand{font-size:23px}
 
   .sub{
     max-width:220px;
     font-size:9px;
     line-height:1.25;
-    margin-top:4px;
   }
 
-  .user{
-    display:none;
-  }
+  .user{display:none}
 
   .live{
     padding:7px 10px;
     font-size:9px;
   }
 
-  .nav-shell{
-    margin-top:11px;
-  }
+  .nav-shell{margin-top:11px}
 
   .nav a{
     padding:10px 14px 12px;
@@ -1128,19 +1038,9 @@ h1{
     padding:17px 13px 50px;
   }
 
-  .call-nav{
-    display:none;
-  }
+  h1{font-size:26px}
 
-  h1{
-    font-size:26px;
-  }
-
-  .page-sub{
-    font-size:12px;
-  }
-
-  /* COMPACT MOBILE OVERVIEW */
+  .page-sub{font-size:12px}
 
   .overview{
     padding:15px;
@@ -1154,9 +1054,7 @@ h1{
     grid-column:1/-1;
   }
 
-  .agent{
-    gap:11px;
-  }
+  .agent{gap:11px}
 
   .avatar{
     width:49px;
@@ -1165,9 +1063,7 @@ h1{
     font-size:16px;
   }
 
-  .agent-name{
-    font-size:17px;
-  }
+  .agent-name{font-size:17px}
 
   .meta{
     font-size:9px;
@@ -1196,13 +1092,8 @@ h1{
     height:68px;
   }
 
-  .score-number{
-    font-size:21px;
-  }
-
-  .score-label{
-    font-size:7px;
-  }
+  .score-number{font-size:21px}
+  .score-label{font-size:7px}
 
   .stats{
     grid-column:2;
@@ -1215,9 +1106,7 @@ h1{
     font-size:9px;
   }
 
-  .stat strong{
-    font-size:12px;
-  }
+  .stat strong{font-size:12px}
 
   .stat-icon{
     width:14px;
@@ -1225,15 +1114,9 @@ h1{
     font-size:7px;
   }
 
-  /* RECORDING */
+  .recording{padding:14px}
 
-  .recording{
-    padding:14px;
-  }
-
-  .record-title{
-    font-size:13px;
-  }
+  .record-title{font-size:13px}
 
   .player{
     gap:9px;
@@ -1256,23 +1139,11 @@ h1{
     min-width:2px;
   }
 
-  .time{
-    font-size:9px;
-  }
+  .time{font-size:9px}
 
-  .player-option{
-    display:none;
-  }
+  .card-pad{padding:14px}
 
-  /* SCORECARD */
-
-  .card-pad{
-    padding:14px;
-  }
-
-  .section-title{
-    font-size:15px;
-  }
+  .section-title{font-size:15px}
 
   .section-icon{
     width:24px;
@@ -1285,10 +1156,6 @@ h1{
     font-size:9px;
   }
 
-  .view-link{
-    font-size:9px;
-  }
-
   .question{
     padding:11px 10px 11px 15px;
   }
@@ -1298,9 +1165,7 @@ h1{
     gap:8px;
   }
 
-  .qname{
-    font-size:12px;
-  }
+  .qname{font-size:12px}
 
   .check{
     width:21px;
@@ -1318,38 +1183,25 @@ h1{
     padding:7px 8px;
   }
 
-  .quote{
-    font-size:8px;
-  }
-
-  .points{
-    font-size:13px;
-  }
-
-  .confidence{
-    font-size:8px;
-  }
+  .quote{font-size:8px}
+  .points{font-size:13px}
+  .confidence{font-size:8px}
 
   .override{
     padding:5px 7px;
     font-size:8px;
   }
 
-  /* TRANSCRIPT */
-
   .transcript-line{
     grid-template-columns:36px 58px 1fr;
     gap:6px;
   }
 
-  .words{
-    font-size:9px;
-  }
+  .words{font-size:9px}
 
   .actions{
     grid-template-columns:1fr 1fr;
   }
-
 }
 </style>
 </head>
@@ -1371,12 +1223,9 @@ h1{
 <div class="bubble orange-bubble"></div>
 
 <div class="signal">
-<span></span>
-<span></span>
-<span></span>
-<span></span>
-<span></span>
+<span></span><span></span><span></span><span></span><span></span>
 </div>
+
 </div>
 
 <div>
@@ -1405,6 +1254,7 @@ Bronson Taylor
 <div class="nav-shell">
 
 <nav class="nav">
+
 <a href="/">
 <span class="nav-icon">⌂</span>
 Dashboard
@@ -1429,6 +1279,7 @@ Coaching
 <span class="nav-icon">▥</span>
 Analytics
 </a>
+
 </nav>
 
 </div>
@@ -1453,12 +1304,10 @@ Analytics
 AI evaluation, evidence and human review
 </div>
 
+<div class="call-id">
+Interaction {{ call.id }}
 </div>
 
-<div class="call-nav">
-<button class="small-btn">‹ Previous Call</button>
-<button class="small-btn">Next Call ›</button>
-<button class="small-btn">•••</button>
 </div>
 
 </div>
@@ -1467,7 +1316,6 @@ AI evaluation, evidence and human review
 {% if override_saved %}
 
 <div class="saved">
-
 ✓ <strong>Human review saved.</strong>
 {{ question_name }} changed to
 <strong>{{ human_result }}</strong>.
@@ -1476,13 +1324,12 @@ AI evaluation, evidence and human review
 <br>
 Reason: {{ override_reason }}
 {% endif %}
-
 </div>
 
 {% endif %}
 
 
-<!-- CALL OVERVIEW -->
+<!-- OVERVIEW -->
 
 <div class="card overview">
 
@@ -1490,34 +1337,72 @@ Reason: {{ override_reason }}
 
 <div class="agent">
 
-<div class="avatar">JM</div>
+<div class="avatar">
+{{ call.initials }}
+</div>
 
 <div>
-<div class="agent-name">Jordan Miller</div>
+
+<div class="agent-name">
+{{ call.agent }}
+</div>
 
 <div class="meta">
-Loss Mitigation &nbsp; | &nbsp;
-Today 12:48 PM &nbsp; | &nbsp;
-8:42
-</div>
+{{ call.department }}
+&nbsp; | &nbsp;
+{{ call.time }}
+&nbsp; | &nbsp;
+{{ call.duration }}
 </div>
 
 </div>
+
+</div>
+
 
 <div class="badges">
+
+{% if call.status == "PASS" %}
 <span class="badge green">PASS</span>
-<span class="badge blue">Loss Mitigation</span>
-<span class="badge green">96% AI Confidence</span>
-</div>
+{% elif call.status == "HUMAN REVIEW" %}
+<span class="badge orange">HUMAN REVIEW</span>
+{% else %}
+<span class="badge red">CRITICAL FAILURE</span>
+{% endif %}
+
+<span class="badge blue">
+{{ call.department }}
+</span>
+
+{% if call.confidence >= 90 %}
+<span class="badge green">
+{{ call.confidence }}% AI Confidence
+</span>
+{% else %}
+<span class="badge orange">
+{{ call.confidence }}% AI Confidence
+</span>
+{% endif %}
 
 </div>
 
+</div>
 
-<div class="score-ring">
+
+<div
+class="score-ring"
+style="--score:{{ call.score }}">
 
 <div class="score-inner">
-<div class="score-number">94%</div>
-<div class="score-label">QA SCORE</div>
+
+<div class="score-number">
+{{ call.score }}%
+</div>
+
+<div class="score-label">
+QA SCORE
+</div>
+
 </div>
 
 </div>
@@ -1526,43 +1411,66 @@ Today 12:48 PM &nbsp; | &nbsp;
 <div class="stats">
 
 <div class="stat">
+
 <div class="stat-label">
 <span class="stat-icon si-blue">+</span>
 Total Points
 </div>
-<strong>69 / 90</strong>
+
+<strong>
+{{ call.total_points }}
+</strong>
+
 </div>
 
+
 <div class="stat">
+
 <div class="stat-label">
 <span class="stat-icon si-green">✓</span>
 AI Pass Rate
 </div>
-<strong>83%</strong>
+
+<strong>
+{{ call.pass_rate }}
+</strong>
+
 </div>
 
+
 <div class="stat">
+
 <div class="stat-label">
 <span class="stat-icon si-orange">!</span>
 Needs Review
 </div>
-<strong>1</strong>
+
+<strong>
+{{ call.needs_review }}
+</strong>
+
 </div>
 
+
 <div class="stat">
+
 <div class="stat-label">
 <span class="stat-icon si-red">!</span>
 Critical Findings
 </div>
-<strong>0</strong>
-</div>
+
+<strong>
+{{ call.critical_findings }}
+</strong>
 
 </div>
 
 </div>
 
+</div>
 
-<!-- MAIN GRID -->
+
+<!-- GRID -->
 
 <div class="grid">
 
@@ -1607,16 +1515,12 @@ Call Recording
 <span style="height:26px"></span>
 <span style="height:14px"></span>
 <span style="height:22px"></span>
-<span style="height:12px"></span>
-<span style="height:18px"></span>
 
 </div>
 
 <div class="time">
-0:00 / 8:42
+0:00 / {{ call.duration }}
 </div>
-
-<div class="player-option">1x</div>
 
 </div>
 
@@ -1642,30 +1546,42 @@ Mortgage Servicing — General v1
 
 </div>
 
-<a class="view-link" href="#">
-View Full Scorecard →
-</a>
-
 </div>
 
 
-<!-- AUTH -->
+{% for item in call.scorecard %}
 
-<div class="question">
+<div class="question {% if item.result == 'PARTIAL' %}partial{% elif item.result == 'FAIL' %}fail{% endif %}">
 
 <div class="qgrid">
 
 <div>
 
 <div class="qname">
-<span class="check">✓</span>
-Authentication
-<span class="critical">CRITICAL</span>
+
+<span class="check">
+{% if item.result == "PASS" %}
+✓
+{% else %}
+!
+{% endif %}
+</span>
+
+{{ item.name }}
+
+{% if item.critical %}
+<span class="critical">
+CRITICAL
+</span>
+{% endif %}
+
 </div>
 
+
 <div class="reason">
-Required authentication language was detected before account-specific servicing discussion.
+{{ item.reason }}
 </div>
+
 
 <div class="evidence">
 
@@ -1674,8 +1590,13 @@ AI EVIDENCE
 </div>
 
 <div class="quote">
-<span class="timestamp">00:00</span>
-“May I have your name and verify the required account information?”
+
+<span class="timestamp">
+{{ item.timestamp }}
+</span>
+
+“{{ item.evidence }}”
+
 </div>
 
 </div>
@@ -1686,204 +1607,40 @@ AI EVIDENCE
 <div class="qresult">
 
 <div class="points">
-20 / 20
+{{ item.points }}
 </div>
+
+
+{% if item.result == "PASS" %}
 
 <span class="badge green">
 PASS
 </span>
 
-<div class="confidence">
-98% confidence
-</div>
-
-<button
-class="override"
-type="button"
-onclick="openOverride('Authentication','PASS','20 / 20')">
-Override
-</button>
-
-</div>
-
-</div>
-
-</div>
-
-
-<!-- DISCOVERY -->
-
-<div class="question">
-
-<div class="qgrid">
-
-<div>
-
-<div class="qname">
-<span class="check">✓</span>
-Discovery
-</div>
-
-<div class="reason">
-The borrower clearly explained the reason for the call and the hardship situation.
-</div>
-
-<div class="evidence">
-
-<div class="evidence-title">
-AI EVIDENCE
-</div>
-
-<div class="quote">
-<span class="timestamp">00:09</span>
-“I lost my job last month and I cannot make the full mortgage payment.”
-</div>
-
-</div>
-
-</div>
-
-
-<div class="qresult">
-
-<div class="points">
-15 / 15
-</div>
-
-<span class="badge green">
-PASS
-</span>
-
-<div class="confidence">
-96% confidence
-</div>
-
-<button
-class="override"
-type="button"
-onclick="openOverride('Discovery','PASS','15 / 15')">
-Override
-</button>
-
-</div>
-
-</div>
-
-</div>
-
-
-<!-- EMPATHY -->
-
-<div class="question partial">
-
-<div class="qgrid">
-
-<div>
-
-<div class="qname">
-<span class="check">!</span>
-Empathy
-</div>
-
-<div class="reason">
-The borrower expressed significant concern about losing the home. The agent moved toward assistance but could have acknowledged the emotional concern more directly.
-</div>
-
-<div class="evidence">
-
-<div class="evidence-title">
-AI EVIDENCE
-</div>
-
-<div class="quote">
-<span class="timestamp">00:33</span>
-“I am worried about losing the house and I need to know if there is any help available.”
-</div>
-
-</div>
-
-</div>
-
-
-<div class="qresult">
-
-<div class="points">
-9 / 15
-</div>
+{% elif item.result == "PARTIAL" %}
 
 <span class="badge orange">
 PARTIAL
 </span>
 
-<div class="confidence">
-88% confidence
-</div>
+{% else %}
 
-<button
-class="override"
-type="button"
-onclick="openOverride('Empathy','PARTIAL','9 / 15')">
-Override
-</button>
-
-</div>
-
-</div>
-
-</div>
-
-
-<!-- RESOLUTION -->
-
-<div class="question">
-
-<div class="qgrid">
-
-<div>
-
-<div class="qname">
-<span class="check">✓</span>
-Resolution / Next Step
-</div>
-
-<div class="reason">
-The agent explained a clear assistance path and identified the next steps.
-</div>
-
-<div class="evidence">
-
-<div class="evidence-title">
-AI EVIDENCE
-</div>
-
-<div class="quote">
-<span class="timestamp">00:45</span>
-“I can review the available assistance path and explain the next steps.”
-</div>
-
-</div>
-
-</div>
-
-
-<div class="qresult">
-
-<div class="points">
-25 / 25
-</div>
-
-<span class="badge green">
-PASS
+<span class="badge red">
+FAIL
 </span>
 
+{% endif %}
+
+
 <div class="confidence">
-97% confidence
+{{ item.confidence }}% confidence
 </div>
+
 
 <button
 class="override"
 type="button"
-onclick="openOverride('Resolution / Next Step','PASS','25 / 25')">
+onclick='openOverride({{ item.name|tojson }}, {{ item.result|tojson }}, {{ item.points|tojson }})'>
 Override
 </button>
 
@@ -1892,6 +1649,8 @@ Override
 </div>
 
 </div>
+
+{% endfor %}
 
 </div>
 
@@ -1913,8 +1672,23 @@ AI Summary
 </div>
 
 <div class="summary-text">
-Borrower called due to recent job loss and inability to make the full mortgage payment. Agent followed proper authentication, gathered hardship details, provided assistance options, and explained next steps.
+{{ call.summary }}
 </div>
+
+
+{% if call.status == "HUMAN REVIEW" %}
+
+<div class="review-alert">
+⚠ ServIQ recommends human review because one or more findings are below the automatic decision confidence threshold.
+</div>
+
+{% elif call.status == "CRITICAL FAILURE" %}
+
+<div class="review-alert critical-alert">
+! Critical finding detected. Supervisor review is recommended before finalizing this QA evaluation.
+</div>
+
+{% endif %}
 
 </div>
 
@@ -1923,17 +1697,9 @@ Borrower called due to recent job loss and inability to make the full mortgage p
 
 <div class="card card-pad">
 
-<div class="section-head">
-
 <div class="section-title">
 <span class="section-icon blue-icon">•••</span>
 Transcript
-</div>
-
-<a class="view-link" href="#">
-Full Transcript →
-</a>
-
 </div>
 
 
@@ -1950,115 +1716,34 @@ onkeyup="searchTranscript()">
 
 <div id="transcript">
 
+{% for line in call.transcript %}
 
 <div class="transcript-line">
 
 <div class="tstamp">
-00:00
+{{ line.time }}
 </div>
 
-<div class="speaker agent-speaker">
-AGENT
+
+<div class="speaker {% if line.speaker == 'AGENT' %}agent-speaker{% else %}borrower{% endif %}">
+{{ line.speaker }}
 </div>
+
 
 <div class="words">
-Thank you for calling mortgage servicing. My name is Jordan. May I have your name and verify the required account information?
+{{ line.text }}
 </div>
 
 </div>
 
-
-<div class="transcript-line">
-
-<div class="tstamp">
-00:09
-</div>
-
-<div class="speaker borrower">
-BORROWER
-</div>
-
-<div class="words">
-This is Alex. I completed the verification. I am calling because I lost my job last month and I cannot make the full mortgage payment.
-</div>
-
-</div>
-
-
-<div class="transcript-line">
-
-<div class="tstamp">
-00:22
-</div>
-
-<div class="speaker agent-speaker">
-AGENT
-</div>
-
-<div class="words">
-I see the payment is past due. How much are you able to pay today?
-</div>
-
-</div>
-
-
-<div class="transcript-line">
-
-<div class="tstamp">
-00:33
-</div>
-
-<div class="speaker borrower">
-BORROWER
-</div>
-
-<div class="words">
-That is why I am calling. I am worried about losing the house and I need to know if there is any help available.
-</div>
-
-</div>
-
-
-<div class="transcript-line">
-
-<div class="tstamp">
-00:45
-</div>
-
-<div class="speaker agent-speaker">
-AGENT
-</div>
-
-<div class="words">
-I can review the available assistance path and explain the next steps. I will first confirm some information about your hardship.
-</div>
-
-</div>
-
-
-<div class="transcript-line">
-
-<div class="tstamp">
-01:02
-</div>
-
-<div class="speaker agent-speaker">
-AGENT
-</div>
-
-<div class="words">
-After we review that information, I will let you know the next step and what documents may be needed. Is there anything else you need help with today?
-</div>
-
-</div>
-
+{% endfor %}
 
 </div>
 
 </div>
 
 
-<!-- SUPERVISOR -->
+<!-- SUPERVISOR ACTIONS -->
 
 <div class="card card-pad">
 
@@ -2070,6 +1755,7 @@ Supervisor Actions
 <div class="section-sub">
 Human oversight remains part of the QA record.
 </div>
+
 
 <div class="actions">
 
@@ -2096,13 +1782,9 @@ Assign Coaching
 </main>
 
 
-<!-- =========================
-     OVERRIDE MODAL
-========================= -->
+<!-- OVERRIDE MODAL -->
 
-<div
-id="overrideModal"
-class="modal">
+<div id="overrideModal" class="modal">
 
 <div class="modal-box">
 
@@ -2139,7 +1821,6 @@ AI DECISION
 <div
 id="aiDecision"
 class="ai-current-value">
-Authentication • PASS • 20 / 20
 </div>
 
 </div>
@@ -2147,7 +1828,7 @@ Authentication • PASS • 20 / 20
 
 <form
 method="POST"
-action="/review">
+action="/review/{{ call.id }}">
 
 <input
 type="hidden"
@@ -2168,21 +1849,10 @@ required>
 Select final result
 </option>
 
-<option value="PASS">
-PASS
-</option>
-
-<option value="PARTIAL">
-PARTIAL
-</option>
-
-<option value="FAIL">
-FAIL
-</option>
-
-<option value="N/A">
-N/A
-</option>
+<option value="PASS">PASS</option>
+<option value="PARTIAL">PARTIAL</option>
+<option value="FAIL">FAIL</option>
+<option value="N/A">N/A</option>
 
 </select>
 
@@ -2214,14 +1884,16 @@ Save Human Review
 
 function openOverride(question, aiResult, points){
 
-  document.getElementById("questionName").value = question;
+  document.getElementById("questionName").value =
+    question;
 
   document.getElementById("aiDecision").textContent =
     question + " • " + aiResult + " • " + points;
 
   document
     .getElementById("overrideModal")
-    .classList.add("show");
+    .classList
+    .add("show");
 }
 
 
@@ -2229,20 +1901,24 @@ function closeOverride(){
 
   document
     .getElementById("overrideModal")
-    .classList.remove("show");
+    .classList
+    .remove("show");
 }
 
 
-window.addEventListener("click", function(event){
+window.addEventListener(
+  "click",
+  function(event){
 
-  const modal =
-    document.getElementById("overrideModal");
+    const modal =
+      document.getElementById("overrideModal");
 
-  if(event.target === modal){
-    closeOverride();
+    if(event.target === modal){
+      closeOverride();
+    }
+
   }
-
-});
+);
 
 
 function searchTranscript(){
