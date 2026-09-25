@@ -156,4 +156,7 @@ def calls():
 
 
 if __name__ == "__main__":
+    @app.route("/review")
+def review():
+    return render_template("review.html")
     app.run(debug=True, port=5000)
