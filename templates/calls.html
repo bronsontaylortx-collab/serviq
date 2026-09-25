@@ -9,209 +9,469 @@
 *{box-sizing:border-box}
 
 :root{
-  --navy:#071426;
-  --navy2:#0b1d35;
-  --blue:#3b82f6;
-  --purple:#8b5cf6;
-  --green:#16a34a;
-  --red:#ef4444;
-  --orange:#f59e0b;
-  --bg:#f3f6fb;
-  --text:#142033;
-  --muted:#718096;
-  --border:#e3e9f2;
+  --navy:#061426;
+  --navy2:#08213d;
+  --blue:#1478ff;
+  --blue2:#38a3ff;
+  --orange:#ff7900;
+  --orange2:#ff9d22;
+  --green:#10ad72;
+  --red:#dc3545;
+  --bg:#f4f7fb;
+  --text:#0b1b34;
+  --muted:#66768c;
+  --border:#dfe7f1;
 }
+
+html{-webkit-text-size-adjust:100%}
 
 body{
   margin:0;
-  background:var(--bg);
+  background:
+    radial-gradient(circle at 85% 12%,rgba(20,120,255,.05),transparent 30%),
+    var(--bg);
   color:var(--text);
-  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;
 }
 
+/* HEADER */
+
 header{
-  background:
-    radial-gradient(circle at 80% -40%,#174e91 0%,transparent 48%),
-    linear-gradient(135deg,#071426,#0b1d35);
+  position:relative;
+  overflow:hidden;
   color:white;
-  padding:22px 18px 0;
+  background:
+    radial-gradient(circle at 78% -15%,rgba(20,120,255,.26),transparent 38%),
+    radial-gradient(circle at 100% 0%,rgba(255,121,0,.11),transparent 28%),
+    linear-gradient(125deg,#061426,#08213d 60%,#071627);
+}
+
+.header-swirl{
+  position:absolute;
+  pointer-events:none;
+  width:650px;
+  height:130px;
+  right:-70px;
+  top:-58px;
+  border-radius:50%;
+  border-bottom:2px solid rgba(20,120,255,.9);
+  transform:rotate(-7deg);
+}
+
+.header-swirl:after{
+  content:"";
+  position:absolute;
+  width:520px;
+  height:112px;
+  right:5px;
+  top:17px;
+  border-radius:50%;
+  border-bottom:2px solid rgba(255,121,0,.95);
 }
 
 .header-inner{
-  max-width:1180px;
+  position:relative;
+  z-index:2;
+  max-width:1400px;
   margin:auto;
+  padding:17px 22px 0;
 }
 
 .brand-row{
   display:flex;
   justify-content:space-between;
   align-items:center;
+  gap:18px;
 }
 
 .logo-wrap{
   display:flex;
   align-items:center;
-  gap:11px;
+  gap:12px;
 }
 
-.logo{
-  width:48px;
-  height:48px;
-  border-radius:14px;
+.logo-icon{
+  position:relative;
+  width:52px;
+  height:43px;
+  flex:0 0 52px;
+}
+
+.bubble{
+  position:absolute;
+  width:36px;
+  height:27px;
+  border:3px solid;
+  border-radius:9px;
+}
+
+.blue-bubble{
+  left:0;
+  top:2px;
+  border-color:var(--blue);
+}
+
+.blue-bubble:after{
+  content:"";
+  position:absolute;
+  left:7px;
+  bottom:-8px;
+  width:8px;
+  height:8px;
+  border-left:3px solid var(--blue);
+  transform:skewY(-35deg);
+}
+
+.orange-bubble{
+  right:0;
+  bottom:2px;
+  border-color:var(--orange);
+}
+
+.orange-bubble:after{
+  content:"";
+  position:absolute;
+  right:7px;
+  bottom:-8px;
+  width:8px;
+  height:8px;
+  border-right:3px solid var(--orange);
+  transform:skewY(35deg);
+}
+
+.signal{
+  position:absolute;
+  z-index:4;
+  left:50%;
+  top:50%;
+  transform:translate(-50%,-50%);
   display:flex;
   align-items:center;
-  justify-content:center;
-  font-size:25px;
-  font-weight:900;
-  background:linear-gradient(135deg,#3b82f6,#9333ea);
-  box-shadow:0 8px 24px rgba(59,130,246,.35);
+  gap:3px;
 }
+
+.signal span{
+  width:3px;
+  border-radius:5px;
+}
+
+.signal span:nth-child(1){height:9px;background:var(--blue)}
+.signal span:nth-child(2){height:17px;background:var(--blue)}
+.signal span:nth-child(3){height:23px;background:var(--orange)}
+.signal span:nth-child(4){height:14px;background:var(--orange)}
+.signal span:nth-child(5){height:19px;background:var(--orange)}
 
 .brand{
-  font-size:25px;
+  font-size:28px;
+  line-height:1;
   font-weight:900;
+  letter-spacing:-1.1px;
 }
 
+.brand-iq{color:var(--orange)}
+
 .sub{
-  color:#94a3b8;
-  font-size:12px;
-  margin-top:2px;
+  color:#aebbd0;
+  font-size:11px;
+  margin-top:5px;
+}
+
+.header-right{
+  display:flex;
+  align-items:center;
+  gap:13px;
 }
 
 .live{
-  background:rgba(34,197,94,.12);
-  color:#86efac;
-  border:1px solid rgba(34,197,94,.25);
-  padding:8px 12px;
+  background:rgba(16,173,114,.12);
+  border:1px solid rgba(83,232,170,.28);
+  color:#62e9ae;
   border-radius:999px;
-  font-size:11px;
-  font-weight:800;
+  padding:8px 13px;
+  font-size:10px;
+  font-weight:900;
+  white-space:nowrap;
 }
 
 .live-dot{
   display:inline-block;
   width:7px;
   height:7px;
-  background:#22c55e;
   border-radius:50%;
-  margin-right:5px;
+  background:#18d98a;
+  margin-right:6px;
+  box-shadow:0 0 9px rgba(24,217,138,.8);
 }
+
+.user{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  font-size:11px;
+  font-weight:700;
+}
+
+.user-avatar{
+  width:33px;
+  height:33px;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:linear-gradient(135deg,var(--blue),#6a5cff);
+  font-size:10px;
+  font-weight:900;
+}
+
+/* NAV */
+
+.nav-shell{
+  margin-top:14px;
+  overflow-x:auto;
+  scrollbar-width:none;
+  -webkit-overflow-scrolling:touch;
+}
+
+.nav-shell::-webkit-scrollbar{display:none}
 
 .nav{
   display:flex;
-  gap:8px;
-  margin-top:20px;
-  overflow-x:auto;
+  min-width:max-content;
 }
 
 .nav a{
-  color:#94a3b8;
+  position:relative;
+  display:flex;
+  align-items:center;
+  gap:7px;
+  color:#aebbd0;
   text-decoration:none;
-  padding:12px 15px;
-  font-size:13px;
+  padding:12px 17px 14px;
+  font-size:12px;
   font-weight:800;
   white-space:nowrap;
-  border-bottom:3px solid transparent;
 }
 
-.nav a.active{
-  color:white;
-  border-bottom-color:#3b82f6;
+.nav-icon{font-size:13px}
+
+.nav a.active{color:white}
+
+.nav a.active .nav-icon{color:var(--orange)}
+
+.nav a.active:after{
+  content:"";
+  position:absolute;
+  left:14px;
+  right:14px;
+  bottom:0;
+  height:3px;
+  border-radius:5px 5px 0 0;
+  background:var(--orange);
 }
+
+/* PAGE */
 
 main{
-  max-width:1180px;
+  max-width:1400px;
   margin:auto;
-  padding:24px 18px 60px;
-}
-
-.title-row{
-  display:flex;
-  justify-content:space-between;
-  align-items:flex-end;
-  gap:12px;
-  margin-bottom:20px;
+  padding:22px 22px 60px;
 }
 
 h1{
   margin:0;
-  font-size:27px;
+  font-size:30px;
+  letter-spacing:-1px;
 }
 
 .subtitle{
   color:var(--muted);
-  font-size:14px;
+  font-size:13px;
   margin-top:5px;
 }
+
+/* SUMMARY */
 
 .summary{
   display:grid;
   grid-template-columns:repeat(3,1fr);
   gap:12px;
-  margin-bottom:18px;
+  margin-top:18px;
 }
 
 .stat{
+  position:relative;
+  overflow:hidden;
   background:white;
   border:1px solid var(--border);
-  border-radius:16px;
-  padding:17px;
-  box-shadow:0 6px 20px rgba(15,23,42,.04);
+  border-radius:15px;
+  padding:16px;
+  box-shadow:0 7px 24px rgba(15,35,65,.05);
 }
+
+.stat:before{
+  content:"";
+  position:absolute;
+  left:0;
+  top:0;
+  bottom:0;
+  width:4px;
+}
+
+.stat.analyzed:before{background:var(--blue)}
+.stat.review-stat:before{background:var(--orange)}
+.stat.critical:before{background:var(--red)}
+
+.stat-top{
+  display:flex;
+  align-items:center;
+  gap:8px;
+}
+
+.stat-icon{
+  width:27px;
+  height:27px;
+  border-radius:8px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:12px;
+  font-weight:900;
+}
+
+.icon-blue{background:#dbeafe;color:#1264d6}
+.icon-orange{background:#ffedd5;color:#ea580c}
+.icon-red{background:#fee2e2;color:#b91c1c}
 
 .stat-label{
   color:var(--muted);
-  font-size:11px;
-  font-weight:800;
+  font-size:10px;
+  font-weight:900;
   text-transform:uppercase;
+  letter-spacing:.3px;
 }
 
 .stat-value{
-  font-size:26px;
+  font-size:27px;
   font-weight:900;
-  margin-top:5px;
+  margin-top:7px;
 }
 
+/* FILTERS */
+
 .filters{
+  margin-top:14px;
   background:white;
   border:1px solid var(--border);
-  border-radius:16px;
-  padding:14px;
-  margin-bottom:16px;
+  border-radius:15px;
+  padding:12px;
+  box-shadow:0 7px 24px rgba(15,35,65,.04);
   display:flex;
-  gap:10px;
+  gap:9px;
+}
+
+.search-wrap{
+  position:relative;
+  flex:1;
+}
+
+.search-icon{
+  position:absolute;
+  left:12px;
+  top:50%;
+  transform:translateY(-50%);
+  color:#8a99ad;
+  font-size:14px;
 }
 
 .search{
-  flex:1;
+  width:100%;
   border:1px solid #d9e1ec;
-  border-radius:10px;
-  padding:12px;
-  font-size:14px;
+  border-radius:9px;
+  padding:11px 12px 11px 35px;
+  font-size:12px;
   outline:none;
+}
+
+.search:focus{
+  border-color:var(--blue);
+  box-shadow:0 0 0 3px rgba(20,120,255,.08);
 }
 
 .filter-btn{
   border:1px solid #d9e1ec;
   background:white;
-  border-radius:10px;
-  padding:0 14px;
-  font-weight:700;
+  border-radius:9px;
+  padding:0 13px;
   color:#475569;
+  font-size:10px;
+  font-weight:900;
+  cursor:pointer;
 }
+
+.filter-btn.active{
+  border-color:var(--orange);
+  color:#d96500;
+  background:#fff7ed;
+}
+
+/* LIST HEADER */
+
+.list-head{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin:18px 2px 9px;
+}
+
+.list-title{
+  font-size:14px;
+  font-weight:900;
+}
+
+.list-count{
+  color:var(--muted);
+  font-size:10px;
+}
+
+/* CALL CARDS */
 
 .call-list{
   display:flex;
   flex-direction:column;
-  gap:12px;
+  gap:10px;
 }
 
 .call{
+  position:relative;
   background:white;
   border:1px solid var(--border);
-  border-radius:17px;
-  padding:17px;
-  box-shadow:0 6px 20px rgba(15,23,42,.04);
+  border-radius:15px;
+  padding:15px 16px;
+  box-shadow:0 7px 24px rgba(15,35,65,.045);
+  transition:.15s ease;
+}
+
+.call:hover{
+  border-color:#cbd8e8;
+  transform:translateY(-1px);
+}
+
+.call.featured{
+  border-color:#b8d6ff;
+  background:
+    linear-gradient(90deg,rgba(20,120,255,.035),transparent 30%),
+    white;
+}
+
+.call.featured:before{
+  content:"";
+  position:absolute;
+  left:0;
+  top:15px;
+  bottom:15px;
+  width:4px;
+  border-radius:0 5px 5px 0;
+  background:linear-gradient(var(--blue),var(--orange));
 }
 
 .call-top{
@@ -225,18 +485,27 @@ h1{
   display:flex;
   gap:11px;
   align-items:center;
+  min-width:0;
 }
 
 .avatar{
-  width:42px;
-  height:42px;
-  border-radius:12px;
-  background:linear-gradient(135deg,#dbeafe,#ede9fe);
-  color:#2563eb;
+  width:44px;
+  height:44px;
+  flex:0 0 44px;
+  border-radius:50%;
+  background:linear-gradient(135deg,#e5efff,#f3f6fc);
+  color:#0875ed;
   display:flex;
   align-items:center;
   justify-content:center;
   font-weight:900;
+  font-size:13px;
+}
+
+.featured .avatar{
+  color:white;
+  background:linear-gradient(135deg,var(--blue),var(--orange));
+  box-shadow:0 5px 14px rgba(20,120,255,.18);
 }
 
 .agent-name{
@@ -246,37 +515,37 @@ h1{
 
 .call-info{
   color:var(--muted);
-  font-size:12px;
-  margin-top:3px;
+  font-size:10px;
+  margin-top:4px;
 }
 
-.score{
-  text-align:right;
-}
+.score{text-align:right}
 
 .score-number{
-  font-size:23px;
+  font-size:22px;
+  line-height:1;
   font-weight:900;
 }
 
 .score-label{
   color:var(--muted);
-  font-size:10px;
-  font-weight:800;
+  font-size:8px;
+  font-weight:900;
+  margin-top:3px;
 }
 
 .call-meta{
   display:flex;
-  gap:8px;
+  gap:6px;
   flex-wrap:wrap;
-  margin-top:15px;
+  margin-top:12px;
 }
 
 .badge{
-  padding:6px 9px;
+  padding:5px 8px;
   border-radius:999px;
-  font-size:10px;
-  font-weight:800;
+  font-size:8px;
+  font-weight:900;
 }
 
 .good{
@@ -285,8 +554,8 @@ h1{
 }
 
 .warning{
-  background:#fef3c7;
-  color:#b45309;
+  background:#fff0d8;
+  color:#d96800;
 }
 
 .danger{
@@ -296,54 +565,211 @@ h1{
 
 .blue{
   background:#dbeafe;
-  color:#1d4ed8;
+  color:#1264d6;
 }
 
 .review{
-  margin-top:14px;
-  padding-top:13px;
+  margin-top:11px;
+  padding-top:11px;
   border-top:1px solid #edf1f6;
   display:flex;
   justify-content:space-between;
   align-items:center;
+  gap:10px;
 }
 
 .review-text{
+  display:flex;
+  align-items:center;
+  gap:6px;
   color:#64748b;
-  font-size:12px;
+  font-size:10px;
 }
+
+.status-dot{
+  width:7px;
+  height:7px;
+  flex:0 0 7px;
+  border-radius:50%;
+}
+
+.dot-green{background:var(--green)}
+.dot-orange{background:var(--orange)}
+.dot-red{background:var(--red)}
 
 .review-link{
   text-decoration:none;
-  color:#2563eb;
-  font-weight:800;
+  color:#0875ed;
+  font-weight:900;
+  font-size:10px;
+  white-space:nowrap;
+}
+
+.review-link:hover{color:var(--orange)}
+
+.empty{
+  display:none;
+  padding:35px 15px;
+  text-align:center;
+  color:var(--muted);
   font-size:12px;
 }
 
+/* MOBILE */
+
 @media(max-width:650px){
+
+  .header-swirl{
+    width:430px;
+    height:90px;
+    right:-135px;
+    top:-54px;
+  }
+
+  .header-swirl:after{
+    width:350px;
+    height:76px;
+    top:13px;
+  }
+
+  .header-inner{
+    padding:14px 14px 0;
+  }
+
+  .logo-wrap{gap:9px}
+
+  .logo-icon{
+    width:43px;
+    height:37px;
+    flex-basis:43px;
+  }
+
+  .bubble{
+    width:30px;
+    height:23px;
+    border-width:2.5px;
+  }
+
+  .blue-bubble:after{border-left-width:2px}
+  .orange-bubble:after{border-right-width:2px}
+
+  .brand{font-size:23px}
+
+  .sub{
+    max-width:220px;
+    font-size:9px;
+    line-height:1.25;
+  }
+
+  .user{display:none}
+
+  .live{
+    padding:7px 10px;
+    font-size:9px;
+  }
+
+  .nav-shell{margin-top:11px}
+
+  .nav a{
+    padding:10px 14px 12px;
+    font-size:11px;
+  }
+
+  main{
+    padding:17px 13px 50px;
+  }
+
+  h1{font-size:26px}
+
+  .subtitle{font-size:12px}
+
   .summary{
-    grid-template-columns:1fr 1fr 1fr;
+    gap:7px;
+    margin-top:15px;
   }
 
   .stat{
-    padding:13px 10px;
+    padding:11px 8px 11px 11px;
+    border-radius:12px;
+  }
+
+  .stat-icon{
+    width:22px;
+    height:22px;
+    font-size:9px;
+  }
+
+  .stat-label{
+    font-size:8px;
   }
 
   .stat-value{
     font-size:21px;
-  }
-
-  .stat-label{
-    font-size:9px;
+    margin-top:5px;
   }
 
   .filters{
     flex-wrap:wrap;
+    padding:9px;
+    gap:7px;
   }
 
-  .search{
-    width:100%;
+  .search-wrap{
     flex-basis:100%;
+  }
+
+  .filter-btn{
+    flex:1;
+    min-height:35px;
+  }
+
+  .list-head{
+    margin-top:15px;
+  }
+
+  .call{
+    padding:13px;
+  }
+
+  .call.featured{
+    padding-left:15px;
+  }
+
+  .avatar{
+    width:40px;
+    height:40px;
+    flex-basis:40px;
+    font-size:12px;
+  }
+
+  .agent-name{
+    font-size:14px;
+  }
+
+  .call-info{
+    font-size:9px;
+    line-height:1.35;
+  }
+
+  .score-number{
+    font-size:20px;
+  }
+
+  .call-meta{
+    margin-top:10px;
+  }
+
+  .review{
+    margin-top:10px;
+    padding-top:10px;
+  }
+
+  .review-text{
+    font-size:9px;
+  }
+
+  .review-link{
+    font-size:9px;
   }
 }
 </style>
@@ -352,81 +778,246 @@ h1{
 <body>
 
 <header>
+
+<div class="header-swirl"></div>
+
 <div class="header-inner">
 
 <div class="brand-row">
 
 <div class="logo-wrap">
-<div class="logo">S</div>
+
+<div class="logo-icon">
+<div class="bubble blue-bubble"></div>
+<div class="bubble orange-bubble"></div>
+
+<div class="signal">
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+</div>
+</div>
 
 <div>
-<div class="brand">ServIQ</div>
+<div class="brand">Serv<span class="brand-iq">IQ</span></div>
 <div class="sub">AI Quality Assurance for Mortgage Servicing</div>
 </div>
+
 </div>
+
+<div class="header-right">
 
 <div class="live">
 <span class="live-dot"></span>
 AI ONLINE
 </div>
 
+<div class="user">
+<div class="user-avatar">BT</div>
+Bronson Taylor
 </div>
 
+</div>
+
+</div>
+
+<div class="nav-shell">
+
 <nav class="nav">
-<a href="/">Dashboard</a>
-<a class="active" href="/calls">Calls</a>
-<a href="#">Scorecards</a>
-<a href="#">Coaching</a>
-<a href="#">Analytics</a>
+
+<a href="/">
+<span class="nav-icon">⌂</span>
+Dashboard
+</a>
+
+<a class="active" href="/calls">
+<span class="nav-icon">☎</span>
+Calls
+</a>
+
+<a href="#">
+<span class="nav-icon">▣</span>
+Scorecards
+</a>
+
+<a href="#">
+<span class="nav-icon">◉</span>
+Coaching
+</a>
+
+<a href="#">
+<span class="nav-icon">▥</span>
+Analytics
+</a>
+
 </nav>
+
+</div>
 
 </div>
 </header>
 
+
 <main>
 
-<div class="title-row">
 <div>
 <h1>Calls</h1>
-<div class="subtitle">AI-analyzed servicing conversations</div>
+<div class="subtitle">
+AI-analyzed mortgage servicing conversations
 </div>
 </div>
+
 
 <div class="summary">
 
-<div class="stat">
+<div class="stat analyzed">
+<div class="stat-top">
+<div class="stat-icon icon-blue">✓</div>
 <div class="stat-label">Analyzed</div>
+</div>
 <div class="stat-value">1,248</div>
 </div>
 
-<div class="stat">
+<div class="stat review-stat">
+<div class="stat-top">
+<div class="stat-icon icon-orange">!</div>
 <div class="stat-label">Review</div>
+</div>
 <div class="stat-value">42</div>
 </div>
 
-<div class="stat">
+<div class="stat critical">
+<div class="stat-top">
+<div class="stat-icon icon-red">!</div>
 <div class="stat-label">Critical</div>
+</div>
 <div class="stat-value">18</div>
 </div>
 
 </div>
 
+
 <div class="filters">
-<input class="search" placeholder="Search agent or call...">
-<button class="filter-btn">Filters</button>
+
+<div class="search-wrap">
+<span class="search-icon">⌕</span>
+
+<input
+id="callSearch"
+class="search"
+type="text"
+placeholder="Search agent, queue or call..."
+onkeyup="filterCalls()">
 </div>
 
-<div class="call-list">
+<button
+class="filter-btn active"
+data-filter="all"
+onclick="setFilter('all',this)">
+All
+</button>
 
-<div class="call">
+<button
+class="filter-btn"
+data-filter="review"
+onclick="setFilter('review',this)">
+Review
+</button>
+
+<button
+class="filter-btn"
+data-filter="critical"
+onclick="setFilter('critical',this)">
+Critical
+</button>
+
+</div>
+
+
+<div class="list-head">
+<div class="list-title">Recent Calls</div>
+<div id="resultCount" class="list-count">5 calls shown</div>
+</div>
+
+
+<div id="callList" class="call-list">
+
+
+<!-- BRONSON -->
+
+<div
+class="call featured"
+data-search="bronson taylor loss mitigation pass"
+data-status="pass">
+
 <div class="call-top">
 
 <div class="agent">
+
+<div class="avatar">BT</div>
+
+<div>
+<div class="agent-name">Bronson Taylor</div>
+
+<div class="call-info">
+Loss Mitigation • 9:14 • Today 1:36 PM
+</div>
+</div>
+
+</div>
+
+<div class="score">
+<div class="score-number">97%</div>
+<div class="score-label">QA SCORE</div>
+</div>
+
+</div>
+
+<div class="call-meta">
+<span class="badge good">PASS</span>
+<span class="badge blue">Loss Mitigation</span>
+<span class="badge good">98% AI Confidence</span>
+</div>
+
+<div class="review">
+
+<div class="review-text">
+<span class="status-dot dot-green"></span>
+Strong servicing interaction
+</div>
+
+<a class="review-link" href="/review">
+Review Call →
+</a>
+
+</div>
+
+</div>
+
+
+<!-- JORDAN -->
+
+<div
+class="call"
+data-search="jordan miller loss mitigation pass"
+data-status="pass">
+
+<div class="call-top">
+
+<div class="agent">
+
 <div class="avatar">JM</div>
+
 <div>
 <div class="agent-name">Jordan Miller</div>
-<div class="call-info">Loss Mitigation • 8:42 • Today 12:48 PM</div>
+
+<div class="call-info">
+Loss Mitigation • 8:42 • Today 12:48 PM
 </div>
+</div>
+
 </div>
 
 <div class="score">
@@ -443,21 +1034,42 @@ AI ONLINE
 </div>
 
 <div class="review">
-<div class="review-text">No critical failures detected</div>
-<a class="review-link" href="/review">Review Call →</a>
+
+<div class="review-text">
+<span class="status-dot dot-green"></span>
+No critical failures detected
 </div>
+
+<a class="review-link" href="/review">
+Review Call →
+</a>
+
+</div>
+
 </div>
 
 
-<div class="call">
+<!-- ASHLEY -->
+
+<div
+class="call"
+data-search="ashley reed payment human review empathy"
+data-status="review">
+
 <div class="call-top">
 
 <div class="agent">
+
 <div class="avatar">AR</div>
+
 <div>
 <div class="agent-name">Ashley Reed</div>
-<div class="call-info">Payment • 6:17 • Today 11:32 AM</div>
+
+<div class="call-info">
+Payment • 6:17 • Today 11:32 AM
 </div>
+</div>
+
 </div>
 
 <div class="score">
@@ -474,21 +1086,42 @@ AI ONLINE
 </div>
 
 <div class="review">
-<div class="review-text">Low-confidence empathy evaluation</div>
-<a class="review-link" href="#">Review Call →</a>
+
+<div class="review-text">
+<span class="status-dot dot-orange"></span>
+Low-confidence empathy evaluation
 </div>
+
+<a class="review-link" href="/review">
+Review Call →
+</a>
+
+</div>
+
 </div>
 
 
-<div class="call">
+<!-- DAVID -->
+
+<div
+class="call"
+data-search="david torres delinquency critical failure authentication"
+data-status="critical">
+
 <div class="call-top">
 
 <div class="agent">
+
 <div class="avatar">DT</div>
+
 <div>
 <div class="agent-name">David Torres</div>
-<div class="call-info">Delinquency • 11:03 • Today 10:16 AM</div>
+
+<div class="call-info">
+Delinquency • 11:03 • Today 10:16 AM
 </div>
+</div>
+
 </div>
 
 <div class="score">
@@ -505,21 +1138,42 @@ AI ONLINE
 </div>
 
 <div class="review">
-<div class="review-text">Authentication requirement flagged</div>
-<a class="review-link" href="#">Review Call →</a>
+
+<div class="review-text">
+<span class="status-dot dot-red"></span>
+Authentication requirement flagged
 </div>
+
+<a class="review-link" href="/review">
+Review Call →
+</a>
+
+</div>
+
 </div>
 
 
-<div class="call">
+<!-- SARAH -->
+
+<div
+class="call"
+data-search="sarah kim escrow pass"
+data-status="pass">
+
 <div class="call-top">
 
 <div class="agent">
+
 <div class="avatar">SK</div>
+
 <div>
 <div class="agent-name">Sarah Kim</div>
-<div class="call-info">Escrow • 5:54 • Yesterday 4:42 PM</div>
+
+<div class="call-info">
+Escrow • 5:54 • Yesterday 4:42 PM
 </div>
+</div>
+
 </div>
 
 <div class="score">
@@ -536,13 +1190,104 @@ AI ONLINE
 </div>
 
 <div class="review">
-<div class="review-text">Strong servicing interaction</div>
-<a class="review-link" href="#">Review Call →</a>
-</div>
+
+<div class="review-text">
+<span class="status-dot dot-green"></span>
+Strong servicing interaction
 </div>
 
+<a class="review-link" href="/review">
+Review Call →
+</a>
+
+</div>
+
+</div>
+
+
+</div>
+
+
+<div id="emptyState" class="empty">
+No calls match your search or filter.
 </div>
 
 </main>
+
+
+<script>
+
+let activeFilter = "all";
+
+function setFilter(filter,button){
+
+  activeFilter = filter;
+
+  document
+    .querySelectorAll(".filter-btn")
+    .forEach(function(btn){
+      btn.classList.remove("active");
+    });
+
+  button.classList.add("active");
+
+  filterCalls();
+}
+
+
+function filterCalls(){
+
+  const search =
+    document
+      .getElementById("callSearch")
+      .value
+      .toLowerCase()
+      .trim();
+
+  const calls =
+    document.querySelectorAll("#callList .call");
+
+  let visible = 0;
+
+  calls.forEach(function(call){
+
+    const searchable =
+      call.dataset.search.toLowerCase();
+
+    const status =
+      call.dataset.status;
+
+    const matchesSearch =
+      searchable.includes(search);
+
+    const matchesFilter =
+      activeFilter === "all" ||
+      status === activeFilter;
+
+    if(matchesSearch && matchesFilter){
+
+      call.style.display = "block";
+      visible++;
+
+    }else{
+
+      call.style.display = "none";
+
+    }
+
+  });
+
+
+  document.getElementById("resultCount").textContent =
+    visible + (visible === 1 ? " call shown" : " calls shown");
+
+
+  document.getElementById("emptyState").style.display =
+    visible === 0 ? "block" : "none";
+
+}
+
+</script>
+
 </body>
 </html>
