@@ -17,7 +17,6 @@
   --orange2:#ff9d22;
   --green:#10ad72;
   --red:#dc3545;
-  --yellow:#f2b705;
   --bg:#f4f7fb;
   --text:#0b1b34;
   --muted:#66768c;
@@ -308,13 +307,121 @@ h1{
   box-shadow:0 5px 18px rgba(15,35,65,.04);
 }
 
+/* ORG FILTER */
+
+.org-panel{
+  margin-top:18px;
+  background:
+    linear-gradient(90deg,rgba(20,120,255,.035),rgba(255,121,0,.025)),
+    white;
+  border:1px solid var(--border);
+  border-radius:16px;
+  padding:15px;
+  box-shadow:0 7px 24px rgba(15,35,65,.045);
+}
+
+.org-top{
+  display:flex;
+  justify-content:space-between;
+  gap:15px;
+  align-items:center;
+  margin-bottom:12px;
+}
+
+.org-title{
+  font-size:13px;
+  font-weight:900;
+}
+
+.org-description{
+  color:var(--muted);
+  font-size:9px;
+  margin-top:3px;
+}
+
+.scope-badge{
+  background:#eaf3ff;
+  color:#1264d6;
+  padding:6px 9px;
+  border-radius:999px;
+  font-size:8px;
+  font-weight:900;
+  white-space:nowrap;
+}
+
+.org-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:9px;
+}
+
+.select-group label{
+  display:block;
+  color:#728096;
+  font-size:8px;
+  font-weight:900;
+  text-transform:uppercase;
+  letter-spacing:.4px;
+  margin:0 0 5px 2px;
+}
+
+.select-group select{
+  width:100%;
+  border:1px solid #d9e1ec;
+  background:white;
+  color:var(--text);
+  border-radius:9px;
+  padding:10px;
+  font-size:10px;
+  font-weight:800;
+  outline:none;
+}
+
+.select-group select:focus{
+  border-color:var(--blue);
+  box-shadow:0 0 0 3px rgba(20,120,255,.08);
+}
+
+.select-group select:disabled{
+  background:#f4f6f9;
+  color:#9ba7b7;
+}
+
+.viewing{
+  margin-top:12px;
+  padding-top:11px;
+  border-top:1px solid #edf1f6;
+  display:flex;
+  justify-content:space-between;
+  gap:12px;
+  align-items:center;
+}
+
+.breadcrumb{
+  font-size:10px;
+  font-weight:900;
+  color:#30445f;
+}
+
+.breadcrumb span{
+  color:#8b99ab;
+  font-weight:600;
+}
+
+.scope-meta{
+  color:var(--muted);
+  font-size:9px;
+  font-weight:700;
+  white-space:nowrap;
+}
+
 /* KPI */
 
 .kpis{
   display:grid;
   grid-template-columns:repeat(5,1fr);
   gap:10px;
-  margin-top:18px;
+  margin-top:12px;
 }
 
 .kpi{
@@ -386,9 +493,7 @@ h1{
   font-size:9px;
 }
 
-.card-body{
-  padding:16px;
-}
+.card-body{padding:16px}
 
 /* TREND */
 
@@ -420,6 +525,7 @@ h1{
   border-radius:7px 7px 3px 3px;
   background:linear-gradient(180deg,var(--blue2),var(--blue));
   position:relative;
+  transition:.25s ease;
 }
 
 .trend-bar.today{
@@ -456,10 +562,10 @@ h1{
   width:130px;
   height:130px;
   border-radius:50%;
-  background:conic-gradient(var(--green) 0 327deg,#edf1f6 327deg 360deg);
   display:flex;
   align-items:center;
   justify-content:center;
+  transition:.25s;
 }
 
 .ring-inner{
@@ -508,7 +614,7 @@ h1{
 .orange-dot{background:var(--orange)}
 .red-dot{background:var(--red)}
 
-/* SCORECARD PERFORMANCE */
+/* SCORECARD */
 
 .performance-list{
   display:flex;
@@ -538,15 +644,7 @@ h1{
 .fill{
   height:100%;
   border-radius:999px;
-  background:linear-gradient(90deg,var(--blue),var(--blue2));
-}
-
-.fill.good-fill{
-  background:linear-gradient(90deg,#0ca66d,#31ce94);
-}
-
-.fill.warning-fill{
-  background:linear-gradient(90deg,var(--orange),var(--orange2));
+  transition:.3s;
 }
 
 .performance-score{
@@ -566,7 +664,7 @@ h1{
   line-height:1.45;
 }
 
-/* AI INSIGHTS */
+/* AI */
 
 .ai-card{
   background:
@@ -579,9 +677,7 @@ h1{
   border-color:rgba(255,255,255,.09);
 }
 
-.ai-card .card-sub{
-  color:#9fb2ca;
-}
+.ai-card .card-sub{color:#9fb2ca}
 
 .ai-badge{
   background:rgba(255,121,0,.13);
@@ -637,15 +733,11 @@ h1{
   line-height:1.45;
 }
 
-/* AGENT TABLE */
+/* TABLE */
 
-.agent-card{
-  margin-top:12px;
-}
+.agent-card{margin-top:12px}
 
-.table-wrap{
-  overflow-x:auto;
-}
+.table-wrap{overflow-x:auto}
 
 table{
   width:100%;
@@ -691,9 +783,7 @@ tr:last-child td{border-bottom:0}
   font-weight:900;
 }
 
-.agent-table-name{
-  font-weight:900;
-}
+.agent-table-name{font-weight:900}
 
 .agent-team{
   color:var(--muted);
@@ -740,6 +830,12 @@ tr:last-child td{border-bottom:0}
   font-weight:900;
 }
 
+.empty-row{
+  padding:30px;
+  text-align:center;
+  color:var(--muted);
+}
+
 /* MOBILE */
 
 @media(max-width:800px){
@@ -757,9 +853,7 @@ tr:last-child td{border-bottom:0}
     top:13px;
   }
 
-  .header-inner{
-    padding:14px 14px 0;
-  }
+  .header-inner{padding:14px 14px 0}
 
   .logo-wrap{gap:9px}
 
@@ -774,9 +868,6 @@ tr:last-child td{border-bottom:0}
     height:23px;
     border-width:2.5px;
   }
-
-  .blue-bubble:after{border-left-width:2px}
-  .orange-bubble:after{border-right-width:2px}
 
   .brand{font-size:23px}
 
@@ -800,13 +891,9 @@ tr:last-child td{border-bottom:0}
     font-size:11px;
   }
 
-  main{
-    padding:17px 13px 50px;
-  }
+  main{padding:17px 13px 50px}
 
-  .page-head{
-    align-items:center;
-  }
+  .page-head{align-items:center}
 
   h1{font-size:26px}
 
@@ -817,23 +904,33 @@ tr:last-child td{border-bottom:0}
     font-size:9px;
   }
 
+  .org-panel{padding:12px}
+
+  .org-grid{
+    grid-template-columns:repeat(2,1fr);
+    gap:8px;
+  }
+
+  .viewing{
+    align-items:flex-start;
+    flex-direction:column;
+    gap:5px;
+  }
+
+  .breadcrumb{
+    line-height:1.5;
+  }
+
   .kpis{
     grid-template-columns:repeat(2,1fr);
     gap:8px;
-    margin-top:15px;
   }
 
-  .kpi:last-child{
-    grid-column:1 / -1;
-  }
+  .kpi:last-child{grid-column:1/-1}
 
-  .kpi{
-    padding:12px;
-  }
+  .kpi{padding:12px}
 
-  .kpi-value{
-    font-size:22px;
-  }
+  .kpi-value{font-size:22px}
 
   .grid-two{
     grid-template-columns:1fr;
@@ -841,31 +938,23 @@ tr:last-child td{border-bottom:0}
     margin-top:10px;
   }
 
-  .card-head{
-    padding:13px;
-  }
+  .card-head{padding:13px}
 
-  .card-body{
-    padding:13px;
-  }
+  .card-body{padding:13px}
 
   .trend{
     gap:4px;
     height:190px;
   }
 
-  .bar-area{
-    height:140px;
-  }
+  .bar-area{height:140px}
 
   .trend-bar{
     width:65%;
     min-width:18px;
   }
 
-  .pass-wrap{
-    min-height:170px;
-  }
+  .pass-wrap{min-height:170px}
 
   .ring{
     width:115px;
@@ -877,22 +966,16 @@ tr:last-child td{border-bottom:0}
     height:82px;
   }
 
-  .ring-number{
-    font-size:24px;
-  }
+  .ring-number{font-size:24px}
 
   .performance-row{
     grid-template-columns:105px 1fr 35px;
     gap:7px;
   }
 
-  .performance-name{
-    font-size:9px;
-  }
+  .performance-name{font-size:9px}
 
-  .agent-card{
-    margin-top:10px;
-  }
+  .agent-card{margin-top:10px}
 }
 </style>
 </head>
@@ -900,7 +983,6 @@ tr:last-child td{border-bottom:0}
 <body>
 
 <header>
-
 <div class="header-swirl"></div>
 
 <div class="header-inner">
@@ -912,13 +994,8 @@ tr:last-child td{border-bottom:0}
 <div class="logo-icon">
 <div class="bubble blue-bubble"></div>
 <div class="bubble orange-bubble"></div>
-
 <div class="signal">
-<span></span>
-<span></span>
-<span></span>
-<span></span>
-<span></span>
+<span></span><span></span><span></span><span></span><span></span>
 </div>
 </div>
 
@@ -942,11 +1019,9 @@ Bronson Taylor
 </div>
 
 </div>
-
 </div>
 
 <div class="nav-shell">
-
 <nav class="nav">
 
 <a href="/">
@@ -975,11 +1050,9 @@ Analytics
 </a>
 
 </nav>
-
 </div>
 
 </div>
-
 </header>
 
 
@@ -989,56 +1062,120 @@ Analytics
 
 <div>
 <h1>Team Analytics</h1>
-<div class="subtitle">
-Performance intelligence for your servicing team
-</div>
+<div class="subtitle">Performance intelligence across your servicing organization</div>
 </div>
 
-<div class="period">
-Last 30 Days ▾
-</div>
+<div class="period">Last 30 Days ▾</div>
 
 </div>
 
 
-<!-- KPI CARDS -->
+<!-- ORGANIZATION FILTER -->
+
+<div class="org-panel">
+
+<div class="org-top">
+
+<div>
+<div class="org-title">Organization View</div>
+<div class="org-description">
+Drill down from leadership to an individual agent
+</div>
+</div>
+
+<div class="scope-badge" id="scopeBadge">
+ENTIRE ORGANIZATION
+</div>
+
+</div>
+
+
+<div class="org-grid">
+
+<div class="select-group">
+<label>Director</label>
+<select id="directorSelect" onchange="directorChanged()">
+<option value="">All Directors</option>
+</select>
+</div>
+
+<div class="select-group">
+<label>Manager</label>
+<select id="managerSelect" onchange="managerChanged()" disabled>
+<option value="">All Managers</option>
+</select>
+</div>
+
+<div class="select-group">
+<label>Supervisor</label>
+<select id="supervisorSelect" onchange="supervisorChanged()" disabled>
+<option value="">All Supervisors</option>
+</select>
+</div>
+
+<div class="select-group">
+<label>Agent</label>
+<select id="agentSelect" onchange="agentChanged()" disabled>
+<option value="">All Agents</option>
+</select>
+</div>
+
+</div>
+
+
+<div class="viewing">
+
+<div id="breadcrumb" class="breadcrumb">
+Entire Organization
+</div>
+
+<div id="scopeMeta" class="scope-meta">
+15 agents • 3,584 calls evaluated
+</div>
+
+</div>
+
+</div>
+
+
+<!-- KPI -->
 
 <div class="kpis">
 
 <div class="kpi">
-<div class="kpi-label">Team QA Score</div>
-<div class="kpi-value">91%</div>
-<div class="kpi-change up">↑ 3.2% vs prior period</div>
+<div class="kpi-label">QA Score</div>
+<div id="qaScore" class="kpi-value">90%</div>
+<div class="kpi-change up">↑ Quality performance</div>
 </div>
 
 <div class="kpi">
 <div class="kpi-label">Pass Rate</div>
-<div class="kpi-value">91%</div>
-<div class="kpi-change up">↑ 2.4%</div>
+<div id="passRate" class="kpi-value">89%</div>
+<div class="kpi-change up">AI + human reviewed</div>
 </div>
 
 <div class="kpi">
 <div class="kpi-label">Calls Evaluated</div>
-<div class="kpi-value">1,248</div>
-<div class="kpi-change neutral">100% QA coverage</div>
+<div id="callsEvaluated" class="kpi-value">3,584</div>
+<div class="kpi-change neutral">QA coverage</div>
 </div>
 
 <div class="kpi">
 <div class="kpi-label">Needs Review</div>
-<div class="kpi-value">42</div>
-<div class="kpi-change down">3.4% of calls</div>
+<div id="needsReview" class="kpi-value">114</div>
+<div class="kpi-change neutral">Human review queue</div>
 </div>
 
 <div class="kpi">
 <div class="kpi-label">Critical Failures</div>
-<div class="kpi-value">18</div>
-<div class="kpi-change down">1.4% of calls</div>
+<div id="criticalFailures" class="kpi-value">38</div>
+<div class="kpi-change down">Compliance attention</div>
 </div>
 
 </div>
 
 
-<!-- TREND + PASS -->
+<!-- TREND -->
 
 <div class="grid-two">
 
@@ -1047,80 +1184,15 @@ Last 30 Days ▾
 <div class="card-head">
 <div>
 <div class="card-title">QA Score Trend</div>
-<div class="card-sub">Team average over the last 7 days</div>
+<div id="trendSubtitle" class="card-sub">
+Average quality score for selected organization
 </div>
-
-<div class="kpi-change up">↑ 3.2%</div>
+</div>
 </div>
 
 <div class="card-body">
 
-<div class="trend">
-
-<div class="day">
-<div class="bar-area">
-<div class="trend-bar" style="height:78%">
-<div class="bar-score">88</div>
-</div>
-</div>
-<div class="day-label">Mon</div>
-</div>
-
-<div class="day">
-<div class="bar-area">
-<div class="trend-bar" style="height:80%">
-<div class="bar-score">89</div>
-</div>
-</div>
-<div class="day-label">Tue</div>
-</div>
-
-<div class="day">
-<div class="bar-area">
-<div class="trend-bar" style="height:82%">
-<div class="bar-score">90</div>
-</div>
-</div>
-<div class="day-label">Wed</div>
-</div>
-
-<div class="day">
-<div class="bar-area">
-<div class="trend-bar" style="height:84%">
-<div class="bar-score">91</div>
-</div>
-</div>
-<div class="day-label">Thu</div>
-</div>
-
-<div class="day">
-<div class="bar-area">
-<div class="trend-bar" style="height:82%">
-<div class="bar-score">90</div>
-</div>
-</div>
-<div class="day-label">Fri</div>
-</div>
-
-<div class="day">
-<div class="bar-area">
-<div class="trend-bar" style="height:86%">
-<div class="bar-score">92</div>
-</div>
-</div>
-<div class="day-label">Sat</div>
-</div>
-
-<div class="day">
-<div class="bar-area">
-<div class="trend-bar today" style="height:84%">
-<div class="bar-score">91</div>
-</div>
-</div>
-<div class="day-label">Today</div>
-</div>
-
-</div>
+<div class="trend" id="trendChart"></div>
 
 </div>
 </div>
@@ -1131,7 +1203,7 @@ Last 30 Days ▾
 <div class="card-head">
 <div>
 <div class="card-title">Evaluation Outcomes</div>
-<div class="card-sub">AI + supervisor-reviewed results</div>
+<div class="card-sub">Selected population results</div>
 </div>
 </div>
 
@@ -1139,41 +1211,43 @@ Last 30 Days ▾
 
 <div class="pass-wrap">
 
-<div class="ring">
+<div id="passRing" class="ring">
+
 <div class="ring-inner">
-<div class="ring-number">91%</div>
+<div id="ringNumber" class="ring-number">89%</div>
 <div class="ring-label">PASS RATE</div>
 </div>
+
 </div>
 
 <div class="pass-stats">
 
 <div class="pass-row">
 <span class="dot green-dot"></span>
-1,136 Passed
+<span id="passedCount">3,190 Passed</span>
 </div>
 
 <div class="pass-row">
 <span class="dot orange-dot"></span>
-94 Coaching / Review
+<span id="reviewCount">356 Coaching / Review</span>
 </div>
 
 <div class="pass-row">
 <span class="dot red-dot"></span>
-18 Critical
+<span id="criticalCount">38 Critical</span>
+</div>
+
+</div>
+
+</div>
 </div>
 
 </div>
 
 </div>
 
-</div>
-</div>
 
-</div>
-
-
-<!-- PERFORMANCE + AI -->
+<!-- SCORECARD + AI -->
 
 <div class="grid-two">
 
@@ -1182,71 +1256,17 @@ Last 30 Days ▾
 <div class="card-head">
 <div>
 <div class="card-title">Scorecard Performance</div>
-<div class="card-sub">Where your team is strongest and where coaching is needed</div>
+<div class="card-sub">Strengths and coaching opportunities</div>
 </div>
 </div>
 
 <div class="card-body">
 
-<div class="performance-list">
+<div id="performanceList" class="performance-list"></div>
 
-<div class="performance-row">
-<div class="performance-name">Authentication</div>
-<div class="track">
-<div class="fill good-fill" style="width:98%"></div>
-</div>
-<div class="performance-score">98%</div>
-</div>
-
-<div class="performance-row">
-<div class="performance-name">Discovery</div>
-<div class="track">
-<div class="fill good-fill" style="width:91%"></div>
-</div>
-<div class="performance-score">91%</div>
-</div>
-
-<div class="performance-row">
-<div class="performance-name">Empathy</div>
-<div class="track">
-<div class="fill warning-fill" style="width:76%"></div>
-</div>
-<div class="performance-score">76%</div>
-</div>
-
-<div class="performance-row">
-<div class="performance-name">Resolution</div>
-<div class="track">
-<div class="fill" style="width:89%"></div>
-</div>
-<div class="performance-score">89%</div>
-</div>
-
-<div class="performance-row">
-<div class="performance-name">Professional Communication</div>
-<div class="track">
-<div class="fill" style="width:86%"></div>
-</div>
-<div class="performance-score">86%</div>
-</div>
-
-<div class="performance-row">
-<div class="performance-name">Closing / Expectations</div>
-<div class="track">
-<div class="fill warning-fill" style="width:71%"></div>
-</div>
-<div class="performance-score">71%</div>
-</div>
+<div id="coachingNote" class="section-note"></div>
 
 </div>
-
-<div class="section-note">
-<strong>Coaching opportunity:</strong>
-Closing / Expectations is currently the team's lowest-performing scorecard category, followed by Empathy.
-</div>
-
-</div>
-
 </div>
 
 
@@ -1256,77 +1276,21 @@ Closing / Expectations is currently the team's lowest-performing scorecard categ
 
 <div>
 <div class="card-title">ServIQ AI Manager Insights</div>
-<div class="card-sub">Automated patterns detected across your team</div>
+<div class="card-sub">Patterns detected for the selected population</div>
 </div>
 
 <div class="ai-badge">AI INSIGHTS</div>
 
 </div>
 
-<div class="card-body">
-
-<div class="insight warning-insight">
-
-<div class="insight-icon">!</div>
-
-<div>
-<div class="insight-title">Closing expectations need attention</div>
-<div class="insight-text">
-Agents are missing complete next-step expectations more often than other scorecard behaviors. Review closing language during the next team coaching session.
-</div>
-</div>
-
-</div>
-
-
-<div class="insight warning-insight">
-
-<div class="insight-icon">↗</div>
-
-<div>
-<div class="insight-title">Empathy is concentrated among a few agents</div>
-<div class="insight-text">
-Most empathy misses are concentrated within a smaller group of agents rather than being evenly distributed across the team.
-</div>
-</div>
-
-</div>
-
-
-<div class="insight">
-
-<div class="insight-icon">✓</div>
-
-<div>
-<div class="insight-title">Authentication is a team strength</div>
-<div class="insight-text">
-Authentication performance is currently 98%, making it the strongest measured compliance behavior for the team.
-</div>
-</div>
-
-</div>
-
-
-<div class="insight">
-
-<div class="insight-icon">↑</div>
-
-<div>
-<div class="insight-title">Overall quality is improving</div>
-<div class="insight-text">
-The team's QA score increased 3.2 percentage points compared with the prior reporting period.
-</div>
-</div>
+<div id="insightList" class="card-body"></div>
 
 </div>
 
 </div>
-</div>
-
-</div>
 
 
-<!-- AGENT PERFORMANCE -->
+<!-- AGENT TABLE -->
 
 <div class="card agent-card">
 
@@ -1334,10 +1298,12 @@ The team's QA score increased 3.2 percentage points compared with the prior repo
 
 <div>
 <div class="card-title">Agent Performance</div>
-<div class="card-sub">Individual QA results and coaching signals</div>
+<div class="card-sub">
+Agents included in the selected organization
+</div>
 </div>
 
-<div class="card-sub">5 agents</div>
+<div id="agentCount" class="card-sub">15 agents</div>
 
 </div>
 
@@ -1357,103 +1323,7 @@ The team's QA score increased 3.2 percentage points compared with the prior repo
 </tr>
 </thead>
 
-<tbody>
-
-<tr>
-<td>
-<div class="agent-cell">
-<div class="small-avatar">BT</div>
-<div>
-<div class="agent-table-name">Bronson Taylor</div>
-<div class="agent-team">Loss Mitigation</div>
-</div>
-</div>
-</td>
-<td><span class="score-pill score-good">97%</span></td>
-<td>98%</td>
-<td>248</td>
-<td>0</td>
-<td><span class="strong">Strong Performer</span></td>
-<td><a class="agent-link" href="/review/bronson-001">View →</a></td>
-</tr>
-
-
-<tr>
-<td>
-<div class="agent-cell">
-<div class="small-avatar">SK</div>
-<div>
-<div class="agent-table-name">Sarah Kim</div>
-<div class="agent-team">Escrow</div>
-</div>
-</div>
-</td>
-<td><span class="score-pill score-good">95%</span></td>
-<td>96%</td>
-<td>221</td>
-<td>1</td>
-<td><span class="strong">Resolution</span></td>
-<td><a class="agent-link" href="/review/sarah-001">View →</a></td>
-</tr>
-
-
-<tr>
-<td>
-<div class="agent-cell">
-<div class="small-avatar">JM</div>
-<div>
-<div class="agent-table-name">Jordan Miller</div>
-<div class="agent-team">Loss Mitigation</div>
-</div>
-</div>
-</td>
-<td><span class="score-pill score-good">92%</span></td>
-<td>93%</td>
-<td>267</td>
-<td>2</td>
-<td><span class="coaching">Empathy</span></td>
-<td><a class="agent-link" href="/review/jordan-001">View →</a></td>
-</tr>
-
-
-<tr>
-<td>
-<div class="agent-cell">
-<div class="small-avatar">AR</div>
-<div>
-<div class="agent-table-name">Ashley Reed</div>
-<div class="agent-team">Payment</div>
-</div>
-</div>
-</td>
-<td><span class="score-pill score-watch">84%</span></td>
-<td>82%</td>
-<td>259</td>
-<td>5</td>
-<td><span class="coaching">Closing / Expectations</span></td>
-<td><a class="agent-link" href="/review/ashley-001">View →</a></td>
-</tr>
-
-
-<tr>
-<td>
-<div class="agent-cell">
-<div class="small-avatar">DT</div>
-<div>
-<div class="agent-table-name">David Torres</div>
-<div class="agent-team">Delinquency</div>
-</div>
-</div>
-</td>
-<td><span class="score-pill score-risk">76%</span></td>
-<td>71%</td>
-<td>253</td>
-<td>10</td>
-<td><span class="coaching">Authentication</span></td>
-<td><a class="agent-link" href="/review/david-001">View →</a></td>
-</tr>
-
-</tbody>
+<tbody id="agentTableBody"></tbody>
 
 </table>
 
@@ -1462,6 +1332,842 @@ The team's QA score increased 3.2 percentage points compared with the prior repo
 </div>
 
 </main>
+
+
+<script>
+
+/* --------------------------------
+   DEMO ORGANIZATION
+-------------------------------- */
+
+const agents = [
+
+{
+ id:"bronson",
+ name:"Bronson Taylor",
+ initials:"BT",
+ department:"Loss Mitigation",
+ director:"jennifer",
+ manager:"robert",
+ supervisor:"maria",
+ qa:97,
+ pass:98,
+ calls:248,
+ review:4,
+ critical:0,
+ opportunity:"Strong Performer",
+ reviewUrl:"/review/bronson-001",
+ scores:{auth:99,discovery:96,empathy:94,resolution:97,communication:95,closing:96}
+},
+
+{
+ id:"jordan",
+ name:"Jordan Miller",
+ initials:"JM",
+ department:"Loss Mitigation",
+ director:"jennifer",
+ manager:"robert",
+ supervisor:"maria",
+ qa:92,
+ pass:93,
+ calls:267,
+ review:12,
+ critical:2,
+ opportunity:"Empathy",
+ reviewUrl:"/review/jordan-001",
+ scores:{auth:98,discovery:94,empathy:78,resolution:94,communication:90,closing:87}
+},
+
+{
+ id:"ashley",
+ name:"Ashley Reed",
+ initials:"AR",
+ department:"Payment",
+ director:"jennifer",
+ manager:"robert",
+ supervisor:"kevin",
+ qa:84,
+ pass:82,
+ calls:259,
+ review:21,
+ critical:5,
+ opportunity:"Closing / Expectations",
+ reviewUrl:"/review/ashley-001",
+ scores:{auth:95,discovery:86,empathy:79,resolution:87,communication:83,closing:68}
+},
+
+{
+ id:"david",
+ name:"David Torres",
+ initials:"DT",
+ department:"Delinquency",
+ director:"jennifer",
+ manager:"lisa",
+ supervisor:"tanya",
+ qa:76,
+ pass:71,
+ calls:253,
+ review:31,
+ critical:10,
+ opportunity:"Authentication",
+ reviewUrl:"/review/david-001",
+ scores:{auth:64,discovery:79,empathy:74,resolution:82,communication:78,closing:73}
+},
+
+{
+ id:"sarah",
+ name:"Sarah Kim",
+ initials:"SK",
+ department:"Escrow",
+ director:"jennifer",
+ manager:"lisa",
+ supervisor:"tanya",
+ qa:95,
+ pass:96,
+ calls:221,
+ review:6,
+ critical:1,
+ opportunity:"Resolution",
+ reviewUrl:"/review/sarah-001",
+ scores:{auth:99,discovery:95,empathy:92,resolution:94,communication:96,closing:93}
+},
+
+{
+ id:"marcus",
+ name:"Marcus Green",
+ initials:"MG",
+ department:"Loss Mitigation",
+ director:"jennifer",
+ manager:"lisa",
+ supervisor:"andre",
+ qa:89,
+ pass:90,
+ calls:236,
+ review:9,
+ critical:2,
+ opportunity:"Empathy",
+ scores:{auth:97,discovery:91,empathy:76,resolution:91,communication:89,closing:86}
+},
+
+{
+ id:"nicole",
+ name:"Nicole Evans",
+ initials:"NE",
+ department:"Escrow",
+ director:"jennifer",
+ manager:"lisa",
+ supervisor:"andre",
+ qa:93,
+ pass:94,
+ calls:225,
+ review:7,
+ critical:1,
+ opportunity:"Closing / Expectations",
+ scores:{auth:99,discovery:94,empathy:91,resolution:95,communication:92,closing:84}
+},
+
+{
+ id:"jamal",
+ name:"Jamal Carter",
+ initials:"JC",
+ department:"Payment",
+ director:"michael",
+ manager:"denise",
+ supervisor:"chris",
+ qa:88,
+ pass:89,
+ calls:244,
+ review:10,
+ critical:3,
+ opportunity:"Discovery",
+ scores:{auth:97,discovery:79,empathy:86,resolution:90,communication:89,closing:85}
+},
+
+{
+ id:"emily",
+ name:"Emily Brooks",
+ initials:"EB",
+ department:"Customer Service",
+ director:"michael",
+ manager:"denise",
+ supervisor:"chris",
+ qa:94,
+ pass:96,
+ calls:230,
+ review:5,
+ critical:0,
+ opportunity:"Strong Performer",
+ scores:{auth:99,discovery:94,empathy:95,resolution:94,communication:96,closing:91}
+},
+
+{
+ id:"tyler",
+ name:"Tyler Wilson",
+ initials:"TW",
+ department:"Delinquency",
+ director:"michael",
+ manager:"denise",
+ supervisor:"shannon",
+ qa:81,
+ pass:79,
+ calls:219,
+ review:24,
+ critical:6,
+ opportunity:"Authentication",
+ scores:{auth:70,discovery:83,empathy:81,resolution:85,communication:82,closing:78}
+},
+
+{
+ id:"jasmine",
+ name:"Jasmine Lee",
+ initials:"JL",
+ department:"Customer Service",
+ director:"michael",
+ manager:"eric",
+ supervisor:"shannon",
+ qa:91,
+ pass:92,
+ calls:238,
+ review:8,
+ critical:1,
+ opportunity:"Closing / Expectations",
+ scores:{auth:98,discovery:93,empathy:90,resolution:92,communication:94,closing:80}
+},
+
+{
+ id:"anthony",
+ name:"Anthony White",
+ initials:"AW",
+ department:"Loss Mitigation",
+ director:"michael",
+ manager:"eric",
+ supervisor:"shannon",
+ qa:87,
+ pass:86,
+ calls:241,
+ review:15,
+ critical:3,
+ opportunity:"Empathy",
+ scores:{auth:96,discovery:88,empathy:73,resolution:90,communication:87,closing:84}
+},
+
+{
+ id:"rachel",
+ name:"Rachel Adams",
+ initials:"RA",
+ department:"Payment",
+ director:"michael",
+ manager:"eric",
+ supervisor:"brian",
+ qa:96,
+ pass:97,
+ calls:218,
+ review:3,
+ critical:0,
+ opportunity:"Strong Performer",
+ scores:{auth:99,discovery:97,empathy:94,resolution:97,communication:96,closing:94}
+},
+
+{
+ id:"daniel",
+ name:"Daniel Moore",
+ initials:"DM",
+ department:"Escrow",
+ director:"michael",
+ manager:"eric",
+ supervisor:"brian",
+ qa:90,
+ pass:91,
+ calls:231,
+ review:8,
+ critical:1,
+ opportunity:"Discovery",
+ scores:{auth:98,discovery:83,empathy:90,resolution:92,communication:91,closing:87}
+},
+
+{
+ id:"olivia",
+ name:"Olivia Harris",
+ initials:"OH",
+ department:"Customer Service",
+ director:"michael",
+ manager:"eric",
+ supervisor:"brian",
+ qa:92,
+ pass:93,
+ calls:255,
+ review:9,
+ critical:3,
+ opportunity:"Closing / Expectations",
+ scores:{auth:98,discovery:94,empathy:92,resolution:93,communication:94,closing:82}
+}
+
+];
+
+
+const directors = {
+ jennifer:"Jennifer Smith",
+ michael:"Michael Johnson"
+};
+
+const managers = {
+ robert:{name:"Robert Davis",director:"jennifer"},
+ lisa:{name:"Lisa Martinez",director:"jennifer"},
+ denise:{name:"Denise Walker",director:"michael"},
+ eric:{name:"Eric Thompson",director:"michael"}
+};
+
+const supervisors = {
+ maria:{name:"Maria Lopez",manager:"robert"},
+ kevin:{name:"Kevin Brown",manager:"robert"},
+ tanya:{name:"Tanya Lewis",manager:"lisa"},
+ andre:{name:"Andre Hall",manager:"lisa"},
+ chris:{name:"Chris Young",manager:"denise"},
+ shannon:{name:"Shannon King",manager:"denise"},
+ brian:{name:"Brian Scott",manager:"eric"}
+};
+
+
+/* --------------------------------
+   SELECT SETUP
+-------------------------------- */
+
+const directorSelect=document.getElementById("directorSelect");
+const managerSelect=document.getElementById("managerSelect");
+const supervisorSelect=document.getElementById("supervisorSelect");
+const agentSelect=document.getElementById("agentSelect");
+
+
+Object.entries(directors).forEach(([id,name])=>{
+ const option=document.createElement("option");
+ option.value=id;
+ option.textContent=name;
+ directorSelect.appendChild(option);
+});
+
+
+function directorChanged(){
+
+ managerSelect.innerHTML='<option value="">All Managers</option>';
+ supervisorSelect.innerHTML='<option value="">All Supervisors</option>';
+ agentSelect.innerHTML='<option value="">All Agents</option>';
+
+ const director=directorSelect.value;
+
+ managerSelect.disabled=!director;
+ supervisorSelect.disabled=true;
+ agentSelect.disabled=true;
+
+ if(director){
+
+   Object.entries(managers)
+   .filter(([id,m])=>m.director===director)
+   .forEach(([id,m])=>{
+      const option=document.createElement("option");
+      option.value=id;
+      option.textContent=m.name;
+      managerSelect.appendChild(option);
+   });
+
+ }
+
+ updateDashboard();
+}
+
+
+function managerChanged(){
+
+ supervisorSelect.innerHTML='<option value="">All Supervisors</option>';
+ agentSelect.innerHTML='<option value="">All Agents</option>';
+
+ const manager=managerSelect.value;
+
+ supervisorSelect.disabled=!manager;
+ agentSelect.disabled=true;
+
+ if(manager){
+
+   Object.entries(supervisors)
+   .filter(([id,s])=>s.manager===manager)
+   .forEach(([id,s])=>{
+      const option=document.createElement("option");
+      option.value=id;
+      option.textContent=s.name;
+      supervisorSelect.appendChild(option);
+   });
+
+ }
+
+ updateDashboard();
+}
+
+
+function supervisorChanged(){
+
+ agentSelect.innerHTML='<option value="">All Agents</option>';
+
+ const supervisor=supervisorSelect.value;
+
+ agentSelect.disabled=!supervisor;
+
+ if(supervisor){
+
+   agents
+   .filter(a=>a.supervisor===supervisor)
+   .forEach(a=>{
+      const option=document.createElement("option");
+      option.value=a.id;
+      option.textContent=a.name;
+      agentSelect.appendChild(option);
+   });
+
+ }
+
+ updateDashboard();
+}
+
+
+function agentChanged(){
+ updateDashboard();
+}
+
+
+/* --------------------------------
+   FILTER
+-------------------------------- */
+
+function selectedAgents(){
+
+ let filtered=[...agents];
+
+ if(directorSelect.value){
+   filtered=filtered.filter(a=>a.director===directorSelect.value);
+ }
+
+ if(managerSelect.value){
+   filtered=filtered.filter(a=>a.manager===managerSelect.value);
+ }
+
+ if(supervisorSelect.value){
+   filtered=filtered.filter(a=>a.supervisor===supervisorSelect.value);
+ }
+
+ if(agentSelect.value){
+   filtered=filtered.filter(a=>a.id===agentSelect.value);
+ }
+
+ return filtered;
+}
+
+
+/* --------------------------------
+   HELPERS
+-------------------------------- */
+
+function average(list,key){
+
+ if(!list.length) return 0;
+
+ return Math.round(
+   list.reduce((sum,item)=>sum+item[key],0)/list.length
+ );
+}
+
+
+function total(list,key){
+ return list.reduce((sum,item)=>sum+item[key],0);
+}
+
+
+function number(value){
+ return value.toLocaleString();
+}
+
+
+function scoreClass(score){
+
+ if(score>=90) return "score-good";
+ if(score>=80) return "score-watch";
+ return "score-risk";
+}
+
+
+function performanceColor(score){
+
+ if(score>=92){
+   return "linear-gradient(90deg,#0ca66d,#31ce94)";
+ }
+
+ if(score<82){
+   return "linear-gradient(90deg,var(--orange),var(--orange2))";
+ }
+
+ return "linear-gradient(90deg,var(--blue),var(--blue2))";
+}
+
+
+/* --------------------------------
+   DASHBOARD
+-------------------------------- */
+
+function updateDashboard(){
+
+ const list=selectedAgents();
+
+ if(!list.length) return;
+
+ const qa=average(list,"qa");
+ const pass=average(list,"pass");
+ const calls=total(list,"calls");
+ const review=total(list,"review");
+ const critical=total(list,"critical");
+
+ document.getElementById("qaScore").textContent=qa+"%";
+ document.getElementById("passRate").textContent=pass+"%";
+ document.getElementById("callsEvaluated").textContent=number(calls);
+ document.getElementById("needsReview").textContent=number(review);
+ document.getElementById("criticalFailures").textContent=number(critical);
+
+ updateScope(list,calls);
+ updateOutcomes(pass,calls,review,critical);
+ updatePerformance(list);
+ updateInsights(list,qa);
+ updateTrend(qa);
+ updateAgentTable(list);
+}
+
+
+/* --------------------------------
+   SCOPE
+-------------------------------- */
+
+function updateScope(list,calls){
+
+ let parts=[];
+ let badge="ENTIRE ORGANIZATION";
+
+ if(directorSelect.value){
+   parts.push(directors[directorSelect.value]);
+   badge="DIRECTOR VIEW";
+ }
+
+ if(managerSelect.value){
+   parts.push(managers[managerSelect.value].name);
+   badge="MANAGER VIEW";
+ }
+
+ if(supervisorSelect.value){
+   parts.push(supervisors[supervisorSelect.value].name);
+   badge="SUPERVISOR VIEW";
+ }
+
+ if(agentSelect.value){
+   const agent=agents.find(a=>a.id===agentSelect.value);
+   parts.push(agent.name);
+   badge="AGENT VIEW";
+ }
+
+ const breadcrumb=
+   parts.length
+   ? "Entire Organization <span>›</span> "+parts.join(" <span>›</span> ")
+   : "Entire Organization";
+
+ document.getElementById("breadcrumb").innerHTML=breadcrumb;
+ document.getElementById("scopeBadge").textContent=badge;
+
+ document.getElementById("scopeMeta").textContent=
+   list.length+
+   (list.length===1 ? " agent • " : " agents • ")+
+   number(calls)+
+   " calls evaluated";
+
+ document.getElementById("agentCount").textContent=
+   list.length+(list.length===1 ? " agent" : " agents");
+}
+
+
+/* --------------------------------
+   OUTCOMES
+-------------------------------- */
+
+function updateOutcomes(pass,calls,review,critical){
+
+ const passed=Math.max(0,calls-review-critical);
+
+ document.getElementById("ringNumber").textContent=pass+"%";
+
+ document.getElementById("passRing").style.background=
+   "conic-gradient(var(--green) 0 "+(pass*3.6)+"deg,#edf1f6 "+
+   (pass*3.6)+"deg 360deg)";
+
+ document.getElementById("passedCount").textContent=
+   number(passed)+" Passed";
+
+ document.getElementById("reviewCount").textContent=
+   number(review)+" Coaching / Review";
+
+ document.getElementById("criticalCount").textContent=
+   number(critical)+" Critical";
+}
+
+
+/* --------------------------------
+   TREND
+-------------------------------- */
+
+function updateTrend(qa){
+
+ const offsets=[-3,-2,-1,0,-1,1,0];
+ const labels=["Mon","Tue","Wed","Thu","Fri","Sat","Today"];
+
+ const chart=document.getElementById("trendChart");
+ chart.innerHTML="";
+
+ labels.forEach((label,index)=>{
+
+   const score=Math.max(65,Math.min(99,qa+offsets[index]));
+
+   const day=document.createElement("div");
+   day.className="day";
+
+   day.innerHTML=`
+     <div class="bar-area">
+       <div class="trend-bar ${index===6 ? "today" : ""}"
+            style="height:${Math.max(30,score-10)}%">
+         <div class="bar-score">${score}</div>
+       </div>
+     </div>
+     <div class="day-label">${label}</div>
+   `;
+
+   chart.appendChild(day);
+ });
+}
+
+
+/* --------------------------------
+   PERFORMANCE
+-------------------------------- */
+
+function updatePerformance(list){
+
+ const categories=[
+   ["Authentication","auth"],
+   ["Discovery","discovery"],
+   ["Empathy","empathy"],
+   ["Resolution","resolution"],
+   ["Professional Communication","communication"],
+   ["Closing / Expectations","closing"]
+ ];
+
+ const results=categories.map(([name,key])=>{
+
+   const value=Math.round(
+     list.reduce((sum,a)=>sum+a.scores[key],0)/list.length
+   );
+
+   return {name,value};
+ });
+
+ const performanceList=document.getElementById("performanceList");
+ performanceList.innerHTML="";
+
+ results.forEach(item=>{
+
+   const row=document.createElement("div");
+   row.className="performance-row";
+
+   row.innerHTML=`
+     <div class="performance-name">${item.name}</div>
+
+     <div class="track">
+       <div class="fill"
+            style="width:${item.value}%;
+            background:${performanceColor(item.value)}">
+       </div>
+     </div>
+
+     <div class="performance-score">
+       ${item.value}%
+     </div>
+   `;
+
+   performanceList.appendChild(row);
+ });
+
+ const sorted=[...results].sort((a,b)=>a.value-b.value);
+
+ document.getElementById("coachingNote").innerHTML=
+   "<strong>Primary coaching opportunity:</strong> "+
+   sorted[0].name+
+   " is currently the lowest-performing behavior at "+
+   sorted[0].value+
+   "%. "+sorted[1].name+
+   " is the next opportunity at "+
+   sorted[1].value+"%.";
+}
+
+
+/* --------------------------------
+   INSIGHTS
+-------------------------------- */
+
+function updateInsights(list,qa){
+
+ const categories=[
+   ["Authentication","auth"],
+   ["Discovery","discovery"],
+   ["Empathy","empathy"],
+   ["Resolution","resolution"],
+   ["Professional Communication","communication"],
+   ["Closing / Expectations","closing"]
+ ];
+
+ const scores=categories.map(([name,key])=>({
+   name,
+   value:Math.round(
+     list.reduce((sum,a)=>sum+a.scores[key],0)/list.length
+   )
+ }));
+
+ const lowest=[...scores].sort((a,b)=>a.value-b.value)[0];
+ const highest=[...scores].sort((a,b)=>b.value-a.value)[0];
+
+ const atRisk=list.filter(a=>a.qa<85);
+ const strong=list.filter(a=>a.qa>=94);
+
+ const insightList=document.getElementById("insightList");
+
+ insightList.innerHTML=`
+
+ <div class="insight warning-insight">
+   <div class="insight-icon">!</div>
+   <div>
+     <div class="insight-title">${lowest.name} needs the most attention</div>
+     <div class="insight-text">
+       ${lowest.name} is the lowest-performing scorecard behavior
+       for this population at ${lowest.value}%. This is the strongest
+       candidate for targeted coaching.
+     </div>
+   </div>
+ </div>
+
+ <div class="insight warning-insight">
+   <div class="insight-icon">↗</div>
+   <div>
+     <div class="insight-title">Agents requiring additional attention</div>
+     <div class="insight-text">
+       ${atRisk.length} ${atRisk.length===1 ? "agent is" : "agents are"}
+       currently below an 85% overall QA score in this view.
+     </div>
+   </div>
+ </div>
+
+ <div class="insight">
+   <div class="insight-icon">✓</div>
+   <div>
+     <div class="insight-title">${highest.name} is a strength</div>
+     <div class="insight-text">
+       ${highest.name} leads the selected population at
+       ${highest.value}% performance.
+     </div>
+   </div>
+ </div>
+
+ <div class="insight">
+   <div class="insight-icon">★</div>
+   <div>
+     <div class="insight-title">Strong performers</div>
+     <div class="insight-text">
+       ${strong.length} ${strong.length===1 ? "agent is" : "agents are"}
+       currently scoring 94% or higher. Overall selected QA performance
+       is ${qa}%.
+     </div>
+   </div>
+ </div>
+
+ `;
+}
+
+
+/* --------------------------------
+   AGENT TABLE
+-------------------------------- */
+
+function updateAgentTable(list){
+
+ const body=document.getElementById("agentTableBody");
+ body.innerHTML="";
+
+ list
+ .sort((a,b)=>b.qa-a.qa)
+ .forEach(agent=>{
+
+   const row=document.createElement("tr");
+
+   const opportunityClass=
+     agent.opportunity==="Strong Performer"
+     ? "strong"
+     : "coaching";
+
+   const viewLink=agent.reviewUrl
+     ? `<a class="agent-link" href="${agent.reviewUrl}">View →</a>`
+     : `<span style="color:#9aa7b8">Demo</span>`;
+
+   row.innerHTML=`
+
+   <td>
+     <div class="agent-cell">
+
+       <div class="small-avatar">
+         ${agent.initials}
+       </div>
+
+       <div>
+         <div class="agent-table-name">
+           ${agent.name}
+         </div>
+
+         <div class="agent-team">
+           ${agent.department}
+         </div>
+       </div>
+
+     </div>
+   </td>
+
+   <td>
+     <span class="score-pill ${scoreClass(agent.qa)}">
+       ${agent.qa}%
+     </span>
+   </td>
+
+   <td>${agent.pass}%</td>
+
+   <td>${number(agent.calls)}</td>
+
+   <td>${agent.critical}</td>
+
+   <td>
+     <span class="${opportunityClass}">
+       ${agent.opportunity}
+     </span>
+   </td>
+
+   <td>${viewLink}</td>
+
+   `;
+
+   body.appendChild(row);
+ });
+}
+
+
+/* START */
+
+updateDashboard();
+
+</script>
 
 </body>
 </html>
