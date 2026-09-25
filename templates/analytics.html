@@ -1,0 +1,1467 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Team Analytics | ServIQ</title>
+
+<style>
+*{box-sizing:border-box}
+
+:root{
+  --navy:#061426;
+  --navy2:#08213d;
+  --blue:#1478ff;
+  --blue2:#38a3ff;
+  --orange:#ff7900;
+  --orange2:#ff9d22;
+  --green:#10ad72;
+  --red:#dc3545;
+  --yellow:#f2b705;
+  --bg:#f4f7fb;
+  --text:#0b1b34;
+  --muted:#66768c;
+  --border:#dfe7f1;
+}
+
+html{-webkit-text-size-adjust:100%}
+
+body{
+  margin:0;
+  background:
+    radial-gradient(circle at 85% 12%,rgba(20,120,255,.05),transparent 30%),
+    var(--bg);
+  color:var(--text);
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;
+}
+
+/* HEADER */
+
+header{
+  position:relative;
+  overflow:hidden;
+  color:white;
+  background:
+    radial-gradient(circle at 78% -15%,rgba(20,120,255,.26),transparent 38%),
+    radial-gradient(circle at 100% 0%,rgba(255,121,0,.11),transparent 28%),
+    linear-gradient(125deg,#061426,#08213d 60%,#071627);
+}
+
+.header-swirl{
+  position:absolute;
+  pointer-events:none;
+  width:650px;
+  height:130px;
+  right:-70px;
+  top:-58px;
+  border-radius:50%;
+  border-bottom:2px solid rgba(20,120,255,.9);
+  transform:rotate(-7deg);
+}
+
+.header-swirl:after{
+  content:"";
+  position:absolute;
+  width:520px;
+  height:112px;
+  right:5px;
+  top:17px;
+  border-radius:50%;
+  border-bottom:2px solid rgba(255,121,0,.95);
+}
+
+.header-inner{
+  position:relative;
+  z-index:2;
+  max-width:1400px;
+  margin:auto;
+  padding:17px 22px 0;
+}
+
+.brand-row{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:18px;
+}
+
+.logo-wrap{
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+
+.logo-icon{
+  position:relative;
+  width:52px;
+  height:43px;
+  flex:0 0 52px;
+}
+
+.bubble{
+  position:absolute;
+  width:36px;
+  height:27px;
+  border:3px solid;
+  border-radius:9px;
+}
+
+.blue-bubble{
+  left:0;
+  top:2px;
+  border-color:var(--blue);
+}
+
+.blue-bubble:after{
+  content:"";
+  position:absolute;
+  left:7px;
+  bottom:-8px;
+  width:8px;
+  height:8px;
+  border-left:3px solid var(--blue);
+  transform:skewY(-35deg);
+}
+
+.orange-bubble{
+  right:0;
+  bottom:2px;
+  border-color:var(--orange);
+}
+
+.orange-bubble:after{
+  content:"";
+  position:absolute;
+  right:7px;
+  bottom:-8px;
+  width:8px;
+  height:8px;
+  border-right:3px solid var(--orange);
+  transform:skewY(35deg);
+}
+
+.signal{
+  position:absolute;
+  z-index:4;
+  left:50%;
+  top:50%;
+  transform:translate(-50%,-50%);
+  display:flex;
+  align-items:center;
+  gap:3px;
+}
+
+.signal span{
+  width:3px;
+  border-radius:5px;
+}
+
+.signal span:nth-child(1){height:9px;background:var(--blue)}
+.signal span:nth-child(2){height:17px;background:var(--blue)}
+.signal span:nth-child(3){height:23px;background:var(--orange)}
+.signal span:nth-child(4){height:14px;background:var(--orange)}
+.signal span:nth-child(5){height:19px;background:var(--orange)}
+
+.brand{
+  font-size:28px;
+  line-height:1;
+  font-weight:900;
+  letter-spacing:-1.1px;
+}
+
+.brand-iq{color:var(--orange)}
+
+.sub{
+  color:#aebbd0;
+  font-size:11px;
+  margin-top:5px;
+}
+
+.header-right{
+  display:flex;
+  align-items:center;
+  gap:13px;
+}
+
+.live{
+  background:rgba(16,173,114,.12);
+  border:1px solid rgba(83,232,170,.28);
+  color:#62e9ae;
+  border-radius:999px;
+  padding:8px 13px;
+  font-size:10px;
+  font-weight:900;
+  white-space:nowrap;
+}
+
+.live-dot{
+  display:inline-block;
+  width:7px;
+  height:7px;
+  border-radius:50%;
+  background:#18d98a;
+  margin-right:6px;
+  box-shadow:0 0 9px rgba(24,217,138,.8);
+}
+
+.user{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  font-size:11px;
+  font-weight:700;
+}
+
+.user-avatar{
+  width:33px;
+  height:33px;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:linear-gradient(135deg,var(--blue),#6a5cff);
+  font-size:10px;
+  font-weight:900;
+}
+
+/* NAV */
+
+.nav-shell{
+  margin-top:14px;
+  overflow-x:auto;
+  scrollbar-width:none;
+  -webkit-overflow-scrolling:touch;
+}
+
+.nav-shell::-webkit-scrollbar{display:none}
+
+.nav{
+  display:flex;
+  min-width:max-content;
+}
+
+.nav a{
+  position:relative;
+  display:flex;
+  align-items:center;
+  gap:7px;
+  color:#aebbd0;
+  text-decoration:none;
+  padding:12px 17px 14px;
+  font-size:12px;
+  font-weight:800;
+  white-space:nowrap;
+}
+
+.nav-icon{font-size:13px}
+
+.nav a.active{color:white}
+
+.nav a.active .nav-icon{color:var(--orange)}
+
+.nav a.active:after{
+  content:"";
+  position:absolute;
+  left:14px;
+  right:14px;
+  bottom:0;
+  height:3px;
+  border-radius:5px 5px 0 0;
+  background:var(--orange);
+}
+
+/* PAGE */
+
+main{
+  max-width:1400px;
+  margin:auto;
+  padding:22px 22px 60px;
+}
+
+.page-head{
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-start;
+  gap:15px;
+}
+
+h1{
+  margin:0;
+  font-size:30px;
+  letter-spacing:-1px;
+}
+
+.subtitle{
+  color:var(--muted);
+  font-size:13px;
+  margin-top:5px;
+}
+
+.period{
+  border:1px solid var(--border);
+  background:white;
+  color:#42536a;
+  border-radius:9px;
+  padding:9px 12px;
+  font-size:10px;
+  font-weight:900;
+  box-shadow:0 5px 18px rgba(15,35,65,.04);
+}
+
+/* KPI */
+
+.kpis{
+  display:grid;
+  grid-template-columns:repeat(5,1fr);
+  gap:10px;
+  margin-top:18px;
+}
+
+.kpi{
+  background:white;
+  border:1px solid var(--border);
+  border-radius:15px;
+  padding:15px;
+  box-shadow:0 7px 24px rgba(15,35,65,.045);
+}
+
+.kpi-label{
+  color:var(--muted);
+  font-size:9px;
+  font-weight:900;
+  text-transform:uppercase;
+  letter-spacing:.35px;
+}
+
+.kpi-value{
+  margin-top:7px;
+  font-size:25px;
+  font-weight:900;
+}
+
+.kpi-change{
+  margin-top:5px;
+  font-size:9px;
+  font-weight:800;
+}
+
+.up{color:var(--green)}
+.down{color:var(--red)}
+.neutral{color:var(--muted)}
+
+/* LAYOUT */
+
+.grid-two{
+  display:grid;
+  grid-template-columns:1.4fr 1fr;
+  gap:12px;
+  margin-top:12px;
+}
+
+.card{
+  background:white;
+  border:1px solid var(--border);
+  border-radius:16px;
+  box-shadow:0 7px 24px rgba(15,35,65,.045);
+  overflow:hidden;
+}
+
+.card-head{
+  padding:15px 16px 12px;
+  border-bottom:1px solid #edf1f6;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:10px;
+}
+
+.card-title{
+  font-size:14px;
+  font-weight:900;
+}
+
+.card-sub{
+  margin-top:3px;
+  color:var(--muted);
+  font-size:9px;
+}
+
+.card-body{
+  padding:16px;
+}
+
+/* TREND */
+
+.trend{
+  height:210px;
+  display:flex;
+  align-items:flex-end;
+  gap:9px;
+  padding-top:15px;
+}
+
+.day{
+  flex:1;
+  min-width:0;
+  text-align:center;
+}
+
+.bar-area{
+  height:155px;
+  display:flex;
+  align-items:flex-end;
+  justify-content:center;
+}
+
+.trend-bar{
+  width:72%;
+  min-width:20px;
+  max-width:42px;
+  border-radius:7px 7px 3px 3px;
+  background:linear-gradient(180deg,var(--blue2),var(--blue));
+  position:relative;
+}
+
+.trend-bar.today{
+  background:linear-gradient(180deg,var(--orange2),var(--orange));
+}
+
+.bar-score{
+  position:absolute;
+  top:-19px;
+  left:50%;
+  transform:translateX(-50%);
+  font-size:9px;
+  font-weight:900;
+}
+
+.day-label{
+  color:var(--muted);
+  font-size:9px;
+  margin-top:8px;
+  font-weight:700;
+}
+
+/* PASS RATE */
+
+.pass-wrap{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:25px;
+  min-height:210px;
+}
+
+.ring{
+  width:130px;
+  height:130px;
+  border-radius:50%;
+  background:conic-gradient(var(--green) 0 327deg,#edf1f6 327deg 360deg);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.ring-inner{
+  width:94px;
+  height:94px;
+  background:white;
+  border-radius:50%;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+}
+
+.ring-number{
+  font-size:27px;
+  font-weight:900;
+}
+
+.ring-label{
+  color:var(--muted);
+  font-size:8px;
+  font-weight:900;
+}
+
+.pass-stats{
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+}
+
+.pass-row{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  font-size:10px;
+  font-weight:800;
+}
+
+.dot{
+  width:8px;
+  height:8px;
+  border-radius:50%;
+}
+
+.green-dot{background:var(--green)}
+.orange-dot{background:var(--orange)}
+.red-dot{background:var(--red)}
+
+/* SCORECARD PERFORMANCE */
+
+.performance-list{
+  display:flex;
+  flex-direction:column;
+  gap:14px;
+}
+
+.performance-row{
+  display:grid;
+  grid-template-columns:135px 1fr 42px;
+  align-items:center;
+  gap:10px;
+}
+
+.performance-name{
+  font-size:10px;
+  font-weight:800;
+}
+
+.track{
+  height:9px;
+  background:#edf1f6;
+  border-radius:999px;
+  overflow:hidden;
+}
+
+.fill{
+  height:100%;
+  border-radius:999px;
+  background:linear-gradient(90deg,var(--blue),var(--blue2));
+}
+
+.fill.good-fill{
+  background:linear-gradient(90deg,#0ca66d,#31ce94);
+}
+
+.fill.warning-fill{
+  background:linear-gradient(90deg,var(--orange),var(--orange2));
+}
+
+.performance-score{
+  text-align:right;
+  font-size:10px;
+  font-weight:900;
+}
+
+.section-note{
+  margin-top:15px;
+  padding:11px 12px;
+  background:#fff7ed;
+  border:1px solid #fed7aa;
+  border-radius:10px;
+  color:#9a4b00;
+  font-size:9px;
+  line-height:1.45;
+}
+
+/* AI INSIGHTS */
+
+.ai-card{
+  background:
+    radial-gradient(circle at 95% 0%,rgba(20,120,255,.22),transparent 35%),
+    linear-gradient(135deg,#07182d,#0a2748);
+  color:white;
+}
+
+.ai-card .card-head{
+  border-color:rgba(255,255,255,.09);
+}
+
+.ai-card .card-sub{
+  color:#9fb2ca;
+}
+
+.ai-badge{
+  background:rgba(255,121,0,.13);
+  border:1px solid rgba(255,121,0,.28);
+  color:#ff9b3d;
+  padding:5px 8px;
+  border-radius:999px;
+  font-size:8px;
+  font-weight:900;
+}
+
+.insight{
+  display:flex;
+  gap:10px;
+  padding:11px 0;
+  border-bottom:1px solid rgba(255,255,255,.08);
+}
+
+.insight:last-child{
+  border-bottom:0;
+  padding-bottom:0;
+}
+
+.insight:first-child{padding-top:0}
+
+.insight-icon{
+  width:29px;
+  height:29px;
+  flex:0 0 29px;
+  border-radius:8px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:rgba(20,120,255,.15);
+  color:#56a7ff;
+  font-weight:900;
+}
+
+.insight.warning-insight .insight-icon{
+  background:rgba(255,121,0,.13);
+  color:#ff9a38;
+}
+
+.insight-title{
+  font-size:10px;
+  font-weight:900;
+}
+
+.insight-text{
+  margin-top:3px;
+  color:#afbed1;
+  font-size:9px;
+  line-height:1.45;
+}
+
+/* AGENT TABLE */
+
+.agent-card{
+  margin-top:12px;
+}
+
+.table-wrap{
+  overflow-x:auto;
+}
+
+table{
+  width:100%;
+  border-collapse:collapse;
+  min-width:760px;
+}
+
+th{
+  padding:10px 12px;
+  text-align:left;
+  background:#f8fafc;
+  color:#728096;
+  font-size:8px;
+  text-transform:uppercase;
+  letter-spacing:.4px;
+  border-bottom:1px solid var(--border);
+}
+
+td{
+  padding:12px;
+  border-bottom:1px solid #edf1f6;
+  font-size:10px;
+}
+
+tr:last-child td{border-bottom:0}
+
+.agent-cell{
+  display:flex;
+  align-items:center;
+  gap:9px;
+}
+
+.small-avatar{
+  width:32px;
+  height:32px;
+  border-radius:50%;
+  background:#e8f1ff;
+  color:#1264d6;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:9px;
+  font-weight:900;
+}
+
+.agent-table-name{
+  font-weight:900;
+}
+
+.agent-team{
+  color:var(--muted);
+  font-size:8px;
+  margin-top:2px;
+}
+
+.score-pill{
+  display:inline-block;
+  padding:5px 8px;
+  border-radius:999px;
+  font-size:9px;
+  font-weight:900;
+}
+
+.score-good{
+  color:#13764f;
+  background:#dcfce7;
+}
+
+.score-watch{
+  color:#c45b00;
+  background:#ffedd5;
+}
+
+.score-risk{
+  color:#b91c1c;
+  background:#fee2e2;
+}
+
+.coaching{
+  color:#d96500;
+  font-weight:900;
+}
+
+.strong{
+  color:var(--green);
+  font-weight:900;
+}
+
+.agent-link{
+  color:#0875ed;
+  text-decoration:none;
+  font-weight:900;
+}
+
+/* MOBILE */
+
+@media(max-width:800px){
+
+  .header-swirl{
+    width:430px;
+    height:90px;
+    right:-135px;
+    top:-54px;
+  }
+
+  .header-swirl:after{
+    width:350px;
+    height:76px;
+    top:13px;
+  }
+
+  .header-inner{
+    padding:14px 14px 0;
+  }
+
+  .logo-wrap{gap:9px}
+
+  .logo-icon{
+    width:43px;
+    height:37px;
+    flex-basis:43px;
+  }
+
+  .bubble{
+    width:30px;
+    height:23px;
+    border-width:2.5px;
+  }
+
+  .blue-bubble:after{border-left-width:2px}
+  .orange-bubble:after{border-right-width:2px}
+
+  .brand{font-size:23px}
+
+  .sub{
+    max-width:220px;
+    font-size:9px;
+    line-height:1.25;
+  }
+
+  .user{display:none}
+
+  .live{
+    padding:7px 10px;
+    font-size:9px;
+  }
+
+  .nav-shell{margin-top:11px}
+
+  .nav a{
+    padding:10px 14px 12px;
+    font-size:11px;
+  }
+
+  main{
+    padding:17px 13px 50px;
+  }
+
+  .page-head{
+    align-items:center;
+  }
+
+  h1{font-size:26px}
+
+  .subtitle{font-size:11px}
+
+  .period{
+    padding:8px 9px;
+    font-size:9px;
+  }
+
+  .kpis{
+    grid-template-columns:repeat(2,1fr);
+    gap:8px;
+    margin-top:15px;
+  }
+
+  .kpi:last-child{
+    grid-column:1 / -1;
+  }
+
+  .kpi{
+    padding:12px;
+  }
+
+  .kpi-value{
+    font-size:22px;
+  }
+
+  .grid-two{
+    grid-template-columns:1fr;
+    gap:10px;
+    margin-top:10px;
+  }
+
+  .card-head{
+    padding:13px;
+  }
+
+  .card-body{
+    padding:13px;
+  }
+
+  .trend{
+    gap:4px;
+    height:190px;
+  }
+
+  .bar-area{
+    height:140px;
+  }
+
+  .trend-bar{
+    width:65%;
+    min-width:18px;
+  }
+
+  .pass-wrap{
+    min-height:170px;
+  }
+
+  .ring{
+    width:115px;
+    height:115px;
+  }
+
+  .ring-inner{
+    width:82px;
+    height:82px;
+  }
+
+  .ring-number{
+    font-size:24px;
+  }
+
+  .performance-row{
+    grid-template-columns:105px 1fr 35px;
+    gap:7px;
+  }
+
+  .performance-name{
+    font-size:9px;
+  }
+
+  .agent-card{
+    margin-top:10px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+
+<div class="header-swirl"></div>
+
+<div class="header-inner">
+
+<div class="brand-row">
+
+<div class="logo-wrap">
+
+<div class="logo-icon">
+<div class="bubble blue-bubble"></div>
+<div class="bubble orange-bubble"></div>
+
+<div class="signal">
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+</div>
+</div>
+
+<div>
+<div class="brand">Serv<span class="brand-iq">IQ</span></div>
+<div class="sub">AI Quality Assurance for Mortgage Servicing</div>
+</div>
+
+</div>
+
+<div class="header-right">
+
+<div class="live">
+<span class="live-dot"></span>
+AI ONLINE
+</div>
+
+<div class="user">
+<div class="user-avatar">BT</div>
+Bronson Taylor
+</div>
+
+</div>
+
+</div>
+
+<div class="nav-shell">
+
+<nav class="nav">
+
+<a href="/">
+<span class="nav-icon">⌂</span>
+Dashboard
+</a>
+
+<a href="/calls">
+<span class="nav-icon">☎</span>
+Calls
+</a>
+
+<a href="#">
+<span class="nav-icon">▣</span>
+Scorecards
+</a>
+
+<a href="#">
+<span class="nav-icon">◉</span>
+Coaching
+</a>
+
+<a class="active" href="/analytics">
+<span class="nav-icon">▥</span>
+Analytics
+</a>
+
+</nav>
+
+</div>
+
+</div>
+
+</header>
+
+
+<main>
+
+<div class="page-head">
+
+<div>
+<h1>Team Analytics</h1>
+<div class="subtitle">
+Performance intelligence for your servicing team
+</div>
+</div>
+
+<div class="period">
+Last 30 Days ▾
+</div>
+
+</div>
+
+
+<!-- KPI CARDS -->
+
+<div class="kpis">
+
+<div class="kpi">
+<div class="kpi-label">Team QA Score</div>
+<div class="kpi-value">91%</div>
+<div class="kpi-change up">↑ 3.2% vs prior period</div>
+</div>
+
+<div class="kpi">
+<div class="kpi-label">Pass Rate</div>
+<div class="kpi-value">91%</div>
+<div class="kpi-change up">↑ 2.4%</div>
+</div>
+
+<div class="kpi">
+<div class="kpi-label">Calls Evaluated</div>
+<div class="kpi-value">1,248</div>
+<div class="kpi-change neutral">100% QA coverage</div>
+</div>
+
+<div class="kpi">
+<div class="kpi-label">Needs Review</div>
+<div class="kpi-value">42</div>
+<div class="kpi-change down">3.4% of calls</div>
+</div>
+
+<div class="kpi">
+<div class="kpi-label">Critical Failures</div>
+<div class="kpi-value">18</div>
+<div class="kpi-change down">1.4% of calls</div>
+</div>
+
+</div>
+
+
+<!-- TREND + PASS -->
+
+<div class="grid-two">
+
+<div class="card">
+
+<div class="card-head">
+<div>
+<div class="card-title">QA Score Trend</div>
+<div class="card-sub">Team average over the last 7 days</div>
+</div>
+
+<div class="kpi-change up">↑ 3.2%</div>
+</div>
+
+<div class="card-body">
+
+<div class="trend">
+
+<div class="day">
+<div class="bar-area">
+<div class="trend-bar" style="height:78%">
+<div class="bar-score">88</div>
+</div>
+</div>
+<div class="day-label">Mon</div>
+</div>
+
+<div class="day">
+<div class="bar-area">
+<div class="trend-bar" style="height:80%">
+<div class="bar-score">89</div>
+</div>
+</div>
+<div class="day-label">Tue</div>
+</div>
+
+<div class="day">
+<div class="bar-area">
+<div class="trend-bar" style="height:82%">
+<div class="bar-score">90</div>
+</div>
+</div>
+<div class="day-label">Wed</div>
+</div>
+
+<div class="day">
+<div class="bar-area">
+<div class="trend-bar" style="height:84%">
+<div class="bar-score">91</div>
+</div>
+</div>
+<div class="day-label">Thu</div>
+</div>
+
+<div class="day">
+<div class="bar-area">
+<div class="trend-bar" style="height:82%">
+<div class="bar-score">90</div>
+</div>
+</div>
+<div class="day-label">Fri</div>
+</div>
+
+<div class="day">
+<div class="bar-area">
+<div class="trend-bar" style="height:86%">
+<div class="bar-score">92</div>
+</div>
+</div>
+<div class="day-label">Sat</div>
+</div>
+
+<div class="day">
+<div class="bar-area">
+<div class="trend-bar today" style="height:84%">
+<div class="bar-score">91</div>
+</div>
+</div>
+<div class="day-label">Today</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+
+<div class="card">
+
+<div class="card-head">
+<div>
+<div class="card-title">Evaluation Outcomes</div>
+<div class="card-sub">AI + supervisor-reviewed results</div>
+</div>
+</div>
+
+<div class="card-body">
+
+<div class="pass-wrap">
+
+<div class="ring">
+<div class="ring-inner">
+<div class="ring-number">91%</div>
+<div class="ring-label">PASS RATE</div>
+</div>
+</div>
+
+<div class="pass-stats">
+
+<div class="pass-row">
+<span class="dot green-dot"></span>
+1,136 Passed
+</div>
+
+<div class="pass-row">
+<span class="dot orange-dot"></span>
+94 Coaching / Review
+</div>
+
+<div class="pass-row">
+<span class="dot red-dot"></span>
+18 Critical
+</div>
+
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+
+
+<!-- PERFORMANCE + AI -->
+
+<div class="grid-two">
+
+<div class="card">
+
+<div class="card-head">
+<div>
+<div class="card-title">Scorecard Performance</div>
+<div class="card-sub">Where your team is strongest and where coaching is needed</div>
+</div>
+</div>
+
+<div class="card-body">
+
+<div class="performance-list">
+
+<div class="performance-row">
+<div class="performance-name">Authentication</div>
+<div class="track">
+<div class="fill good-fill" style="width:98%"></div>
+</div>
+<div class="performance-score">98%</div>
+</div>
+
+<div class="performance-row">
+<div class="performance-name">Discovery</div>
+<div class="track">
+<div class="fill good-fill" style="width:91%"></div>
+</div>
+<div class="performance-score">91%</div>
+</div>
+
+<div class="performance-row">
+<div class="performance-name">Empathy</div>
+<div class="track">
+<div class="fill warning-fill" style="width:76%"></div>
+</div>
+<div class="performance-score">76%</div>
+</div>
+
+<div class="performance-row">
+<div class="performance-name">Resolution</div>
+<div class="track">
+<div class="fill" style="width:89%"></div>
+</div>
+<div class="performance-score">89%</div>
+</div>
+
+<div class="performance-row">
+<div class="performance-name">Professional Communication</div>
+<div class="track">
+<div class="fill" style="width:86%"></div>
+</div>
+<div class="performance-score">86%</div>
+</div>
+
+<div class="performance-row">
+<div class="performance-name">Closing / Expectations</div>
+<div class="track">
+<div class="fill warning-fill" style="width:71%"></div>
+</div>
+<div class="performance-score">71%</div>
+</div>
+
+</div>
+
+<div class="section-note">
+<strong>Coaching opportunity:</strong>
+Closing / Expectations is currently the team's lowest-performing scorecard category, followed by Empathy.
+</div>
+
+</div>
+
+</div>
+
+
+<div class="card ai-card">
+
+<div class="card-head">
+
+<div>
+<div class="card-title">ServIQ AI Manager Insights</div>
+<div class="card-sub">Automated patterns detected across your team</div>
+</div>
+
+<div class="ai-badge">AI INSIGHTS</div>
+
+</div>
+
+<div class="card-body">
+
+<div class="insight warning-insight">
+
+<div class="insight-icon">!</div>
+
+<div>
+<div class="insight-title">Closing expectations need attention</div>
+<div class="insight-text">
+Agents are missing complete next-step expectations more often than other scorecard behaviors. Review closing language during the next team coaching session.
+</div>
+</div>
+
+</div>
+
+
+<div class="insight warning-insight">
+
+<div class="insight-icon">↗</div>
+
+<div>
+<div class="insight-title">Empathy is concentrated among a few agents</div>
+<div class="insight-text">
+Most empathy misses are concentrated within a smaller group of agents rather than being evenly distributed across the team.
+</div>
+</div>
+
+</div>
+
+
+<div class="insight">
+
+<div class="insight-icon">✓</div>
+
+<div>
+<div class="insight-title">Authentication is a team strength</div>
+<div class="insight-text">
+Authentication performance is currently 98%, making it the strongest measured compliance behavior for the team.
+</div>
+</div>
+
+</div>
+
+
+<div class="insight">
+
+<div class="insight-icon">↑</div>
+
+<div>
+<div class="insight-title">Overall quality is improving</div>
+<div class="insight-text">
+The team's QA score increased 3.2 percentage points compared with the prior reporting period.
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+
+
+<!-- AGENT PERFORMANCE -->
+
+<div class="card agent-card">
+
+<div class="card-head">
+
+<div>
+<div class="card-title">Agent Performance</div>
+<div class="card-sub">Individual QA results and coaching signals</div>
+</div>
+
+<div class="card-sub">5 agents</div>
+
+</div>
+
+<div class="table-wrap">
+
+<table>
+
+<thead>
+<tr>
+<th>Agent</th>
+<th>QA Score</th>
+<th>Pass Rate</th>
+<th>Calls</th>
+<th>Critical</th>
+<th>Primary Opportunity</th>
+<th></th>
+</tr>
+</thead>
+
+<tbody>
+
+<tr>
+<td>
+<div class="agent-cell">
+<div class="small-avatar">BT</div>
+<div>
+<div class="agent-table-name">Bronson Taylor</div>
+<div class="agent-team">Loss Mitigation</div>
+</div>
+</div>
+</td>
+<td><span class="score-pill score-good">97%</span></td>
+<td>98%</td>
+<td>248</td>
+<td>0</td>
+<td><span class="strong">Strong Performer</span></td>
+<td><a class="agent-link" href="/review/bronson-001">View →</a></td>
+</tr>
+
+
+<tr>
+<td>
+<div class="agent-cell">
+<div class="small-avatar">SK</div>
+<div>
+<div class="agent-table-name">Sarah Kim</div>
+<div class="agent-team">Escrow</div>
+</div>
+</div>
+</td>
+<td><span class="score-pill score-good">95%</span></td>
+<td>96%</td>
+<td>221</td>
+<td>1</td>
+<td><span class="strong">Resolution</span></td>
+<td><a class="agent-link" href="/review/sarah-001">View →</a></td>
+</tr>
+
+
+<tr>
+<td>
+<div class="agent-cell">
+<div class="small-avatar">JM</div>
+<div>
+<div class="agent-table-name">Jordan Miller</div>
+<div class="agent-team">Loss Mitigation</div>
+</div>
+</div>
+</td>
+<td><span class="score-pill score-good">92%</span></td>
+<td>93%</td>
+<td>267</td>
+<td>2</td>
+<td><span class="coaching">Empathy</span></td>
+<td><a class="agent-link" href="/review/jordan-001">View →</a></td>
+</tr>
+
+
+<tr>
+<td>
+<div class="agent-cell">
+<div class="small-avatar">AR</div>
+<div>
+<div class="agent-table-name">Ashley Reed</div>
+<div class="agent-team">Payment</div>
+</div>
+</div>
+</td>
+<td><span class="score-pill score-watch">84%</span></td>
+<td>82%</td>
+<td>259</td>
+<td>5</td>
+<td><span class="coaching">Closing / Expectations</span></td>
+<td><a class="agent-link" href="/review/ashley-001">View →</a></td>
+</tr>
+
+
+<tr>
+<td>
+<div class="agent-cell">
+<div class="small-avatar">DT</div>
+<div>
+<div class="agent-table-name">David Torres</div>
+<div class="agent-team">Delinquency</div>
+</div>
+</div>
+</td>
+<td><span class="score-pill score-risk">76%</span></td>
+<td>71%</td>
+<td>253</td>
+<td>10</td>
+<td><span class="coaching">Authentication</span></td>
+<td><a class="agent-link" href="/review/david-001">View →</a></td>
+</tr>
+
+</tbody>
+
+</table>
+
+</div>
+
+</div>
+
+</main>
+
+</body>
+</html>
