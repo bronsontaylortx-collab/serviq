@@ -9,90 +9,189 @@
 *{box-sizing:border-box}
 
 :root{
-  --navy:#071426;
-  --navy2:#0b1d35;
-  --panel:#102541;
-  --blue:#3b82f6;
-  --blue2:#2563eb;
-  --cyan:#38bdf8;
-  --purple:#8b5cf6;
-  --green:#22c55e;
-  --orange:#f59e0b;
-  --red:#ef4444;
-  --bg:#f3f6fb;
-  --text:#142033;
-  --muted:#718096;
-  --border:#e3e9f2;
+  --navy:#061426;
+  --navy2:#08213d;
+  --blue:#1478ff;
+  --blue2:#38a3ff;
+  --orange:#ff7900;
+  --orange2:#ff9d22;
+  --green:#10ad72;
+  --red:#dc3545;
+  --purple:#7047eb;
+  --bg:#f4f7fb;
+  --text:#0b1b34;
+  --muted:#66768c;
+  --border:#dfe7f1;
 }
+
+html{-webkit-text-size-adjust:100%}
 
 body{
   margin:0;
-  background:var(--bg);
+  background:
+    radial-gradient(circle at 85% 12%,rgba(20,120,255,.05),transparent 30%),
+    var(--bg);
   color:var(--text);
-  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;
 }
 
 /* HEADER */
 
 header{
-  background:
-    radial-gradient(circle at 80% -40%,#174e91 0%,transparent 45%),
-    linear-gradient(135deg,#071426,#0b1d35);
+  position:relative;
+  overflow:hidden;
   color:white;
-  padding:22px 18px 0;
+  background:
+    radial-gradient(circle at 78% -15%,rgba(20,120,255,.26),transparent 38%),
+    radial-gradient(circle at 100% 0%,rgba(255,121,0,.11),transparent 28%),
+    linear-gradient(125deg,#061426,#08213d 60%,#071627);
+}
+
+.header-swirl{
+  position:absolute;
+  pointer-events:none;
+  width:650px;
+  height:130px;
+  right:-70px;
+  top:-58px;
+  border-radius:50%;
+  border-bottom:2px solid rgba(20,120,255,.9);
+  transform:rotate(-7deg);
+}
+
+.header-swirl:after{
+  content:"";
+  position:absolute;
+  width:520px;
+  height:112px;
+  right:5px;
+  top:17px;
+  border-radius:50%;
+  border-bottom:2px solid rgba(255,121,0,.95);
 }
 
 .header-inner{
-  max-width:1180px;
+  position:relative;
+  z-index:2;
+  max-width:1400px;
   margin:auto;
+  padding:17px 22px 0;
 }
 
 .brand-row{
   display:flex;
   justify-content:space-between;
   align-items:center;
-  gap:20px;
+  gap:18px;
 }
 
 .logo-wrap{
   display:flex;
   align-items:center;
-  gap:11px;
+  gap:12px;
 }
 
-.logo{
-  width:42px;
-  height:42px;
-  border-radius:12px;
+.logo-icon{
+  position:relative;
+  width:52px;
+  height:43px;
+  flex:0 0 52px;
+}
+
+.bubble{
+  position:absolute;
+  width:36px;
+  height:27px;
+  border:3px solid;
+  border-radius:9px;
+}
+
+.blue-bubble{
+  left:0;
+  top:2px;
+  border-color:var(--blue);
+}
+
+.blue-bubble:after{
+  content:"";
+  position:absolute;
+  left:7px;
+  bottom:-8px;
+  width:8px;
+  height:8px;
+  border-left:3px solid var(--blue);
+  transform:skewY(-35deg);
+}
+
+.orange-bubble{
+  right:0;
+  bottom:2px;
+  border-color:var(--orange);
+}
+
+.orange-bubble:after{
+  content:"";
+  position:absolute;
+  right:7px;
+  bottom:-8px;
+  width:8px;
+  height:8px;
+  border-right:3px solid var(--orange);
+  transform:skewY(35deg);
+}
+
+.signal{
+  position:absolute;
+  z-index:4;
+  left:50%;
+  top:50%;
+  transform:translate(-50%,-50%);
   display:flex;
   align-items:center;
-  justify-content:center;
-  font-weight:900;
-  font-size:20px;
-  background:linear-gradient(135deg,#3b82f6,#7c3aed);
-  box-shadow:0 8px 24px rgba(59,130,246,.35);
+  gap:3px;
 }
+
+.signal span{
+  width:3px;
+  border-radius:5px;
+}
+
+.signal span:nth-child(1){height:9px;background:var(--blue)}
+.signal span:nth-child(2){height:17px;background:var(--blue)}
+.signal span:nth-child(3){height:23px;background:var(--orange)}
+.signal span:nth-child(4){height:14px;background:var(--orange)}
+.signal span:nth-child(5){height:19px;background:var(--orange)}
 
 .brand{
-  font-size:26px;
-  font-weight:850;
-  letter-spacing:-.6px;
+  font-size:28px;
+  line-height:1;
+  font-weight:900;
+  letter-spacing:-1.1px;
 }
 
+.brand-iq{color:var(--orange)}
+
 .sub{
-  color:#94a3b8;
-  font-size:12px;
-  margin-top:2px;
+  color:#aebbd0;
+  font-size:11px;
+  margin-top:5px;
+}
+
+.header-right{
+  display:flex;
+  align-items:center;
+  gap:13px;
 }
 
 .live{
-  background:rgba(34,197,94,.12);
-  color:#86efac;
-  border:1px solid rgba(34,197,94,.25);
-  padding:7px 11px;
+  background:rgba(16,173,114,.12);
+  border:1px solid rgba(83,232,170,.28);
+  color:#62e9ae;
   border-radius:999px;
-  font-size:11px;
-  font-weight:800;
+  padding:8px 13px;
+  font-size:10px;
+  font-weight:900;
+  white-space:nowrap;
 }
 
 .live-dot{
@@ -100,180 +199,241 @@ header{
   width:7px;
   height:7px;
   border-radius:50%;
-  background:#22c55e;
-  margin-right:5px;
+  background:#18d98a;
+  margin-right:6px;
+  box-shadow:0 0 9px rgba(24,217,138,.8);
+}
+
+.user{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  font-size:11px;
+  font-weight:700;
+}
+
+.user-avatar{
+  width:33px;
+  height:33px;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:linear-gradient(135deg,var(--blue),#6a5cff);
+  font-size:10px;
+  font-weight:900;
 }
 
 /* NAV */
 
-.nav{
-  display:flex;
-  gap:5px;
-  margin-top:22px;
+.nav-shell{
+  margin-top:14px;
   overflow-x:auto;
   scrollbar-width:none;
+  -webkit-overflow-scrolling:touch;
 }
 
-.nav::-webkit-scrollbar{display:none}
+.nav-shell::-webkit-scrollbar{display:none}
+
+.nav{
+  display:flex;
+  min-width:max-content;
+}
 
 .nav a{
-  color:#94a3b8;
+  position:relative;
+  display:flex;
+  align-items:center;
+  gap:7px;
+  color:#aebbd0;
   text-decoration:none;
-  padding:12px 14px;
-  font-size:13px;
-  font-weight:750;
+  padding:12px 17px 14px;
+  font-size:12px;
+  font-weight:800;
   white-space:nowrap;
-  border-bottom:3px solid transparent;
 }
 
-.nav a.active{
-  color:white;
-  border-bottom-color:#3b82f6;
+.nav-icon{font-size:13px}
+
+.nav a.active{color:white}
+
+.nav a.active .nav-icon{color:var(--orange)}
+
+.nav a.active:after{
+  content:"";
+  position:absolute;
+  left:14px;
+  right:14px;
+  bottom:0;
+  height:3px;
+  border-radius:5px 5px 0 0;
+  background:var(--orange);
 }
 
 /* PAGE */
 
 main{
-  max-width:1180px;
+  max-width:1400px;
   margin:auto;
-  padding:20px 16px;
-}
-
-.page-head{
-  display:flex;
-  justify-content:space-between;
-  align-items:flex-end;
-  margin-bottom:18px;
+  padding:22px 22px 60px;
 }
 
 .page-title{
-  font-size:25px;
-  font-weight:850;
-  letter-spacing:-.5px;
+  margin:0;
+  font-size:30px;
+  line-height:1.1;
+  font-weight:900;
+  letter-spacing:-1px;
 }
 
 .page-sub{
-  color:#718096;
+  color:var(--muted);
   font-size:13px;
-  margin-top:4px;
+  margin-top:5px;
 }
 
-/* KPI CARDS */
+/* KPI */
 
 .dashboard{
   display:grid;
   grid-template-columns:repeat(4,1fr);
-  gap:14px;
-  margin-bottom:18px;
+  gap:12px;
+  margin-top:18px;
 }
 
 .stat{
   position:relative;
   overflow:hidden;
-  min-height:145px;
-  color:white;
-  border-radius:18px;
-  padding:18px;
-  box-shadow:0 8px 25px rgba(15,23,42,.08);
+  background:white;
+  border:1px solid var(--border);
+  border-radius:15px;
+  padding:16px;
+  box-shadow:0 7px 24px rgba(15,35,65,.05);
 }
 
-.stat.blue{
-  background:linear-gradient(135deg,#2563eb,#3b82f6);
-}
-
-.stat.purple{
-  background:linear-gradient(135deg,#6d28d9,#8b5cf6);
-}
-
-.stat.red{
-  background:linear-gradient(135deg,#dc2626,#f87171);
-}
-
-.stat.orange{
-  background:linear-gradient(135deg,#d97706,#f59e0b);
-}
-
-.stat:after{
+.stat:before{
   content:"";
   position:absolute;
-  width:120px;
-  height:120px;
-  border-radius:50%;
-  background:rgba(255,255,255,.08);
-  right:-35px;
-  top:-45px;
+  left:0;
+  top:0;
+  bottom:0;
+  width:4px;
+}
+
+.stat.blue:before{background:var(--blue)}
+.stat.green:before{background:var(--green)}
+.stat.red:before{background:var(--red)}
+.stat.orange:before{background:var(--orange)}
+
+.stat-top{
+  display:flex;
+  align-items:center;
+  gap:8px;
 }
 
 .stat-icon{
-  width:36px;
-  height:36px;
+  width:28px;
+  height:28px;
+  border-radius:8px;
   display:flex;
   align-items:center;
   justify-content:center;
-  background:rgba(255,255,255,.15);
-  border-radius:10px;
-  font-size:18px;
-  margin-bottom:12px;
+  font-size:11px;
+  font-weight:900;
+}
+
+.stat.blue .stat-icon{
+  background:#dbeafe;
+  color:#1264d6;
+}
+
+.stat.green .stat-icon{
+  background:#dcfce7;
+  color:#15803d;
+}
+
+.stat.red .stat-icon{
+  background:#fee2e2;
+  color:#b91c1c;
+}
+
+.stat.orange .stat-icon{
+  background:#ffedd5;
+  color:#ea580c;
 }
 
 .stat-title{
-  font-size:11px;
-  font-weight:800;
+  color:var(--muted);
+  font-size:9px;
+  font-weight:900;
   text-transform:uppercase;
-  letter-spacing:.5px;
-  opacity:.8;
+  letter-spacing:.35px;
 }
 
 .stat-number{
-  font-size:32px;
-  line-height:1;
-  font-weight:850;
-  margin-top:7px;
+  font-size:28px;
+  font-weight:900;
+  margin-top:8px;
 }
 
 .stat-foot{
-  font-size:11px;
-  margin-top:11px;
-  opacity:.8;
+  color:#8491a5;
+  font-size:9px;
+  margin-top:5px;
+}
+
+/* COMMON CARD */
+
+.card{
+  background:white;
+  border:1px solid var(--border);
+  border-radius:15px;
+  padding:17px;
+  box-shadow:0 7px 24px rgba(15,35,65,.045);
+}
+
+.card-title{
+  font-size:16px;
+  font-weight:900;
+}
+
+.card-sub{
+  color:#8491a5;
+  font-size:10px;
+  margin-top:3px;
 }
 
 /* ANALYTICS */
 
 .analytics{
   display:grid;
-  grid-template-columns:1.3fr .7fr;
-  gap:14px;
-  margin-bottom:18px;
+  grid-template-columns:minmax(0,1.45fr) minmax(260px,.55fr);
+  gap:12px;
+  margin-top:12px;
 }
 
-.card{
-  background:white;
-  border:1px solid var(--border);
-  border-radius:18px;
-  padding:20px;
-  margin-bottom:16px;
-  box-shadow:0 4px 16px rgba(15,23,42,.035);
+.chart-head{
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-start;
+  gap:10px;
 }
 
-.card-title{
-  font-size:16px;
-  font-weight:850;
-  margin-bottom:3px;
+.trend{
+  padding:5px 8px;
+  border-radius:999px;
+  background:#dcfce7;
+  color:#15803d;
+  font-size:8px;
+  font-weight:900;
 }
-
-.card-sub{
-  font-size:12px;
-  color:#8491a5;
-}
-
-/* MINI GRAPH */
 
 .chart{
   height:160px;
   display:flex;
   align-items:flex-end;
-  gap:10px;
-  padding-top:20px;
+  gap:9px;
+  padding-top:18px;
 }
 
 .bar-wrap{
@@ -283,175 +443,333 @@ main{
 
 .bar{
   width:100%;
-  max-width:42px;
+  max-width:43px;
   margin:auto;
   border-radius:7px 7px 3px 3px;
-  background:linear-gradient(180deg,#3b82f6,#2563eb);
+  background:linear-gradient(180deg,var(--blue2),var(--blue));
+  position:relative;
+}
+
+.bar.today{
+  background:linear-gradient(180deg,var(--orange2),var(--orange));
 }
 
 .bar-label{
   color:#94a3b8;
-  font-size:10px;
-  margin-top:7px;
+  font-size:9px;
+  margin-top:6px;
 }
-
-/* SCORE RING */
 
 .score-area{
   display:flex;
   align-items:center;
   justify-content:center;
-  min-height:180px;
+  min-height:158px;
 }
 
 .score-ring{
-  width:135px;
-  height:135px;
+  width:120px;
+  height:120px;
   border-radius:50%;
-  background:conic-gradient(#22c55e 0 91%,#e9eef5 91% 100%);
+  background:conic-gradient(
+    var(--orange) 0 327deg,
+    #edf1f6 327deg 360deg
+  );
   display:flex;
   align-items:center;
   justify-content:center;
-  position:relative;
+  box-shadow:0 7px 20px rgba(255,121,0,.12);
 }
 
-.score-ring:before{
-  content:"";
-  position:absolute;
-  width:100px;
-  height:100px;
+.score-inner{
+  width:92px;
+  height:92px;
   border-radius:50%;
   background:white;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  flex-direction:column;
 }
 
-.score-ring-content{
-  position:relative;
-  text-align:center;
-}
-
-.score-ring-number{
+.score-number{
   font-size:27px;
-  font-weight:850;
+  font-weight:900;
 }
 
-.score-ring-label{
+.score-label{
   color:#8491a5;
+  font-size:8px;
+  font-weight:900;
+}
+
+.score-foot{
+  text-align:center;
+  color:#15803d;
+  font-size:9px;
+  font-weight:800;
+  margin-top:-5px;
+}
+
+/* INSIGHTS */
+
+.insight-grid{
+  display:grid;
+  grid-template-columns:1.1fr .9fr;
+  gap:12px;
+  margin-top:12px;
+}
+
+.insight-card{
+  position:relative;
+  overflow:hidden;
+  color:white;
+  background:
+    radial-gradient(circle at 100% 0%,rgba(20,120,255,.28),transparent 35%),
+    linear-gradient(135deg,#06172a,#092442);
+  border-color:#102d4d;
+}
+
+.insight-card:after{
+  content:"";
+  position:absolute;
+  width:250px;
+  height:90px;
+  right:-55px;
+  top:-52px;
+  border-radius:50%;
+  border-bottom:2px solid rgba(255,121,0,.65);
+  transform:rotate(-7deg);
+}
+
+.insight-title{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  font-size:15px;
+  font-weight:900;
+}
+
+.ai-icon{
+  width:27px;
+  height:27px;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:linear-gradient(135deg,var(--blue),var(--orange));
+  font-size:11px;
+}
+
+.insight-text{
+  position:relative;
+  z-index:2;
+  color:#cad7e7;
   font-size:10px;
+  line-height:1.55;
+  margin-top:10px;
+}
+
+.opportunity{
+  margin-top:9px;
+  padding:9px 10px;
+  border-radius:9px;
+  background:rgba(255,255,255,.06);
+  border:1px solid rgba(255,255,255,.08);
+}
+
+.opportunity strong{
+  color:white;
+}
+
+/* COACHING */
+
+.coaching-list{
+  margin-top:10px;
+}
+
+.coaching-row{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:12px;
+  padding:10px 0;
+  border-bottom:1px solid #edf1f6;
+}
+
+.coaching-row:last-child{
+  border-bottom:0;
+}
+
+.coaching-name{
+  font-size:11px;
+  font-weight:900;
+}
+
+.coaching-desc{
+  color:var(--muted);
+  font-size:9px;
+  margin-top:3px;
+}
+
+.count{
+  min-width:28px;
+  height:28px;
+  padding:0 8px;
+  border-radius:8px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:#fff0d8;
+  color:#d96800;
+  font-size:10px;
+  font-weight:900;
 }
 
 /* ANALYZER */
+
+.analyzer{
+  margin-top:12px;
+}
 
 .analyzer-head{
   display:flex;
   justify-content:space-between;
   align-items:center;
   gap:10px;
-  margin-bottom:18px;
+  margin-bottom:16px;
 }
 
 .analyzer-title{
-  font-size:21px;
-  font-weight:850;
+  display:flex;
+  align-items:center;
+  gap:8px;
+  font-size:17px;
+  font-weight:900;
+}
+
+.analyzer-icon{
+  width:29px;
+  height:29px;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:white;
+  background:linear-gradient(135deg,var(--blue),var(--orange));
+  font-size:12px;
 }
 
 .ai-badge{
-  background:#eef4ff;
-  color:#2563eb;
-  padding:7px 10px;
+  background:#eef5ff;
+  color:#1264d6;
+  padding:6px 9px;
   border-radius:999px;
-  font-size:10px;
-  font-weight:850;
+  font-size:8px;
+  font-weight:900;
 }
 
 label{
-  font-size:11px;
-  font-weight:850;
+  display:block;
+  font-size:9px;
+  font-weight:900;
   color:#596579;
   letter-spacing:.4px;
 }
 
 .scorecard-box{
-  margin:7px 0 17px;
+  margin:7px 0 15px;
   background:#f7f9fc;
   border:1px solid #e5eaf1;
-  padding:13px;
-  border-radius:10px;
-  font-weight:750;
-  font-size:14px;
+  padding:11px 12px;
+  border-radius:9px;
+  font-weight:800;
+  font-size:12px;
 }
 
 textarea{
   width:100%;
-  min-height:260px;
-  margin-top:8px;
-  padding:14px;
+  min-height:240px;
+  margin-top:7px;
+  padding:13px;
   border:1px solid #d7dee8;
-  border-radius:12px;
-  font:13px/1.55 monospace;
+  border-radius:10px;
+  font:11px/1.55 ui-monospace,SFMono-Regular,Menlo,monospace;
   background:#fbfcfe;
   color:#172033;
   outline:none;
 }
 
 textarea:focus{
-  border-color:#3b82f6;
-  box-shadow:0 0 0 3px rgba(59,130,246,.1);
+  border-color:var(--blue);
+  box-shadow:0 0 0 3px rgba(20,120,255,.08);
 }
 
-button{
+.analyze-btn{
   width:100%;
-  padding:15px;
+  padding:13px;
   border:0;
-  border-radius:11px;
+  border-radius:9px;
   color:white;
-  background:linear-gradient(90deg,#2563eb,#4f46e5);
-  font-weight:850;
-  font-size:14px;
-  margin-top:12px;
-  box-shadow:0 7px 18px rgba(37,99,235,.18);
+  background:linear-gradient(90deg,var(--blue),#2869f1 55%,var(--orange));
+  font-weight:900;
+  font-size:12px;
+  margin-top:11px;
+  box-shadow:0 7px 18px rgba(20,120,255,.17);
+  cursor:pointer;
 }
 
 /* RESULTS */
 
-.top{
+.result-card{
+  margin-top:12px;
+}
+
+.result-top{
   display:grid;
   grid-template-columns:repeat(3,1fr);
-  gap:12px;
+  gap:9px;
+  margin-top:13px;
 }
 
 .metric{
   background:#f7f9fc;
   border:1px solid #edf0f5;
-  border-radius:13px;
-  padding:16px;
+  border-radius:11px;
+  padding:13px;
 }
 
 .big{
-  font-size:30px;
-  font-weight:850;
-  margin-top:5px;
+  font-size:26px;
+  font-weight:900;
+  margin-top:4px;
 }
 
 .muted{
   color:#7c899d;
-  font-size:11px;
+  font-size:9px;
+  font-weight:800;
 }
 
 .row{
-  padding:17px 0;
+  padding:14px 0;
   border-top:1px solid #edf0f4;
   display:flex;
   justify-content:space-between;
   gap:15px;
 }
 
+.row:first-of-type{
+  margin-top:10px;
+}
+
 .name{
-  font-weight:800;
-  font-size:14px;
+  font-weight:900;
+  font-size:12px;
 }
 
 .why{
-  font-size:13px;
+  font-size:10px;
   color:#586579;
   margin-top:5px;
   line-height:1.45;
@@ -459,56 +777,184 @@ button{
 
 .pill{
   display:inline-block;
-  padding:6px 9px;
+  padding:5px 8px;
   border-radius:999px;
-  font-size:10px;
-  font-weight:850;
+  font-size:8px;
+  font-weight:900;
 }
 
 .pass{
-  background:#e7f6ec;
-  color:#067647;
+  background:#dcfce7;
+  color:#15803d;
 }
 
 .fail{
-  background:#fee4e2;
-  color:#b42318;
+  background:#fee2e2;
+  color:#b91c1c;
 }
 
-.review{
-  background:#fff1e7;
-  color:#b54708;
-  margin-left:4px;
+.review-pill{
+  background:#fff0d8;
+  color:#d96800;
+  margin-left:3px;
 }
 
 /* MOBILE */
 
 @media(max-width:760px){
 
-  header{
-    padding-top:18px;
+  .header-swirl{
+    width:430px;
+    height:90px;
+    right:-135px;
+    top:-54px;
+  }
+
+  .header-swirl:after{
+    width:350px;
+    height:76px;
+    top:13px;
+  }
+
+  .header-inner{
+    padding:14px 14px 0;
+  }
+
+  .logo-wrap{gap:9px}
+
+  .logo-icon{
+    width:43px;
+    height:37px;
+    flex-basis:43px;
+  }
+
+  .bubble{
+    width:30px;
+    height:23px;
+    border-width:2.5px;
+  }
+
+  .blue-bubble:after{border-left-width:2px}
+  .orange-bubble:after{border-right-width:2px}
+
+  .brand{font-size:23px}
+
+  .sub{
+    max-width:220px;
+    font-size:9px;
+    line-height:1.25;
+  }
+
+  .user{display:none}
+
+  .live{
+    padding:7px 10px;
+    font-size:9px;
+  }
+
+  .nav-shell{margin-top:11px}
+
+  .nav a{
+    padding:10px 14px 12px;
+    font-size:11px;
+  }
+
+  main{
+    padding:17px 13px 50px;
+  }
+
+  .page-title{
+    font-size:26px;
+  }
+
+  .page-sub{
+    font-size:12px;
   }
 
   .dashboard{
     grid-template-columns:1fr 1fr;
-    gap:10px;
+    gap:8px;
+    margin-top:15px;
   }
 
   .stat{
-    min-height:135px;
-    padding:15px;
+    padding:12px;
+    border-radius:12px;
+  }
+
+  .stat-icon{
+    width:23px;
+    height:23px;
+    font-size:9px;
+  }
+
+  .stat-title{
+    font-size:8px;
   }
 
   .stat-number{
-    font-size:29px;
+    font-size:23px;
+    margin-top:6px;
+  }
+
+  .stat-foot{
+    font-size:8px;
   }
 
   .analytics{
     grid-template-columns:1fr;
+    gap:9px;
+    margin-top:9px;
   }
 
-  .top{
+  .card{
+    padding:14px;
+    border-radius:13px;
+  }
+
+  .chart{
+    height:145px;
+  }
+
+  .score-area{
+    min-height:135px;
+  }
+
+  .score-ring{
+    width:108px;
+    height:108px;
+  }
+
+  .score-inner{
+    width:82px;
+    height:82px;
+  }
+
+  .insight-grid{
     grid-template-columns:1fr;
+    gap:9px;
+    margin-top:9px;
+  }
+
+  .analyzer{
+    margin-top:9px;
+  }
+
+  textarea{
+    min-height:220px;
+  }
+
+  .result-top{
+    grid-template-columns:repeat(3,1fr);
+    gap:6px;
+  }
+
+  .metric{
+    padding:10px 8px;
+  }
+
+  .big{
+    font-size:20px;
   }
 
   .row{
@@ -516,56 +962,93 @@ button{
   }
 
   .row>div:last-child{
-    margin-top:10px;
-  }
-
-  .page-title{
-    font-size:22px;
-  }
-
-  main{
-    padding:16px 12px;
-  }
-
-  .card{
-    padding:17px;
+    margin-top:9px;
   }
 }
-
 </style>
 </head>
 
 <body>
 
 <header>
+
+<div class="header-swirl"></div>
+
 <div class="header-inner">
 
 <div class="brand-row">
 
 <div class="logo-wrap">
-<div class="logo">S</div>
+
+<div class="logo-icon">
+<div class="bubble blue-bubble"></div>
+<div class="bubble orange-bubble"></div>
+
+<div class="signal">
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+</div>
+
+</div>
 
 <div>
-<div class="brand">ServIQ</div>
+<div class="brand">Serv<span class="brand-iq">IQ</span></div>
 <div class="sub">AI Quality Assurance for Mortgage Servicing</div>
 </div>
+
 </div>
+
+<div class="header-right">
 
 <div class="live">
 <span class="live-dot"></span>
 AI ONLINE
 </div>
 
+<div class="user">
+<div class="user-avatar">BT</div>
+Bronson Taylor
 </div>
 
+</div>
+
+</div>
+
+<div class="nav-shell">
+
 <nav class="nav">
-<a class="active" href="#">Dashboard</a>
-<a href="/calls">Calls</a>
-<a href="#">Scorecards</a>
-<a href="#">Coaching</a>
-<a href="#">Analytics</a>
-<a href="#">Team</a>
+
+<a class="active" href="/">
+<span class="nav-icon">⌂</span>
+Dashboard
+</a>
+
+<a href="/calls">
+<span class="nav-icon">☎</span>
+Calls
+</a>
+
+<a href="#">
+<span class="nav-icon">▣</span>
+Scorecards
+</a>
+
+<a href="#">
+<span class="nav-icon">◉</span>
+Coaching
+</a>
+
+<a href="#">
+<span class="nav-icon">▥</span>
+Analytics
+</a>
+
 </nav>
+
+</div>
 
 </div>
 </header>
@@ -573,58 +1056,96 @@ AI ONLINE
 
 <main>
 
-<div class="page-head">
 <div>
 <div class="page-title">QA Command Center</div>
-<div class="page-sub">Mortgage servicing quality intelligence</div>
+<div class="page-sub">
+Mortgage servicing quality intelligence
 </div>
 </div>
 
+
+<!-- KPI CARDS -->
 
 <div class="dashboard">
 
 <div class="stat blue">
-<div class="stat-icon">◉</div>
+
+<div class="stat-top">
+<div class="stat-icon">✓</div>
 <div class="stat-title">Calls Analyzed</div>
+</div>
+
 <div class="stat-number">1,248</div>
 <div class="stat-foot">↑ 12% this month</div>
+
 </div>
 
-<div class="stat purple">
-<div class="stat-icon">✓</div>
+
+<div class="stat green">
+
+<div class="stat-top">
+<div class="stat-icon">↗</div>
 <div class="stat-title">Average QA Score</div>
+</div>
+
 <div class="stat-number">91%</div>
 <div class="stat-foot">↑ 3.2% vs last month</div>
+
 </div>
+
 
 <div class="stat red">
+
+<div class="stat-top">
 <div class="stat-icon">!</div>
 <div class="stat-title">Critical Failures</div>
+</div>
+
 <div class="stat-number">18</div>
 <div class="stat-foot">1.4% of analyzed calls</div>
+
 </div>
+
 
 <div class="stat orange">
-<div class="stat-icon">⌕</div>
+
+<div class="stat-top">
+<div class="stat-icon">?</div>
 <div class="stat-title">Needs Review</div>
+</div>
+
 <div class="stat-number">42</div>
 <div class="stat-foot">AI confidence threshold</div>
-</div>
 
 </div>
 
+</div>
+
+
+<!-- PERFORMANCE -->
 
 <div class="analytics">
 
 <div class="card">
 
+<div class="chart-head">
+
+<div>
 <div class="card-title">QA Performance</div>
-<div class="card-sub">Average quality score over the last 7 days</div>
+<div class="card-sub">
+Average quality score over the last 7 days
+</div>
+</div>
+
+<div class="trend">↑ 3.2%</div>
+
+</div>
+
 
 <div class="chart">
 
 <div class="bar-wrap">
-<div class="bar" style="height:72px"></div>
+<div class="bar" style="height:75px"></div>
 <div class="bar-label">Mon</div>
 </div>
 
@@ -639,44 +1160,82 @@ AI ONLINE
 </div>
 
 <div class="bar-wrap">
-<div class="bar" style="height:105px"></div>
+<div class="bar" style="height:101px"></div>
 <div class="bar-label">Thu</div>
 </div>
 
 <div class="bar-wrap">
-<div class="bar" style="height:112px"></div>
+<div class="bar" style="height:108px"></div>
 <div class="bar-label">Fri</div>
 </div>
 
 <div class="bar-wrap">
-<div class="bar" style="height:118px"></div>
+<div class="bar" style="height:114px"></div>
 <div class="bar-label">Sat</div>
 </div>
 
 <div class="bar-wrap">
-<div class="bar" style="height:124px"></div>
-<div class="bar-label">Sun</div>
+<div class="bar today" style="height:121px"></div>
+<div class="bar-label">Today</div>
 </div>
 
 </div>
+
 </div>
 
 
 <div class="card">
 
 <div class="card-title">Quality Score</div>
-<div class="card-sub">Overall performance</div>
+<div class="card-sub">Overall servicing performance</div>
 
 <div class="score-area">
 
 <div class="score-ring">
-<div class="score-ring-content">
-<div class="score-ring-number">91%</div>
-<div class="score-ring-label">QA SCORE</div>
-</div>
+
+<div class="score-inner">
+<div class="score-number">91%</div>
+<div class="score-label">QA SCORE</div>
 </div>
 
 </div>
+
+</div>
+
+<div class="score-foot">
+↑ 3.2% from previous period
+</div>
+
+</div>
+
+</div>
+
+
+<!-- AI INSIGHTS -->
+
+<div class="insight-grid">
+
+<div class="card insight-card">
+
+<div class="insight-title">
+<div class="ai-icon">✦</div>
+ServIQ AI Insights
+</div>
+
+<div class="insight-text">
+
+Servicing quality is trending upward, while
+<strong style="color:white">empathy</strong> remains the most common
+low-confidence evaluation category.
+
+<div class="opportunity">
+<strong>42 calls</strong> are currently routed for human review based on AI confidence thresholds.
+</div>
+
+<div class="opportunity">
+Authentication findings account for the highest-risk critical failures in the current call set.
+</div>
+
 </div>
 
 </div>
@@ -684,16 +1243,78 @@ AI ONLINE
 
 <div class="card">
 
+<div class="card-title">Coaching Opportunities</div>
+<div class="card-sub">Most common opportunities detected by ServIQ</div>
+
+<div class="coaching-list">
+
+<div class="coaching-row">
+
+<div>
+<div class="coaching-name">Empathy & Acknowledgement</div>
+<div class="coaching-desc">Hardship conversations</div>
+</div>
+
+<div class="count">31</div>
+
+</div>
+
+
+<div class="coaching-row">
+
+<div>
+<div class="coaching-name">Authentication</div>
+<div class="coaching-desc">Critical compliance behavior</div>
+</div>
+
+<div class="count">18</div>
+
+</div>
+
+
+<div class="coaching-row">
+
+<div>
+<div class="coaching-name">Closing Expectations</div>
+<div class="coaching-desc">Clear next-step communication</div>
+</div>
+
+<div class="count">14</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+
+<!-- ANALYZER -->
+
+<div class="card analyzer">
+
 <div class="analyzer-head">
 
 <div>
-<div class="analyzer-title">Analyze a Call</div>
-<div class="card-sub">Run a conversation through ServIQ AI</div>
+
+<div class="analyzer-title">
+<div class="analyzer-icon">✦</div>
+Analyze a Call
 </div>
 
-<div class="ai-badge">✦ AI QA ENGINE</div>
+<div class="card-sub">
+Run a synthetic conversation through ServIQ QA
+</div>
 
 </div>
+
+<div class="ai-badge">
+AI QA ENGINE
+</div>
+
+</div>
+
 
 <form method="post">
 
@@ -703,11 +1324,13 @@ AI ONLINE
 Mortgage Servicing — General v1
 </div>
 
+
 <label>SYNTHETIC TRANSCRIPT</label>
 
 <textarea name="transcript">{{ transcript }}</textarea>
 
-<button type="submit">
+
+<button class="analyze-btn" type="submit">
 ✦ Analyze Call with ServIQ
 </button>
 
@@ -716,15 +1339,22 @@ Mortgage Servicing — General v1
 </div>
 
 
+<!-- RESULTS -->
+
 {% if result %}
 
-<div class="card">
+<div class="card result-card">
 
-<div class="card-title" style="margin-bottom:15px">
+<div class="card-title">
 Evaluation Summary
 </div>
 
-<div class="top">
+<div class="card-sub">
+ServIQ AI evaluation results
+</div>
+
+
+<div class="result-top">
 
 <div class="metric">
 <div class="muted">QA SCORE</div>
@@ -738,22 +1368,26 @@ Evaluation Summary
 
 <div class="metric">
 <div class="muted">CRITICAL FAILURE</div>
+
 <div class="big">
 {{ "YES" if result.critical else "NO" }}
 </div>
-</div>
 
 </div>
 
 </div>
 
+</div>
 
-<div class="card">
 
-<div class="card-title">AI Evaluation</div>
+<div class="card result-card">
 
-<div class="card-sub" style="margin-bottom:14px">
-ServIQ scorecard analysis and confidence
+<div class="card-title">
+AI Evaluation
+</div>
+
+<div class="card-sub">
+Scorecard analysis, explanations and confidence
 </div>
 
 
@@ -785,9 +1419,11 @@ AI confidence {{ r.confidence }}%
 </span>
 
 {% if r.review %}
-<span class="pill review">
+
+<span class="pill review-pill">
 HUMAN REVIEW
 </span>
+
 {% endif %}
 
 </div>
