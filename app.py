@@ -155,10 +155,25 @@ def calls():
     return render_template("calls.html")
 
 
-@app.route("/review")
+@app.route("/review", methods=["GET", "POST"])
 def review():
-    return render_template("review.html")
+    override_saved = False
+    human_result = None
+    override_reason = ""
 
+    if request.method == "POST":
+        human_result = request.form.get("human_result")
+        override_reason = request.form.get("override_reason", "").strip()
+
+        if human_result:
+            override_saved = True
+
+    return render_template(
+        "review.html",
+        override_saved=override_saved,
+        human_result=human_result,
+        override_reason=override_reason
+    )
 
 if __name__ == "__main__":
     app.run(debug=True, port=5000)
