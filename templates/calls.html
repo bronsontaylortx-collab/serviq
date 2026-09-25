@@ -1,0 +1,548 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Calls | ServIQ</title>
+
+<style>
+*{box-sizing:border-box}
+
+:root{
+  --navy:#071426;
+  --navy2:#0b1d35;
+  --blue:#3b82f6;
+  --purple:#8b5cf6;
+  --green:#16a34a;
+  --red:#ef4444;
+  --orange:#f59e0b;
+  --bg:#f3f6fb;
+  --text:#142033;
+  --muted:#718096;
+  --border:#e3e9f2;
+}
+
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--text);
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+}
+
+header{
+  background:
+    radial-gradient(circle at 80% -40%,#174e91 0%,transparent 48%),
+    linear-gradient(135deg,#071426,#0b1d35);
+  color:white;
+  padding:22px 18px 0;
+}
+
+.header-inner{
+  max-width:1180px;
+  margin:auto;
+}
+
+.brand-row{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+.logo-wrap{
+  display:flex;
+  align-items:center;
+  gap:11px;
+}
+
+.logo{
+  width:48px;
+  height:48px;
+  border-radius:14px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:25px;
+  font-weight:900;
+  background:linear-gradient(135deg,#3b82f6,#9333ea);
+  box-shadow:0 8px 24px rgba(59,130,246,.35);
+}
+
+.brand{
+  font-size:25px;
+  font-weight:900;
+}
+
+.sub{
+  color:#94a3b8;
+  font-size:12px;
+  margin-top:2px;
+}
+
+.live{
+  background:rgba(34,197,94,.12);
+  color:#86efac;
+  border:1px solid rgba(34,197,94,.25);
+  padding:8px 12px;
+  border-radius:999px;
+  font-size:11px;
+  font-weight:800;
+}
+
+.live-dot{
+  display:inline-block;
+  width:7px;
+  height:7px;
+  background:#22c55e;
+  border-radius:50%;
+  margin-right:5px;
+}
+
+.nav{
+  display:flex;
+  gap:8px;
+  margin-top:20px;
+  overflow-x:auto;
+}
+
+.nav a{
+  color:#94a3b8;
+  text-decoration:none;
+  padding:12px 15px;
+  font-size:13px;
+  font-weight:800;
+  white-space:nowrap;
+  border-bottom:3px solid transparent;
+}
+
+.nav a.active{
+  color:white;
+  border-bottom-color:#3b82f6;
+}
+
+main{
+  max-width:1180px;
+  margin:auto;
+  padding:24px 18px 60px;
+}
+
+.title-row{
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-end;
+  gap:12px;
+  margin-bottom:20px;
+}
+
+h1{
+  margin:0;
+  font-size:27px;
+}
+
+.subtitle{
+  color:var(--muted);
+  font-size:14px;
+  margin-top:5px;
+}
+
+.summary{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:12px;
+  margin-bottom:18px;
+}
+
+.stat{
+  background:white;
+  border:1px solid var(--border);
+  border-radius:16px;
+  padding:17px;
+  box-shadow:0 6px 20px rgba(15,23,42,.04);
+}
+
+.stat-label{
+  color:var(--muted);
+  font-size:11px;
+  font-weight:800;
+  text-transform:uppercase;
+}
+
+.stat-value{
+  font-size:26px;
+  font-weight:900;
+  margin-top:5px;
+}
+
+.filters{
+  background:white;
+  border:1px solid var(--border);
+  border-radius:16px;
+  padding:14px;
+  margin-bottom:16px;
+  display:flex;
+  gap:10px;
+}
+
+.search{
+  flex:1;
+  border:1px solid #d9e1ec;
+  border-radius:10px;
+  padding:12px;
+  font-size:14px;
+  outline:none;
+}
+
+.filter-btn{
+  border:1px solid #d9e1ec;
+  background:white;
+  border-radius:10px;
+  padding:0 14px;
+  font-weight:700;
+  color:#475569;
+}
+
+.call-list{
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+}
+
+.call{
+  background:white;
+  border:1px solid var(--border);
+  border-radius:17px;
+  padding:17px;
+  box-shadow:0 6px 20px rgba(15,23,42,.04);
+}
+
+.call-top{
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-start;
+  gap:12px;
+}
+
+.agent{
+  display:flex;
+  gap:11px;
+  align-items:center;
+}
+
+.avatar{
+  width:42px;
+  height:42px;
+  border-radius:12px;
+  background:linear-gradient(135deg,#dbeafe,#ede9fe);
+  color:#2563eb;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-weight:900;
+}
+
+.agent-name{
+  font-weight:900;
+  font-size:15px;
+}
+
+.call-info{
+  color:var(--muted);
+  font-size:12px;
+  margin-top:3px;
+}
+
+.score{
+  text-align:right;
+}
+
+.score-number{
+  font-size:23px;
+  font-weight:900;
+}
+
+.score-label{
+  color:var(--muted);
+  font-size:10px;
+  font-weight:800;
+}
+
+.call-meta{
+  display:flex;
+  gap:8px;
+  flex-wrap:wrap;
+  margin-top:15px;
+}
+
+.badge{
+  padding:6px 9px;
+  border-radius:999px;
+  font-size:10px;
+  font-weight:800;
+}
+
+.good{
+  background:#dcfce7;
+  color:#15803d;
+}
+
+.warning{
+  background:#fef3c7;
+  color:#b45309;
+}
+
+.danger{
+  background:#fee2e2;
+  color:#b91c1c;
+}
+
+.blue{
+  background:#dbeafe;
+  color:#1d4ed8;
+}
+
+.review{
+  margin-top:14px;
+  padding-top:13px;
+  border-top:1px solid #edf1f6;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+.review-text{
+  color:#64748b;
+  font-size:12px;
+}
+
+.review-link{
+  text-decoration:none;
+  color:#2563eb;
+  font-weight:800;
+  font-size:12px;
+}
+
+@media(max-width:650px){
+  .summary{
+    grid-template-columns:1fr 1fr 1fr;
+  }
+
+  .stat{
+    padding:13px 10px;
+  }
+
+  .stat-value{
+    font-size:21px;
+  }
+
+  .stat-label{
+    font-size:9px;
+  }
+
+  .filters{
+    flex-wrap:wrap;
+  }
+
+  .search{
+    width:100%;
+    flex-basis:100%;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<div class="header-inner">
+
+<div class="brand-row">
+
+<div class="logo-wrap">
+<div class="logo">S</div>
+
+<div>
+<div class="brand">ServIQ</div>
+<div class="sub">AI Quality Assurance for Mortgage Servicing</div>
+</div>
+</div>
+
+<div class="live">
+<span class="live-dot"></span>
+AI ONLINE
+</div>
+
+</div>
+
+<nav class="nav">
+<a href="/">Dashboard</a>
+<a class="active" href="/calls">Calls</a>
+<a href="#">Scorecards</a>
+<a href="#">Coaching</a>
+<a href="#">Analytics</a>
+</nav>
+
+</div>
+</header>
+
+<main>
+
+<div class="title-row">
+<div>
+<h1>Calls</h1>
+<div class="subtitle">AI-analyzed servicing conversations</div>
+</div>
+</div>
+
+<div class="summary">
+
+<div class="stat">
+<div class="stat-label">Analyzed</div>
+<div class="stat-value">1,248</div>
+</div>
+
+<div class="stat">
+<div class="stat-label">Review</div>
+<div class="stat-value">42</div>
+</div>
+
+<div class="stat">
+<div class="stat-label">Critical</div>
+<div class="stat-value">18</div>
+</div>
+
+</div>
+
+<div class="filters">
+<input class="search" placeholder="Search agent or call...">
+<button class="filter-btn">Filters</button>
+</div>
+
+<div class="call-list">
+
+<div class="call">
+<div class="call-top">
+
+<div class="agent">
+<div class="avatar">JM</div>
+<div>
+<div class="agent-name">Jordan Miller</div>
+<div class="call-info">Loss Mitigation • 8:42 • Today 12:48 PM</div>
+</div>
+</div>
+
+<div class="score">
+<div class="score-number">94%</div>
+<div class="score-label">QA SCORE</div>
+</div>
+
+</div>
+
+<div class="call-meta">
+<span class="badge good">PASS</span>
+<span class="badge blue">Loss Mitigation</span>
+<span class="badge good">96% AI Confidence</span>
+</div>
+
+<div class="review">
+<div class="review-text">No critical failures detected</div>
+<a class="review-link" href="#">Review Call →</a>
+</div>
+</div>
+
+
+<div class="call">
+<div class="call-top">
+
+<div class="agent">
+<div class="avatar">AR</div>
+<div>
+<div class="agent-name">Ashley Reed</div>
+<div class="call-info">Payment • 6:17 • Today 11:32 AM</div>
+</div>
+</div>
+
+<div class="score">
+<div class="score-number">88%</div>
+<div class="score-label">QA SCORE</div>
+</div>
+
+</div>
+
+<div class="call-meta">
+<span class="badge warning">HUMAN REVIEW</span>
+<span class="badge blue">Payment</span>
+<span class="badge warning">84% AI Confidence</span>
+</div>
+
+<div class="review">
+<div class="review-text">Low-confidence empathy evaluation</div>
+<a class="review-link" href="#">Review Call →</a>
+</div>
+</div>
+
+
+<div class="call">
+<div class="call-top">
+
+<div class="agent">
+<div class="avatar">DT</div>
+<div>
+<div class="agent-name">David Torres</div>
+<div class="call-info">Delinquency • 11:03 • Today 10:16 AM</div>
+</div>
+</div>
+
+<div class="score">
+<div class="score-number">72%</div>
+<div class="score-label">QA SCORE</div>
+</div>
+
+</div>
+
+<div class="call-meta">
+<span class="badge danger">CRITICAL FAILURE</span>
+<span class="badge blue">Delinquency</span>
+<span class="badge good">97% AI Confidence</span>
+</div>
+
+<div class="review">
+<div class="review-text">Authentication requirement flagged</div>
+<a class="review-link" href="#">Review Call →</a>
+</div>
+</div>
+
+
+<div class="call">
+<div class="call-top">
+
+<div class="agent">
+<div class="avatar">SK</div>
+<div>
+<div class="agent-name">Sarah Kim</div>
+<div class="call-info">Escrow • 5:54 • Yesterday 4:42 PM</div>
+</div>
+</div>
+
+<div class="score">
+<div class="score-number">97%</div>
+<div class="score-label">QA SCORE</div>
+</div>
+
+</div>
+
+<div class="call-meta">
+<span class="badge good">PASS</span>
+<span class="badge blue">Escrow</span>
+<span class="badge good">98% AI Confidence</span>
+</div>
+
+<div class="review">
+<div class="review-text">Strong servicing interaction</div>
+<a class="review-link" href="#">Review Call →</a>
+</div>
+</div>
+
+</div>
+
+</main>
+</body>
+</html>
