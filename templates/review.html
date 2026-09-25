@@ -9,213 +9,386 @@
 *{box-sizing:border-box}
 
 :root{
-  --navy:#071426;
-  --navy2:#0b1d35;
-  --blue:#3b82f6;
-  --purple:#8b5cf6;
-  --green:#16a34a;
-  --red:#ef4444;
-  --orange:#f59e0b;
-  --bg:#f3f6fb;
-  --text:#142033;
-  --muted:#718096;
-  --border:#e3e9f2;
+  --navy:#061426;
+  --navy2:#0a213d;
+  --navy3:#0d2e53;
+  --blue:#1478ff;
+  --blue2:#36a0ff;
+  --orange:#ff7900;
+  --orange2:#ff9d22;
+  --green:#0eaf70;
+  --red:#dc3545;
+  --purple:#7047eb;
+  --bg:#f4f7fb;
+  --text:#0c1c35;
+  --muted:#64748b;
+  --border:#dfe7f1;
 }
 
 body{
   margin:0;
-  background:var(--bg);
+  background:
+    radial-gradient(circle at 75% 15%,rgba(20,120,255,.05),transparent 28%),
+    var(--bg);
   color:var(--text);
-  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;
 }
 
+/* HEADER */
+
 header{
-  background:
-    radial-gradient(circle at 80% -40%,#174e91 0%,transparent 48%),
-    linear-gradient(135deg,#071426,#0b1d35);
+  position:relative;
+  overflow:hidden;
   color:white;
-  padding:22px 18px 0;
+  background:
+    radial-gradient(circle at 83% 5%,rgba(255,121,0,.16),transparent 26%),
+    radial-gradient(circle at 65% -20%,rgba(20,120,255,.30),transparent 40%),
+    linear-gradient(125deg,#061426 0%,#08203a 55%,#071527 100%);
+}
+
+header:before{
+  content:"";
+  position:absolute;
+  width:700px;
+  height:170px;
+  right:-80px;
+  top:-65px;
+  border-radius:50%;
+  border-bottom:2px solid rgba(20,120,255,.8);
+  transform:rotate(-7deg);
+  box-shadow:
+    0 9px 0 -7px rgba(255,121,0,.9),
+    0 18px 0 -15px rgba(20,120,255,.5);
+  pointer-events:none;
+}
+
+header:after{
+  content:"";
+  position:absolute;
+  width:480px;
+  height:130px;
+  right:-20px;
+  top:-28px;
+  border-radius:50%;
+  border-bottom:3px solid rgba(255,121,0,.75);
+  transform:rotate(-8deg);
+  filter:drop-shadow(0 0 9px rgba(255,121,0,.35));
+  pointer-events:none;
 }
 
 .header-inner{
-  max-width:1180px;
+  position:relative;
+  z-index:2;
+  max-width:1400px;
   margin:auto;
+  padding:18px 24px 0;
 }
 
 .brand-row{
   display:flex;
   justify-content:space-between;
   align-items:center;
+  gap:20px;
 }
 
 .logo-wrap{
   display:flex;
   align-items:center;
-  gap:11px;
+  gap:13px;
 }
 
-.logo{
-  width:48px;
-  height:48px;
-  border-radius:14px;
+/* NEW LOGO */
+
+.logo-icon{
+  width:54px;
+  height:45px;
+  position:relative;
   display:flex;
   align-items:center;
   justify-content:center;
-  font-size:25px;
-  font-weight:900;
-  background:linear-gradient(135deg,#3b82f6,#9333ea);
-  box-shadow:0 8px 24px rgba(59,130,246,.35);
 }
 
+.bubble{
+  position:absolute;
+  width:38px;
+  height:29px;
+  border:3px solid;
+  border-radius:10px;
+}
+
+.bubble.blue-bubble{
+  left:0;
+  top:3px;
+  border-color:var(--blue);
+}
+
+.bubble.blue-bubble:after{
+  content:"";
+  position:absolute;
+  left:7px;
+  bottom:-8px;
+  width:9px;
+  height:9px;
+  border-left:3px solid var(--blue);
+  transform:skewY(-35deg);
+}
+
+.bubble.orange-bubble{
+  right:0;
+  bottom:2px;
+  border-color:var(--orange);
+}
+
+.bubble.orange-bubble:after{
+  content:"";
+  position:absolute;
+  right:7px;
+  bottom:-8px;
+  width:9px;
+  height:9px;
+  border-right:3px solid var(--orange);
+  transform:skewY(35deg);
+}
+
+.signal{
+  position:absolute;
+  z-index:4;
+  display:flex;
+  align-items:center;
+  gap:3px;
+}
+
+.signal span{
+  width:3px;
+  border-radius:5px;
+}
+
+.signal span:nth-child(1){height:9px;background:var(--blue)}
+.signal span:nth-child(2){height:17px;background:var(--blue)}
+.signal span:nth-child(3){height:24px;background:var(--orange)}
+.signal span:nth-child(4){height:14px;background:var(--orange)}
+.signal span:nth-child(5){height:20px;background:var(--orange)}
+
 .brand{
-  font-size:25px;
+  font-size:28px;
   font-weight:900;
+  letter-spacing:-1px;
+  line-height:1;
+}
+
+.brand-iq{
+  color:var(--orange);
 }
 
 .sub{
-  color:#94a3b8;
+  color:#aebbd0;
   font-size:12px;
-  margin-top:2px;
+  margin-top:5px;
+}
+
+.header-right{
+  display:flex;
+  align-items:center;
+  gap:14px;
 }
 
 .live{
-  background:rgba(34,197,94,.12);
-  color:#86efac;
-  border:1px solid rgba(34,197,94,.25);
-  padding:8px 12px;
+  background:rgba(14,175,112,.12);
+  color:#55e6a7;
+  border:1px solid rgba(85,230,167,.30);
+  padding:9px 14px;
   border-radius:999px;
   font-size:11px;
-  font-weight:800;
+  font-weight:900;
+  white-space:nowrap;
 }
 
 .live-dot{
   display:inline-block;
-  width:7px;
-  height:7px;
-  background:#22c55e;
+  width:8px;
+  height:8px;
+  background:#17d989;
   border-radius:50%;
-  margin-right:5px;
+  margin-right:6px;
+  box-shadow:0 0 10px rgba(23,217,137,.8);
+}
+
+.user{
+  display:flex;
+  align-items:center;
+  gap:9px;
+  font-size:12px;
+  font-weight:700;
+}
+
+.user-avatar{
+  width:34px;
+  height:34px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  border-radius:50%;
+  background:linear-gradient(135deg,var(--blue),#6a5cff);
+  font-size:11px;
+  font-weight:900;
 }
 
 .nav{
   display:flex;
   gap:8px;
-  margin-top:20px;
+  margin-top:18px;
   overflow-x:auto;
 }
 
 .nav a{
-  color:#94a3b8;
+  position:relative;
+  color:#aab8cd;
   text-decoration:none;
-  padding:12px 15px;
+  padding:13px 18px 15px;
   font-size:13px;
   font-weight:800;
   white-space:nowrap;
-  border-bottom:3px solid transparent;
 }
 
 .nav a.active{
   color:white;
-  border-bottom-color:#3b82f6;
 }
 
+.nav a.active:after{
+  content:"";
+  position:absolute;
+  left:15px;
+  right:15px;
+  bottom:0;
+  height:3px;
+  border-radius:4px 4px 0 0;
+  background:var(--orange);
+}
+
+/* PAGE */
+
 main{
-  max-width:1180px;
+  max-width:1400px;
   margin:auto;
-  padding:22px 18px 60px;
+  padding:22px 24px 65px;
+}
+
+.topbar{
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-start;
+  gap:15px;
 }
 
 .back{
   display:inline-block;
-  color:#2563eb;
+  color:#0875ed;
   text-decoration:none;
   font-weight:800;
   font-size:13px;
-  margin-bottom:14px;
+  margin-bottom:10px;
 }
 
 h1{
   margin:0;
-  font-size:27px;
+  font-size:31px;
+  letter-spacing:-1px;
 }
 
 .page-sub{
   color:var(--muted);
-  margin-top:5px;
+  margin-top:4px;
   font-size:14px;
 }
 
-.card{
-  background:white;
-  border:1px solid var(--border);
-  border-radius:18px;
-  padding:18px;
-  margin-top:16px;
-  box-shadow:0 6px 20px rgba(15,23,42,.04);
+.call-nav{
+  display:flex;
+  gap:8px;
 }
 
-/* CALL HEADER */
+.small-btn{
+  background:white;
+  border:1px solid #d8e1ec;
+  border-radius:9px;
+  padding:10px 13px;
+  color:#24344d;
+  font-size:11px;
+  font-weight:800;
+}
 
-.call-head{
-  display:flex;
-  justify-content:space-between;
+/* SAVED MESSAGE */
+
+.saved{
+  margin-top:16px;
+  padding:14px 16px;
+  border:1px solid #86efac;
+  border-radius:12px;
+  background:#ecfdf3;
+  color:#166534;
+  font-size:13px;
+  line-height:1.5;
+}
+
+/* CARD */
+
+.card{
+  background:rgba(255,255,255,.96);
+  border:1px solid var(--border);
+  border-radius:16px;
+  box-shadow:0 8px 26px rgba(15,35,65,.055);
+}
+
+/* CALL OVERVIEW */
+
+.overview{
+  margin-top:16px;
+  padding:18px 20px;
+  display:grid;
+  grid-template-columns:1fr auto 280px;
+  gap:28px;
   align-items:center;
-  gap:15px;
 }
 
 .agent{
   display:flex;
   align-items:center;
-  gap:12px;
+  gap:14px;
 }
 
 .avatar{
-  width:48px;
-  height:48px;
-  border-radius:14px;
+  width:60px;
+  height:60px;
+  border-radius:50%;
   display:flex;
   align-items:center;
   justify-content:center;
   font-weight:900;
-  color:#2563eb;
-  background:linear-gradient(135deg,#dbeafe,#ede9fe);
+  font-size:20px;
+  color:#0875ed;
+  background:linear-gradient(135deg,#e7f0ff,#f0f4fb);
 }
 
 .agent-name{
-  font-size:17px;
+  font-size:20px;
   font-weight:900;
 }
 
 .meta{
   color:var(--muted);
   font-size:12px;
-  margin-top:3px;
-}
-
-.score{
-  text-align:right;
-}
-
-.score-number{
-  font-size:32px;
-  font-weight:900;
-}
-
-.score-label{
-  color:var(--muted);
-  font-size:10px;
-  font-weight:800;
+  margin-top:5px;
 }
 
 .badges{
   display:flex;
   flex-wrap:wrap;
   gap:7px;
-  margin-top:15px;
+  margin-top:13px;
 }
 
 .badge{
-  padding:6px 10px;
+  display:inline-block;
+  padding:6px 11px;
   border-radius:999px;
   font-size:10px;
   font-weight:900;
@@ -228,12 +401,12 @@ h1{
 
 .blue{
   background:#dbeafe;
-  color:#1d4ed8;
+  color:#1264d6;
 }
 
 .orange{
-  background:#fef3c7;
-  color:#b45309;
+  background:#fff0d8;
+  color:#dc6803;
 }
 
 .red{
@@ -241,40 +414,151 @@ h1{
   color:#b91c1c;
 }
 
-/* AUDIO */
+/* SCORE RING */
 
-.audio-title{
-  font-size:15px;
+.score-ring{
+  width:118px;
+  height:118px;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:conic-gradient(
+    var(--orange) 0deg,
+    var(--orange2) 338deg,
+    #edf1f6 338deg,
+    #edf1f6 360deg
+  );
+  box-shadow:0 5px 16px rgba(255,121,0,.15);
+}
+
+.score-inner{
+  width:92px;
+  height:92px;
+  background:white;
+  border-radius:50%;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+}
+
+.score-number{
+  font-size:27px;
   font-weight:900;
-  margin-bottom:13px;
+}
+
+.score-label{
+  color:#8491a5;
+  font-size:9px;
+  font-weight:900;
+  margin-top:1px;
+}
+
+.stats{
+  background:#f7f9fc;
+  border:1px solid #e4eaf2;
+  border-radius:12px;
+  padding:12px 15px;
+}
+
+.stat{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:25px;
+  padding:5px 0;
+  font-size:12px;
+}
+
+.stat strong{
+  font-size:16px;
+}
+
+.stat-label{
+  display:flex;
+  align-items:center;
+  gap:8px;
+}
+
+.stat-icon{
+  width:18px;
+  height:18px;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:10px;
+  font-weight:900;
+}
+
+.si-blue{background:#dbeafe;color:#1264d6}
+.si-green{background:#dcfce7;color:#15803d}
+.si-orange{background:#ffedd5;color:#ea580c}
+.si-red{background:#fee2e2;color:#b91c1c}
+
+/* TWO COLUMN */
+
+.grid{
+  display:grid;
+  grid-template-columns:minmax(0,1.65fr) minmax(320px,.95fr);
+  gap:16px;
+  margin-top:16px;
+}
+
+.left-col,
+.right-col{
+  display:flex;
+  flex-direction:column;
+  gap:16px;
+}
+
+/* RECORDING */
+
+.recording{
+  color:white;
+  padding:18px;
+  background:
+    radial-gradient(circle at 90% 0%,rgba(20,120,255,.16),transparent 32%),
+    linear-gradient(135deg,#06172a,#092442);
+  border:1px solid #102d4d;
+}
+
+.record-title{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  font-weight:900;
+  font-size:15px;
+}
+
+.record-icon{
+  color:var(--orange);
+  font-size:19px;
 }
 
 .player{
-  background:#0f172a;
-  border-radius:14px;
-  padding:15px;
-  color:white;
-}
-
-.player-row{
   display:flex;
   align-items:center;
-  gap:12px;
+  gap:14px;
+  margin-top:14px;
 }
 
 .play{
-  width:42px;
-  height:42px;
+  width:50px;
+  height:50px;
+  min-width:50px;
   border:0;
   border-radius:50%;
-  background:#3b82f6;
+  background:linear-gradient(135deg,#1685ff,#2767ef);
   color:white;
-  font-size:17px;
+  font-size:18px;
+  box-shadow:0 6px 20px rgba(20,120,255,.3);
 }
 
 .wave{
-  flex:1;
   height:38px;
+  flex:1;
   display:flex;
   align-items:center;
   gap:3px;
@@ -283,183 +567,508 @@ h1{
 
 .wave span{
   width:3px;
+  min-width:3px;
   border-radius:5px;
-  background:#60a5fa;
+  background:#1685ff;
+}
+
+.wave span:nth-child(3n){
+  background:#5daaff;
+}
+
+.wave span:nth-child(n+15){
+  opacity:.35;
 }
 
 .time{
+  color:#d6e2ef;
   font-size:11px;
-  color:#cbd5e1;
+  white-space:nowrap;
 }
 
-/* SCORECARD */
+.player-option{
+  border:1px solid #31506e;
+  border-radius:9px;
+  padding:9px 11px;
+  font-size:11px;
+  font-weight:800;
+  color:white;
+  background:rgba(255,255,255,.03);
+}
+
+/* TITLES */
+
+.card-pad{
+  padding:17px 18px;
+}
+
+.section-head{
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-start;
+  gap:10px;
+}
 
 .section-title{
-  font-size:19px;
+  display:flex;
+  align-items:center;
+  gap:9px;
+  font-size:18px;
   font-weight:900;
-  margin-bottom:3px;
+}
+
+.section-icon{
+  width:28px;
+  height:28px;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:white;
+  font-size:13px;
+  background:linear-gradient(135deg,var(--orange),var(--orange2));
+}
+
+.section-icon.blue-icon{
+  background:linear-gradient(135deg,var(--blue),var(--blue2));
 }
 
 .section-sub{
   color:var(--muted);
-  font-size:12px;
+  font-size:11px;
+  margin-top:3px;
+  margin-left:37px;
 }
+
+.view-link{
+  color:#0875ed;
+  font-size:11px;
+  font-weight:900;
+  text-decoration:none;
+}
+
+/* SCORECARD */
 
 .question{
-  padding:18px 0;
-  border-top:1px solid #edf1f6;
+  position:relative;
+  margin-top:10px;
+  border:1px solid #e1e8f1;
+  border-radius:12px;
+  padding:13px 13px 13px 18px;
+  overflow:hidden;
 }
 
-.question:first-of-type{
-  margin-top:15px;
+.question:before{
+  content:"";
+  position:absolute;
+  left:0;
+  top:0;
+  bottom:0;
+  width:4px;
+  background:#13b87a;
 }
 
-.qtop{
-  display:flex;
-  justify-content:space-between;
-  gap:12px;
+.question.partial:before{
+  background:var(--orange);
+}
+
+.qgrid{
+  display:grid;
+  grid-template-columns:1fr 115px;
+  gap:15px;
 }
 
 .qname{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  font-size:14px;
   font-weight:900;
-  font-size:15px;
 }
 
-.points{
+.check{
+  width:25px;
+  height:25px;
+  min-width:25px;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:white;
+  background:#10ad72;
+  font-size:13px;
+}
+
+.partial .check{
+  background:var(--orange);
+}
+
+.critical{
+  background:#edf2f7;
+  color:#51647e;
+  border-radius:999px;
+  padding:4px 7px;
+  font-size:8px;
   font-weight:900;
-  white-space:nowrap;
 }
 
 .reason{
-  color:#475569;
-  font-size:13px;
-  line-height:1.5;
-  margin-top:8px;
+  color:#55667e;
+  font-size:11px;
+  line-height:1.45;
+  margin:6px 0 0 33px;
 }
 
 .evidence{
-  margin-top:11px;
+  margin:8px 0 0 33px;
   background:#eff6ff;
-  border-left:4px solid #3b82f6;
   border-radius:8px;
-  padding:11px 12px;
+  padding:9px 11px;
 }
 
 .evidence-title{
-  color:#2563eb;
-  font-size:10px;
+  color:#0875ed;
+  font-size:9px;
   font-weight:900;
-  text-transform:uppercase;
 }
 
 .quote{
-  color:#334155;
-  font-size:12px;
-  line-height:1.5;
-  margin-top:5px;
+  color:#42536b;
+  font-size:10px;
+  line-height:1.4;
+  margin-top:3px;
 }
 
 .timestamp{
-  display:inline-block;
-  color:#2563eb;
+  color:#0875ed;
   font-weight:900;
-  margin-right:5px;
+  margin-right:7px;
 }
 
-.qbottom{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  gap:8px;
-  margin-top:11px;
+.qresult{
+  text-align:right;
+}
+
+.points{
+  font-size:16px;
+  font-weight:900;
 }
 
 .confidence{
-  color:#64748b;
-  font-size:11px;
+  color:#708198;
+  font-size:10px;
+  margin-top:4px;
 }
 
 .override{
-  border:1px solid #d9e1ec;
+  margin-top:8px;
+  border:1px solid #1685ff;
+  color:#0875ed;
   background:white;
-  color:#475569;
-  padding:7px 10px;
   border-radius:8px;
+  padding:7px 10px;
   font-size:10px;
-  font-weight:800;
+  font-weight:900;
+  cursor:pointer;
+}
+
+.partial .override{
+  color:#ea6a00;
+  border-color:#ff922b;
+}
+
+/* AI SUMMARY */
+
+.summary-text{
+  color:#53657e;
+  font-size:12px;
+  line-height:1.55;
+  margin-top:10px;
 }
 
 /* TRANSCRIPT */
 
-.transcript-line{
-  display:flex;
-  gap:11px;
-  padding:13px 0;
-  border-top:1px solid #edf1f6;
+.search{
+  margin-top:12px;
 }
 
-.speaker{
-  min-width:64px;
+.search input{
+  width:100%;
+  padding:10px 12px;
+  border:1px solid #d8e1ec;
+  border-radius:9px;
   font-size:11px;
-  font-weight:900;
+  outline:none;
 }
 
-.speaker.agent-speaker{
-  color:#2563eb;
-}
-
-.speaker.borrower{
-  color:#7c3aed;
-}
-
-.words{
-  color:#475569;
-  font-size:13px;
-  line-height:1.5;
+.transcript-line{
+  display:grid;
+  grid-template-columns:45px 72px 1fr;
+  gap:8px;
+  padding:10px 0;
+  border-bottom:1px solid #edf1f6;
 }
 
 .tstamp{
-  color:#94a3b8;
-  font-size:10px;
-  margin-bottom:3px;
+  color:#71839c;
+  font-size:9px;
 }
 
-/* ACTIONS */
+.speaker{
+  font-size:8px;
+  font-weight:900;
+  text-align:center;
+  padding:4px 6px;
+  border-radius:999px;
+  height:max-content;
+}
+
+.agent-speaker{
+  color:#086ce0;
+  background:#dbeafe;
+}
+
+.borrower{
+  color:#6438e9;
+  background:#ede9fe;
+}
+
+.words{
+  color:#4b5d75;
+  font-size:10px;
+  line-height:1.4;
+}
+
+/* SUPERVISOR */
 
 .actions{
   display:grid;
   grid-template-columns:1fr 1fr;
-  gap:10px;
-  margin-top:16px;
+  gap:9px;
+  margin-top:13px;
 }
 
 .action{
-  padding:13px;
-  border-radius:11px;
-  border:0;
+  padding:11px;
+  border-radius:9px;
+  font-size:10px;
   font-weight:900;
-  font-size:12px;
-}
-
-.primary{
-  background:#2563eb;
-  color:white;
 }
 
 .secondary{
+  border:1px solid #1685ff;
+  color:#0875ed;
   background:white;
-  color:#2563eb;
-  border:1px solid #bfdbfe;
+}
+
+.primary{
+  border:1px solid var(--orange);
+  color:white;
+  background:linear-gradient(135deg,var(--orange),var(--orange2));
+}
+
+/* MODAL */
+
+.modal{
+  display:none;
+  position:fixed;
+  inset:0;
+  z-index:9999;
+  background:rgba(5,18,35,.76);
+  backdrop-filter:blur(5px);
+  padding:20px;
+  align-items:center;
+  justify-content:center;
+}
+
+.modal.show{
+  display:flex;
+}
+
+.modal-box{
+  width:100%;
+  max-width:500px;
+  background:white;
+  border-radius:20px;
+  padding:23px;
+  box-shadow:0 28px 80px rgba(0,0,0,.3);
+}
+
+.modal-head{
+  display:flex;
+  justify-content:space-between;
+  gap:15px;
+}
+
+.modal-kicker{
+  color:var(--orange);
+  font-size:10px;
+  font-weight:900;
+  letter-spacing:.8px;
+}
+
+.modal-title{
+  font-size:21px;
+  font-weight:900;
+  margin-top:4px;
+}
+
+.close{
+  width:37px;
+  height:37px;
+  border:0;
+  border-radius:50%;
+  background:#f1f5f9;
+  font-size:22px;
+}
+
+.ai-current{
+  margin-top:16px;
+  padding:12px;
+  background:#f7f9fc;
+  border:1px solid #e4eaf2;
+  border-radius:11px;
+}
+
+.ai-current-label{
+  color:#8491a5;
+  font-size:9px;
+  font-weight:900;
+}
+
+.ai-current-value{
+  margin-top:4px;
+  font-weight:900;
+}
+
+.field-label{
+  display:block;
+  margin:16px 0 7px;
+  color:#475569;
+  font-size:10px;
+  font-weight:900;
+}
+
+.modal select,
+.modal textarea{
+  width:100%;
+  padding:12px;
+  border:1px solid #d8e0ec;
+  border-radius:10px;
+  font-size:13px;
+  background:white;
+}
+
+.modal textarea{
+  min-height:105px;
+  resize:vertical;
+}
+
+.save{
+  width:100%;
+  margin-top:17px;
+  padding:13px;
+  border:0;
+  border-radius:10px;
+  color:white;
+  font-size:13px;
+  font-weight:900;
+  background:linear-gradient(135deg,#0875ed,var(--orange));
+}
+
+/* MOBILE */
+
+@media(max-width:900px){
+
+  .overview{
+    grid-template-columns:1fr auto;
+  }
+
+  .stats{
+    grid-column:1/-1;
+  }
+
+  .grid{
+    grid-template-columns:1fr;
+  }
+
 }
 
 @media(max-width:650px){
-  .call-head{
-    align-items:flex-start;
+
+  .header-inner{
+    padding-left:16px;
+    padding-right:16px;
   }
 
-  .score-number{
+  .user{
+    display:none;
+  }
+
+  .brand{
+    font-size:24px;
+  }
+
+  .sub{
+    font-size:10px;
+  }
+
+  .logo-icon{
+    width:48px;
+  }
+
+  main{
+    padding:18px 14px 55px;
+  }
+
+  .call-nav{
+    display:none;
+  }
+
+  h1{
     font-size:27px;
   }
+
+  .overview{
+    grid-template-columns:1fr;
+    gap:17px;
+  }
+
+  .score-ring{
+    width:100px;
+    height:100px;
+  }
+
+  .score-inner{
+    width:77px;
+    height:77px;
+  }
+
+  .stats{
+    grid-column:auto;
+  }
+
+  .qgrid{
+    grid-template-columns:1fr;
+  }
+
+  .qresult{
+    text-align:left;
+    margin-left:33px;
+  }
+
+  .player-option{
+    display:none;
+  }
+
+  .transcript-line{
+    grid-template-columns:42px 65px 1fr;
+  }
+
+  .actions{
+    grid-template-columns:1fr;
+  }
+
 }
 </style>
 </head>
@@ -472,55 +1081,103 @@ h1{
 <div class="brand-row">
 
 <div class="logo-wrap">
-<div class="logo">S</div>
+
+<div class="logo-icon">
+  <div class="bubble blue-bubble"></div>
+  <div class="bubble orange-bubble"></div>
+
+  <div class="signal">
+    <span></span><span></span><span></span><span></span><span></span>
+  </div>
+</div>
 
 <div>
-<div class="brand">ServIQ</div>
-<div class="sub">AI Quality Assurance for Mortgage Servicing</div>
+  <div class="brand">Serv<span class="brand-iq">IQ</span></div>
+  <div class="sub">AI Quality Assurance for Mortgage Servicing</div>
 </div>
+
 </div>
+
+<div class="header-right">
 
 <div class="live">
 <span class="live-dot"></span>
 AI ONLINE
 </div>
 
+<div class="user">
+<div class="user-avatar">BT</div>
+Bronson Taylor
+</div>
+
+</div>
+
 </div>
 
 <nav class="nav">
-<a href="/">Dashboard</a>
-<a class="active" href="/calls">Calls</a>
-<a href="#">Scorecards</a>
-<a href="#">Coaching</a>
-<a href="#">Analytics</a>
+<a href="/">⌂ &nbsp; Dashboard</a>
+<a class="active" href="/calls">☎ &nbsp; Calls</a>
+<a href="#">▣ &nbsp; Scorecards</a>
+<a href="#">◉ &nbsp; Coaching</a>
+<a href="#">▥ &nbsp; Analytics</a>
 </nav>
 
 </div>
 </header>
 
+
 <main>
+
+<div class="topbar">
+
+<div>
 
 <a class="back" href="/calls">← Back to Calls</a>
 
 <h1>Call Review</h1>
-<div class="page-sub">AI evaluation, evidence and human review</div>
 
-<div class="card">
+<div class="page-sub">
+AI evaluation, evidence and human review
+</div>
 
-<div class="call-head">
+</div>
+
+<div class="call-nav">
+<button class="small-btn">‹ &nbsp; Previous Call</button>
+<button class="small-btn">Next Call &nbsp; ›</button>
+<button class="small-btn">•••</button>
+</div>
+
+</div>
+
+
+{% if override_saved %}
+
+<div class="saved">
+✓ <strong>Human review saved.</strong>
+{{ question_name }} changed to <strong>{{ human_result }}</strong>.
+
+{% if override_reason %}
+<br>Reason: {{ override_reason }}
+{% endif %}
+</div>
+
+{% endif %}
+
+
+<!-- CALL OVERVIEW -->
+
+<div class="card overview">
+
+<div>
 
 <div class="agent">
+
 <div class="avatar">JM</div>
 
 <div>
 <div class="agent-name">Jordan Miller</div>
-<div class="meta">Loss Mitigation • Today 12:48 PM • 8:42</div>
-</div>
-</div>
-
-<div class="score">
-<div class="score-number">94%</div>
-<div class="score-label">QA SCORE</div>
+<div class="meta">▣ &nbsp; Loss Mitigation &nbsp; | &nbsp; Today 12:48 PM &nbsp; | &nbsp; ◷ 8:42</div>
 </div>
 
 </div>
@@ -534,59 +1191,138 @@ AI ONLINE
 </div>
 
 
-<div class="card">
+<div class="score-ring">
 
-<div class="audio-title">Call Recording</div>
+<div class="score-inner">
+<div class="score-number">94%</div>
+<div class="score-label">QA SCORE</div>
+</div>
+
+</div>
+
+
+<div class="stats">
+
+<div class="stat">
+<div class="stat-label">
+<span class="stat-icon si-blue">+</span>
+Total Points
+</div>
+<strong>69 / 90</strong>
+</div>
+
+<div class="stat">
+<div class="stat-label">
+<span class="stat-icon si-green">✓</span>
+AI Pass Rate
+</div>
+<strong>83%</strong>
+</div>
+
+<div class="stat">
+<div class="stat-label">
+<span class="stat-icon si-orange">!</span>
+Needs Review
+</div>
+<strong>1</strong>
+</div>
+
+<div class="stat">
+<div class="stat-label">
+<span class="stat-icon si-red">!</span>
+Critical Findings
+</div>
+<strong>0</strong>
+</div>
+
+</div>
+
+</div>
+
+
+<div class="grid">
+
+<!-- LEFT -->
+
+<div class="left-col">
+
+
+<div class="card recording">
+
+<div class="record-title">
+<span class="record-icon">⇵</span>
+Call Recording
+</div>
 
 <div class="player">
 
-<div class="player-row">
-
-<button class="play">▶</button>
+<button class="play" type="button">▶</button>
 
 <div class="wave">
-<span style="height:14px"></span>
-<span style="height:26px"></span>
-<span style="height:18px"></span>
-<span style="height:34px"></span>
-<span style="height:22px"></span>
-<span style="height:30px"></span>
-<span style="height:15px"></span>
-<span style="height:36px"></span>
+<span style="height:10px"></span>
+<span style="height:20px"></span>
+<span style="height:28px"></span>
+<span style="height:16px"></span>
+<span style="height:32px"></span>
 <span style="height:24px"></span>
-<span style="height:18px"></span>
-<span style="height:31px"></span>
-<span style="height:22px"></span>
 <span style="height:35px"></span>
-<span style="height:19px"></span>
-<span style="height:27px"></span>
-<span style="height:15px"></span>
-<span style="height:33px"></span>
-<span style="height:22px"></span>
-<span style="height:29px"></span>
 <span style="height:18px"></span>
+<span style="height:30px"></span>
+<span style="height:22px"></span>
+<span style="height:34px"></span>
+<span style="height:15px"></span>
+<span style="height:27px"></span>
+<span style="height:36px"></span>
+<span style="height:20px"></span>
+<span style="height:31px"></span>
+<span style="height:17px"></span>
+<span style="height:26px"></span>
+<span style="height:14px"></span>
+<span style="height:22px"></span>
+<span style="height:12px"></span>
+<span style="height:18px"></span>
+<span style="height:9px"></span>
 </div>
 
 <div class="time">0:00 / 8:42</div>
 
-</div>
+<div class="player-option">1x</div>
+<div class="player-option">↓</div>
 
 </div>
 
 </div>
 
 
-<div class="card">
+<!-- SCORECARD -->
 
-<div class="section-title">AI Scorecard</div>
+<div class="card card-pad">
+
+<div class="section-head">
+
+<div>
+<div class="section-title">
+<span class="section-icon">▤</span>
+AI Scorecard
+</div>
 <div class="section-sub">Mortgage Servicing — General v1</div>
+</div>
+
+<a class="view-link" href="#">View Full Scorecard →</a>
+
+</div>
 
 
 <div class="question">
 
-<div class="qtop">
-<div class="qname">Authentication</div>
-<div class="points">20 / 20</div>
+<div class="qgrid">
+
+<div>
+
+<div class="qname">
+<span class="check">✓</span>
+Authentication
+<span class="critical">CRITICAL</span>
 </div>
 
 <div class="reason">
@@ -601,13 +1337,24 @@ Required authentication language was detected before account-specific servicing 
 </div>
 </div>
 
-<div class="qbottom">
-<div>
-<span class="badge green">PASS</span>
-<span class="confidence">98% confidence</span>
 </div>
 
-<button class="override">Override</button>
+
+<div class="qresult">
+
+<div class="points">20 / 20</div>
+<span class="badge green">PASS</span>
+<div class="confidence">98% confidence</div>
+
+<button
+class="override"
+type="button"
+onclick="openOverride('Authentication','PASS','20 / 20')">
+✎ &nbsp; Override
+</button>
+
+</div>
+
 </div>
 
 </div>
@@ -615,9 +1362,13 @@ Required authentication language was detected before account-specific servicing 
 
 <div class="question">
 
-<div class="qtop">
-<div class="qname">Discovery</div>
-<div class="points">15 / 15</div>
+<div class="qgrid">
+
+<div>
+
+<div class="qname">
+<span class="check">✓</span>
+Discovery
 </div>
 
 <div class="reason">
@@ -632,23 +1383,38 @@ The borrower clearly explained the reason for the call and the hardship situatio
 </div>
 </div>
 
-<div class="qbottom">
-<div>
+</div>
+
+
+<div class="qresult">
+
+<div class="points">15 / 15</div>
 <span class="badge green">PASS</span>
-<span class="confidence">96% confidence</span>
+<div class="confidence">96% confidence</div>
+
+<button
+class="override"
+type="button"
+onclick="openOverride('Discovery','PASS','15 / 15')">
+✎ &nbsp; Override
+</button>
+
 </div>
 
-<button class="override">Override</button>
 </div>
 
 </div>
 
 
-<div class="question">
+<div class="question partial">
 
-<div class="qtop">
-<div class="qname">Empathy</div>
-<div class="points">9 / 15</div>
+<div class="qgrid">
+
+<div>
+
+<div class="qname">
+<span class="check">!</span>
+Empathy
 </div>
 
 <div class="reason">
@@ -663,13 +1429,24 @@ The borrower expressed significant concern about losing the home. The agent move
 </div>
 </div>
 
-<div class="qbottom">
-<div>
-<span class="badge orange">PARTIAL</span>
-<span class="confidence">88% confidence</span>
 </div>
 
-<button class="override">Override</button>
+
+<div class="qresult">
+
+<div class="points">9 / 15</div>
+<span class="badge orange">PARTIAL</span>
+<div class="confidence">88% confidence</div>
+
+<button
+class="override"
+type="button"
+onclick="openOverride('Empathy','PARTIAL','9 / 15')">
+✎ &nbsp; Override
+</button>
+
+</div>
+
 </div>
 
 </div>
@@ -677,9 +1454,13 @@ The borrower expressed significant concern about losing the home. The agent move
 
 <div class="question">
 
-<div class="qtop">
-<div class="qname">Resolution / Next Step</div>
-<div class="points">25 / 25</div>
+<div class="qgrid">
+
+<div>
+
+<div class="qname">
+<span class="check">✓</span>
+Resolution / Next Step
 </div>
 
 <div class="reason">
@@ -694,96 +1475,319 @@ The agent explained a clear assistance path and identified the next steps.
 </div>
 </div>
 
-<div class="qbottom">
-<div>
+</div>
+
+
+<div class="qresult">
+
+<div class="points">25 / 25</div>
 <span class="badge green">PASS</span>
-<span class="confidence">97% confidence</span>
+<div class="confidence">97% confidence</div>
+
+<button
+class="override"
+type="button"
+onclick="openOverride('Resolution / Next Step','PASS','25 / 25')">
+✎ &nbsp; Override
+</button>
+
 </div>
 
-<button class="override">Override</button>
 </div>
 
 </div>
 
 </div>
 
+</div>
 
-<div class="card">
 
-<div class="section-title">Transcript</div>
-<div class="section-sub">Speaker-separated conversation evidence</div>
+<!-- RIGHT -->
+
+<div class="right-col">
+
+
+<div class="card card-pad">
+
+<div class="section-title">
+<span class="section-icon blue-icon">✦</span>
+AI Summary
+</div>
+
+<div class="summary-text">
+Borrower called due to recent job loss and inability to make the full mortgage payment. Agent followed proper authentication, gathered hardship details, provided assistance options, and explained next steps.
+</div>
+
+</div>
+
+
+<div class="card card-pad">
+
+<div class="section-head">
+
+<div class="section-title">
+<span class="section-icon blue-icon">•••</span>
+Transcript
+</div>
+
+<a class="view-link" href="#">View Full Transcript →</a>
+
+</div>
+
+<div class="search">
+<input
+id="transcriptSearch"
+type="text"
+placeholder="⌕  Search transcript..."
+onkeyup="searchTranscript()">
+</div>
+
+
+<div id="transcript">
+
 
 <div class="transcript-line">
+<div class="tstamp">00:00</div>
 <div class="speaker agent-speaker">AGENT</div>
 <div class="words">
-<div class="tstamp">00:00</div>
 Thank you for calling mortgage servicing. My name is Jordan. May I have your name and verify the required account information?
 </div>
 </div>
 
+
 <div class="transcript-line">
+<div class="tstamp">00:09</div>
 <div class="speaker borrower">BORROWER</div>
 <div class="words">
-<div class="tstamp">00:09</div>
 This is Alex. I completed the verification. I am calling because I lost my job last month and I cannot make the full mortgage payment.
 </div>
 </div>
 
+
 <div class="transcript-line">
+<div class="tstamp">00:22</div>
 <div class="speaker agent-speaker">AGENT</div>
 <div class="words">
-<div class="tstamp">00:22</div>
 I see the payment is past due. How much are you able to pay today?
 </div>
 </div>
 
+
 <div class="transcript-line">
+<div class="tstamp">00:33</div>
 <div class="speaker borrower">BORROWER</div>
 <div class="words">
-<div class="tstamp">00:33</div>
 That is why I am calling. I am worried about losing the house and I need to know if there is any help available.
 </div>
 </div>
 
+
 <div class="transcript-line">
+<div class="tstamp">00:45</div>
 <div class="speaker agent-speaker">AGENT</div>
 <div class="words">
-<div class="tstamp">00:45</div>
 I can review the available assistance path and explain the next steps. I will first confirm some information about your hardship.
 </div>
 </div>
 
+
 <div class="transcript-line">
+<div class="tstamp">01:02</div>
 <div class="speaker agent-speaker">AGENT</div>
 <div class="words">
-<div class="tstamp">01:02</div>
 After we review that information, I will let you know the next step and what documents may be needed. Is there anything else you need help with today?
 </div>
 </div>
 
+
+</div>
+
 </div>
 
 
-<div class="card">
+<div class="card card-pad">
 
-<div class="section-title">Supervisor Actions</div>
-<div class="section-sub">Human oversight remains part of the QA record.</div>
+<div class="section-title">
+<span class="section-icon blue-icon">♟</span>
+Supervisor Actions
+</div>
+
+<div class="section-sub">
+Human oversight remains part of the QA record.
+</div>
 
 <div class="actions">
 
-<button class="action secondary">
-Send to Human Review
+<button class="action secondary" type="button">
+▣ &nbsp; Send to Human Review
 </button>
 
-<button class="action primary">
-Assign Coaching
+<button class="action primary" type="button">
+▰ &nbsp; Assign Coaching
 </button>
+
+</div>
+
+</div>
 
 </div>
 
 </div>
 
 </main>
+
+
+<!-- OVERRIDE MODAL -->
+
+<div id="overrideModal" class="modal">
+
+<div class="modal-box">
+
+<div class="modal-head">
+
+<div>
+<div class="modal-kicker">SUPERVISOR REVIEW</div>
+<div class="modal-title">Override AI Decision</div>
+</div>
+
+<button
+type="button"
+class="close"
+onclick="closeOverride()">
+×
+</button>
+
+</div>
+
+
+<div class="ai-current">
+
+<div class="ai-current-label">AI DECISION</div>
+
+<div id="aiDecision" class="ai-current-value">
+Authentication • PASS • 20 / 20
+</div>
+
+</div>
+
+
+<form method="POST" action="/review">
+
+<input
+type="hidden"
+id="questionName"
+name="question_name"
+value="">
+
+
+<label class="field-label">
+FINAL HUMAN RESULT
+</label>
+
+<select name="human_result" required>
+
+<option value="">
+Select final result
+</option>
+
+<option value="PASS">
+PASS
+</option>
+
+<option value="PARTIAL">
+PARTIAL
+</option>
+
+<option value="FAIL">
+FAIL
+</option>
+
+<option value="N/A">
+N/A
+</option>
+
+</select>
+
+
+<label class="field-label">
+REVIEW REASON
+</label>
+
+<textarea
+name="override_reason"
+placeholder="Explain why the AI decision is being changed..."
+required></textarea>
+
+
+<button
+class="save"
+type="submit">
+Save Human Review
+</button>
+
+</form>
+
+</div>
+
+</div>
+
+
+<script>
+
+function openOverride(question, aiResult, points){
+
+  document.getElementById("questionName").value = question;
+
+  document.getElementById("aiDecision").textContent =
+    question + " • " + aiResult + " • " + points;
+
+  document.getElementById("overrideModal").classList.add("show");
+}
+
+
+function closeOverride(){
+
+  document.getElementById("overrideModal").classList.remove("show");
+
+}
+
+
+window.addEventListener("click", function(event){
+
+  const modal = document.getElementById("overrideModal");
+
+  if(event.target === modal){
+    closeOverride();
+  }
+
+});
+
+
+function searchTranscript(){
+
+  const input =
+    document.getElementById("transcriptSearch")
+    .value
+    .toLowerCase();
+
+  const lines =
+    document.querySelectorAll("#transcript .transcript-line");
+
+  lines.forEach(function(line){
+
+    const text = line.textContent.toLowerCase();
+
+    if(text.includes(input)){
+      line.style.display = "grid";
+    }else{
+      line.style.display = "none";
+    }
+
+  });
+
+}
+
+</script>
 
 </body>
 </html>
