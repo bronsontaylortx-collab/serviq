@@ -1049,74 +1049,90 @@ CALLS = {
 # =========================================================
 
 def evaluate(text):
-    """Grade a synthetic mortgage-servicing transcript with OpenAI."""
+    """Extract transcript facts with AI, then apply ServIQ grading rules in Python."""
     api_key = os.environ.get("OPENAI_API_KEY", "").strip()
     if not api_key:
         raise RuntimeError("OPENAI_API_KEY is not set.")
 
     client = OpenAI(api_key=api_key)
 
+    # The model extracts narrow, observable facts. Python—not the model—decides
+    # PASS / PARTIAL / FAIL / N/A and calculates the score.
+    fact_names = [
+        "auth_completed_before_account_info",
+        "account_info_disclosed",
+        "reason_for_call_identified",
+        "material_need_or_hardship_identified",
+        "agent_explored_or_confirmed_relevant_details",
+        "meaningful_concern_or_hardship_expressed",
+        "agent_directly_acknowledged_concern",
+        "agent_indirectly_acknowledged_concern",
+        "clear_concrete_next_step",
+        "vague_or_incomplete_next_step",
+        "communication_clear_respectful_professional",
+        "material_communication_problem",
+        "interaction_includes_ending",
+        "expectations_or_followup_set",
+        "closing_or_additional_help_check",
+    ]
+
     schema = {
         "type": "object",
         "properties": {
-            "items": {
+            "facts": {
                 "type": "array",
-                "minItems": len(QUESTIONS),
-                "maxItems": len(QUESTIONS),
+                "minItems": len(fact_names),
+                "maxItems": len(fact_names),
                 "items": {
                     "type": "object",
                     "properties": {
-                        "id": {"type": "string", "enum": [q["id"] for q in QUESTIONS]},
-                        "result": {"type": "string", "enum": ["PASS", "PARTIAL", "FAIL", "N/A"]},
+                        "name": {"type": "string", "enum": fact_names},
+                        "value": {"type": "boolean"},
                         "confidence": {"type": "integer", "minimum": 0, "maximum": 100},
-                        "reason": {"type": "string"},
                         "evidence": {"type": "string"},
                         "timestamp": {"type": "string"},
                     },
-                    "required": ["id", "result", "confidence", "reason", "evidence", "timestamp"],
+                    "required": ["name", "value", "confidence", "evidence", "timestamp"],
                     "additionalProperties": False,
                 },
             }
         },
-        "required": ["items"],
+        "required": ["facts"],
         "additionalProperties": False,
     }
 
-    scorecard_text = "\n".join(
-        f"- {q['id']} | {q['name']} | {q['points']} points"
-        + (" | CRITICAL" if q["critical"] else "")
-        for q in QUESTIONS
-    )
+    instructions = """
+You are the evidence-extraction layer for ServIQ. This development version uses synthetic mortgage-servicing transcripts only.
 
-    instructions = f"""
-You are ServIQ, a mortgage-servicing quality-assurance grader.
-Grade ONLY the transcript supplied by the user. Do not assume a required action
-occurred unless the transcript provides evidence. This development version uses
-synthetic transcripts only.
+Your ONLY job is to extract the listed observable facts. Do NOT grade the call. Do NOT output PASS, PARTIAL, FAIL, N/A, points, or an overall score.
 
-Scorecard:
-{scorecard_text}
+STRICT EXTRACTION RULES:
+1. Use only the supplied transcript. Never assume an action happened off transcript.
+2. A fact is TRUE only when the transcript contains affirmative evidence for it. Ambiguous or missing evidence = FALSE.
+3. Evidence must be a short EXACT excerpt copied from the transcript. Never paraphrase it.
+4. For a FALSE fact, evidence may quote the strongest contrary/relevant excerpt; otherwise use an empty string.
+5. Timestamp must match the quoted evidence. If there is no evidence, use an empty string.
+6. Confidence means confidence that the TRUE/FALSE extraction is correct.
+7. Return every fact exactly once.
 
-Rules:
-- Authentication: PASS only when the transcript supports that required
-  verification/authentication was completed before account-specific servicing
-  information was disclosed. Asking to verify is not proof verification was
-  completed. If account-specific information is disclosed first, FAIL.
-- Discovery: evaluate whether the reason for the call and relevant servicing
-  need or hardship were adequately identified.
-- Empathy: evaluate appropriate acknowledgement of borrower concern/hardship.
-  Use N/A only when empathy truly was not applicable.
-- Resolution / Next Step: evaluate whether a clear resolution, action, or next
-  step was provided.
-- Professional Communication: evaluate clarity and professionalism throughout.
-- Closing / Expectations: evaluate whether expectations were set and the
-  interaction was closed clearly.
-- Use PARTIAL when a requirement is only partly satisfied.
-- Evidence must be a short exact transcript excerpt. Use an empty string if no
-  supporting evidence exists.
-- Timestamp must match the best evidence when present, otherwise empty string.
-- Confidence means confidence in the grading decision.
-Return exactly one item for every scorecard id.
+FACT DEFINITIONS:
+- auth_completed_before_account_info: TRUE only if the transcript explicitly establishes completed verification/authentication before any account-specific servicing information is disclosed. Asking to verify is not completion. A customer statement such as "I completed the verification" can establish completion if it occurs before account-specific disclosure.
+- account_info_disclosed: TRUE if the agent states account-specific information such as delinquency, payment status, balance, escrow/account details, or similar protected servicing information.
+- reason_for_call_identified: TRUE if the transcript establishes why the customer contacted the company or what issue they need addressed.
+- material_need_or_hardship_identified: TRUE if the relevant servicing need, hardship, or material problem is stated or confirmed.
+- agent_explored_or_confirmed_relevant_details: TRUE only if the AGENT asks about, confirms, summarizes, or otherwise develops relevant details beyond merely hearing the initial problem statement.
+- meaningful_concern_or_hardship_expressed: TRUE if the customer expresses worry, fear, frustration, hardship, loss, confusion, distress, or a similarly meaningful concern.
+- agent_directly_acknowledged_concern: TRUE only if the AGENT explicitly acknowledges the customer's emotional concern/hardship (for example, stressful, frustrating, difficult, sorry, understand your concern). Offering a solution alone is not acknowledgement.
+- agent_indirectly_acknowledged_concern: TRUE if the agent gives some human acknowledgement of the situation but does not clearly/directly acknowledge the expressed emotional concern. Do not mark TRUE merely because the agent offers a solution.
+- clear_concrete_next_step: TRUE only if the transcript shows a concrete next action or resolution that is already established for this interaction. A promise to review something later, explain steps later, or "let you know" the next step later is NOT concrete.
+- vague_or_incomplete_next_step: TRUE when a future path, review, possible documents/options, or later explanation is mentioned but the actual next action remains unresolved or conditional. For "I can review..." / "After we review... I will let you know the next step..." set this TRUE and clear_concrete_next_step FALSE.
+- communication_clear_respectful_professional: TRUE if the agent language shown is understandable, respectful, and professional with no material problem.
+- material_communication_problem: TRUE only if the transcript contains a material clarity, tone, misleading, disrespectful, confusing, or professionalism problem.
+- interaction_includes_ending: TRUE if the transcript includes the natural end/closing portion of the interaction, not merely an excerpt that stops mid-process.
+- expectations_or_followup_set: TRUE if the agent sets concrete expectations about timing, documents, follow-up, what happens next, or another relevant post-call expectation.
+- closing_or_additional_help_check: TRUE if the agent performs a clear closing behavior such as asking whether anything else is needed or otherwise clearly closes the interaction.
+
+Before returning, re-check each TRUE value against its exact definition. When uncertain, use FALSE.
 """
 
     response = client.responses.create(
@@ -1126,7 +1142,7 @@ Return exactly one item for every scorecard id.
         text={
             "format": {
                 "type": "json_schema",
-                "name": "serviq_qa_grade",
+                "name": "serviq_fact_extraction",
                 "strict": True,
                 "schema": schema,
             }
@@ -1134,19 +1150,118 @@ Return exactly one item for every scorecard id.
     )
 
     payload = json.loads(response.output_text)
-    by_id = {item.get("id"): item for item in payload.get("items", [])}
+    facts = {item["name"]: item for item in payload.get("facts", [])}
+
+    missing = [name for name in fact_names if name not in facts]
+    if missing:
+        raise RuntimeError(f"AI response missing facts: {', '.join(missing)}")
+
+    def is_true(name):
+        return bool(facts[name]["value"])
+
+    def choose_evidence(*names):
+        for name in names:
+            item = facts[name]
+            if item.get("evidence"):
+                return item["evidence"], item.get("timestamp", "")
+        return "", ""
+
+    def confidence_for(*names):
+        values = [int(facts[name]["confidence"]) for name in names]
+        return min(values) if values else 100
+
+    decisions = {}
+
+    # Authentication: deterministic critical sequencing rule.
+    if is_true("auth_completed_before_account_info"):
+        result = "PASS"
+        reason = "The transcript establishes completed authentication before account-specific servicing information was disclosed."
+        evidence, timestamp = choose_evidence("auth_completed_before_account_info")
+    else:
+        result = "FAIL"
+        reason = "The transcript does not establish completed authentication before account-specific servicing information was disclosed."
+        evidence, timestamp = choose_evidence("account_info_disclosed", "auth_completed_before_account_info")
+    decisions["auth"] = (result, confidence_for("auth_completed_before_account_info", "account_info_disclosed"), reason, evidence, timestamp)
+
+    # Discovery: reason + material need + agent development = PASS.
+    discovery_core = is_true("reason_for_call_identified") and is_true("material_need_or_hardship_identified")
+    discovery_developed = is_true("agent_explored_or_confirmed_relevant_details")
+    if discovery_core and discovery_developed:
+        result = "PASS"
+        reason = "The reason for the call and material servicing need were identified, and the agent developed or confirmed relevant details."
+    elif discovery_core:
+        result = "PARTIAL"
+        reason = "The reason for the call and material need were identified, but the agent did not sufficiently develop or confirm relevant details."
+    else:
+        result = "FAIL"
+        reason = "The transcript does not establish sufficient discovery of the reason for the call and material servicing need."
+    evidence, timestamp = choose_evidence("agent_explored_or_confirmed_relevant_details", "material_need_or_hardship_identified", "reason_for_call_identified")
+    decisions["discovery"] = (result, confidence_for("reason_for_call_identified", "material_need_or_hardship_identified", "agent_explored_or_confirmed_relevant_details"), reason, evidence, timestamp)
+
+    # Empathy: only applicable when a meaningful concern/hardship exists.
+    if not is_true("meaningful_concern_or_hardship_expressed"):
+        result = "N/A"
+        reason = "The transcript does not contain a meaningful concern or hardship requiring an empathy response."
+    elif is_true("agent_directly_acknowledged_concern"):
+        result = "PASS"
+        reason = "The agent directly acknowledged the customer's expressed concern or hardship."
+    elif is_true("agent_indirectly_acknowledged_concern"):
+        result = "PARTIAL"
+        reason = "The agent provided some acknowledgement, but it did not fully or directly address the expressed concern."
+    else:
+        result = "FAIL"
+        reason = "A meaningful concern or hardship was expressed, but the agent did not acknowledge it."
+    evidence, timestamp = choose_evidence("agent_directly_acknowledged_concern", "agent_indirectly_acknowledged_concern", "meaningful_concern_or_hardship_expressed")
+    decisions["empathy"] = (result, confidence_for("meaningful_concern_or_hardship_expressed", "agent_directly_acknowledged_concern", "agent_indirectly_acknowledged_concern"), reason, evidence, timestamp)
+
+    # Resolution / next step.
+    if is_true("vague_or_incomplete_next_step"):
+        result = "PARTIAL"
+        reason = "The agent mentioned a future path or action, but the next step remained vague or incomplete."
+    elif is_true("clear_concrete_next_step"):
+        result = "PASS"
+        reason = "The agent mentioned a future path or action, but the next step remained vague or incomplete."
+    else:
+        result = "FAIL"
+        reason = "The transcript does not contain a meaningful resolution or next step."
+    evidence, timestamp = choose_evidence("clear_concrete_next_step", "vague_or_incomplete_next_step")
+    decisions["resolution"] = (result, confidence_for("clear_concrete_next_step", "vague_or_incomplete_next_step"), reason, evidence, timestamp)
+
+    # Professional communication.
+    if is_true("material_communication_problem"):
+        result = "FAIL"
+        reason = "The transcript contains a material communication or professionalism problem."
+    elif is_true("communication_clear_respectful_professional"):
+        result = "PASS"
+        reason = "The agent's communication was clear, respectful, understandable, and professional."
+    else:
+        result = "PARTIAL"
+        reason = "Communication was not shown to have a major failure, but the transcript does not fully support the PASS standard."
+    evidence, timestamp = choose_evidence("material_communication_problem", "communication_clear_respectful_professional")
+    decisions["communication"] = (result, confidence_for("communication_clear_respectful_professional", "material_communication_problem"), reason, evidence, timestamp)
+
+    # Closing / expectations.
+    if not is_true("interaction_includes_ending"):
+        result = "N/A"
+        reason = "The transcript does not clearly include the end of the interaction, so closing cannot be fairly evaluated."
+    elif is_true("expectations_or_followup_set") and is_true("closing_or_additional_help_check"):
+        result = "PASS"
+        reason = "The agent set relevant expectations and performed a clear closing behavior."
+    elif is_true("expectations_or_followup_set") or is_true("closing_or_additional_help_check"):
+        result = "PARTIAL"
+        reason = "Some closing or expectation-setting was present, but the close was incomplete."
+    else:
+        result = "FAIL"
+        reason = "The interaction ended without meaningful closing or expectation-setting."
+    evidence, timestamp = choose_evidence("expectations_or_followup_set", "closing_or_additional_help_check", "interaction_includes_ending")
+    decisions["closing"] = (result, confidence_for("interaction_includes_ending", "expectations_or_followup_set", "closing_or_additional_help_check"), reason, evidence, timestamp)
 
     results = []
     total_awarded = 0
     total_possible = 0
 
     for q in QUESTIONS:
-        ai = by_id.get(q["id"])
-        if not ai:
-            raise RuntimeError(f"AI response missing scorecard item: {q['id']}")
-
-        result = ai["result"]
-        confidence = int(ai["confidence"])
+        result, confidence, reason, evidence, timestamp = decisions[q["id"]]
 
         if result == "N/A":
             awarded, possible = 0, 0
@@ -1165,10 +1280,10 @@ Return exactly one item for every scorecard id.
             "result": result,
             "awarded": awarded,
             "confidence": confidence,
-            "why": ai["reason"],
-            "reason": ai["reason"],
-            "evidence": ai["evidence"],
-            "timestamp": ai["timestamp"],
+            "why": reason,
+            "reason": reason,
+            "evidence": evidence,
+            "timestamp": timestamp,
             "review": result == "PARTIAL" or confidence < 90,
         })
 

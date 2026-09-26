@@ -944,6 +944,1214 @@ textarea:focus{
   .row>div:last-child{margin-top:9px}
 }
 </style>
+
+<style>
+/* =========================================================
+   ServIQ Premium AI Command Center — visual layer only
+   ========================================================= */
+
+:root{
+  --navy:#030b17;
+  --navy2:#071a31;
+  --blue:#1687ff;
+  --blue2:#55b8ff;
+  --orange:#ff7a00;
+  --orange2:#ffad38;
+  --green:#19d890;
+  --red:#ff4d68;
+  --purple:#8b5cf6;
+  --bg:#eef4fb;
+  --text:#07162c;
+  --muted:#63748d;
+  --border:#d9e5f1;
+}
+
+body{
+  min-height:100vh;
+  background:
+    radial-gradient(circle at 12% 0%,rgba(22,135,255,.11),transparent 27%),
+    radial-gradient(circle at 91% 14%,rgba(255,122,0,.08),transparent 23%),
+    linear-gradient(180deg,#f8fbff 0,#eef4fb 45%,#f5f8fc 100%);
+}
+
+header{
+  border-bottom:1px solid rgba(94,170,255,.16);
+  box-shadow:0 18px 55px rgba(2,12,28,.24);
+  background:
+    radial-gradient(circle at 72% -45%,rgba(22,135,255,.43),transparent 34%),
+    radial-gradient(circle at 100% 0%,rgba(255,122,0,.19),transparent 26%),
+    linear-gradient(125deg,#020915,#061a31 55%,#061225);
+}
+
+header:before{
+  content:"";
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  opacity:.22;
+  background-image:
+    linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);
+  background-size:32px 32px;
+  mask-image:linear-gradient(to bottom,#000,transparent 88%);
+}
+
+.header-inner{max-width:1480px;padding:20px 28px 0}
+.header-swirl{
+  width:780px;height:155px;right:-70px;top:-72px;
+  border-bottom:2px solid rgba(22,135,255,.95);
+  filter:drop-shadow(0 0 9px rgba(22,135,255,.45));
+}
+.header-swirl:after{
+  width:630px;height:132px;
+  border-bottom-color:rgba(255,122,0,.95);
+  filter:drop-shadow(0 0 8px rgba(255,122,0,.32));
+}
+
+.logo-icon{
+  transform:scale(1.06);
+  filter:drop-shadow(0 0 12px rgba(22,135,255,.28));
+}
+.brand{
+  font-size:30px;
+  letter-spacing:-1.4px;
+  text-shadow:0 0 22px rgba(22,135,255,.12);
+}
+.brand-iq{
+  color:var(--orange);
+  text-shadow:0 0 18px rgba(255,122,0,.35);
+}
+.sub{color:#9eb2cc;letter-spacing:.15px}
+
+.live{
+  position:relative;
+  background:rgba(25,216,144,.09);
+  border-color:rgba(80,245,183,.30);
+  color:#74f1be;
+  box-shadow:inset 0 0 18px rgba(25,216,144,.05),0 0 20px rgba(25,216,144,.06);
+}
+.live-dot{animation:serviqPulse 1.8s ease-in-out infinite}
+@keyframes serviqPulse{
+  0%,100%{box-shadow:0 0 5px rgba(24,217,138,.55)}
+  50%{box-shadow:0 0 15px rgba(24,217,138,1)}
+}
+
+.user{
+  padding:6px 9px 6px 6px;
+  border:1px solid rgba(255,255,255,.09);
+  border-radius:999px;
+  background:rgba(255,255,255,.045);
+}
+.user-avatar{
+  box-shadow:0 0 18px rgba(22,135,255,.22);
+  background:linear-gradient(135deg,#1687ff,#6957ff 60%,#ff7a00);
+}
+
+.nav-shell{margin-top:17px}
+.nav{gap:3px}
+.nav a{
+  border-radius:9px 9px 0 0;
+  transition:background .2s ease,color .2s ease,transform .2s ease;
+}
+.nav a:hover{color:#fff;background:rgba(255,255,255,.045)}
+.nav a.active{background:linear-gradient(180deg,rgba(22,135,255,.11),rgba(22,135,255,.025))}
+.nav a.active:after{
+  left:12px;right:12px;
+  background:linear-gradient(90deg,var(--blue),var(--orange));
+  box-shadow:0 0 12px rgba(255,122,0,.5);
+}
+
+main{max-width:1480px;padding:32px 28px 70px}
+
+main>div:first-child{
+  position:relative;
+  padding:22px 24px 24px;
+  border:1px solid rgba(20,120,255,.13);
+  border-radius:22px;
+  overflow:hidden;
+  background:
+    radial-gradient(circle at 88% 0%,rgba(22,135,255,.12),transparent 28%),
+    linear-gradient(135deg,rgba(255,255,255,.96),rgba(247,251,255,.91));
+  box-shadow:0 16px 48px rgba(20,48,85,.08);
+}
+main>div:first-child:before{
+  content:"SERVIQ INTELLIGENCE LAYER";
+  display:block;
+  margin-bottom:8px;
+  color:#1478ff;
+  font-size:9px;
+  font-weight:950;
+  letter-spacing:1.35px;
+}
+main>div:first-child:after{
+  content:"";
+  position:absolute;
+  width:310px;height:90px;
+  right:-35px;top:-57px;
+  border-radius:50%;
+  border-bottom:2px solid rgba(255,122,0,.5);
+  transform:rotate(-8deg);
+}
+.page-title{
+  font-size:37px;
+  letter-spacing:-1.7px;
+  background:linear-gradient(90deg,#061426 0,#0c3d72 50%,#1478ff 100%);
+  -webkit-background-clip:text;
+  background-clip:text;
+  color:transparent;
+}
+.page-sub{font-size:13px;color:#657994}
+
+.dashboard{gap:14px;margin-top:16px}
+.stat{
+  border-radius:18px;
+  padding:18px 18px 17px;
+  border-color:rgba(129,157,190,.20);
+  box-shadow:0 13px 35px rgba(15,35,65,.065);
+  transition:transform .22s ease,box-shadow .22s ease,border-color .22s ease;
+}
+.stat:hover{
+  transform:translateY(-3px);
+  box-shadow:0 18px 42px rgba(15,35,65,.11);
+  border-color:rgba(22,135,255,.23);
+}
+.stat:after{
+  content:"";
+  position:absolute;
+  width:110px;height:110px;
+  right:-48px;top:-50px;
+  border-radius:50%;
+  background:radial-gradient(circle,rgba(22,135,255,.08),transparent 67%);
+}
+.stat:before{width:4px;box-shadow:0 0 13px currentColor}
+.stat-icon{
+  width:34px;height:34px;border-radius:10px;
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.7);
+}
+.stat-number{font-size:31px;letter-spacing:-1px}
+.stat-foot{font-size:9px}
+
+.card{
+  border-radius:19px;
+  border-color:rgba(130,157,190,.19);
+  box-shadow:0 13px 36px rgba(15,35,65,.06);
+}
+.card-title{font-size:17px;letter-spacing:-.25px}
+.card-sub{font-size:10px}
+
+.analytics{gap:14px;margin-top:14px}
+.analytics>.card:first-child{
+  position:relative;
+  overflow:hidden;
+}
+.analytics>.card:first-child:after{
+  content:"";
+  position:absolute;
+  width:220px;height:220px;
+  right:-110px;bottom:-145px;
+  border-radius:50%;
+  background:radial-gradient(circle,rgba(22,135,255,.09),transparent 68%);
+}
+.trend{
+  border:1px solid rgba(16,173,114,.12);
+  box-shadow:0 4px 14px rgba(16,173,114,.08);
+}
+.bar{
+  background:linear-gradient(180deg,#63c4ff 0,#1687ff 40%,#1263dd 100%);
+  box-shadow:0 7px 18px rgba(22,135,255,.18);
+}
+.bar.today{
+  background:linear-gradient(180deg,#ffc062 0,#ff8a18 45%,#ff6f00 100%);
+  box-shadow:0 7px 18px rgba(255,122,0,.22);
+}
+.score-ring{
+  width:130px;height:130px;
+  background:conic-gradient(var(--orange) 0 327deg,#e7eef7 327deg 360deg);
+  box-shadow:0 0 0 7px rgba(255,122,0,.035),0 15px 30px rgba(255,121,0,.14);
+}
+.score-inner{width:98px;height:98px;box-shadow:inset 0 0 18px rgba(20,120,255,.035)}
+.score-number{font-size:30px}
+
+.insight-grid{gap:14px;margin-top:14px}
+.insight-card{
+  min-height:210px;
+  border-color:rgba(66,147,255,.24);
+  background:
+    radial-gradient(circle at 92% 12%,rgba(22,135,255,.38),transparent 30%),
+    radial-gradient(circle at 15% 100%,rgba(112,71,235,.13),transparent 34%),
+    linear-gradient(135deg,#03101f,#071f3a 58%,#08182d);
+  box-shadow:0 18px 44px rgba(2,16,35,.18),inset 0 0 40px rgba(22,135,255,.035);
+}
+.insight-card:before{
+  content:"AI SIGNAL ACTIVE";
+  position:absolute;
+  right:17px;bottom:15px;
+  color:rgba(118,198,255,.42);
+  font-size:8px;font-weight:950;letter-spacing:1.2px;
+}
+.insight-card:after{
+  width:390px;height:125px;right:-65px;top:-70px;
+  border-bottom-color:rgba(255,122,0,.8);
+  filter:drop-shadow(0 0 8px rgba(255,122,0,.22));
+}
+.ai-icon,.analyzer-icon{
+  box-shadow:0 0 20px rgba(22,135,255,.28),0 0 20px rgba(255,122,0,.12);
+}
+.opportunity{
+  padding:11px 12px;
+  background:linear-gradient(90deg,rgba(255,255,255,.065),rgba(255,255,255,.025));
+  border-color:rgba(117,185,255,.13);
+}
+
+.coaching-row{
+  padding:13px 3px;
+  transition:padding .18s ease,background .18s ease;
+}
+.coaching-row:hover{
+  padding-left:8px;padding-right:8px;
+  background:#f8fbff;
+  border-radius:9px;
+}
+.count{
+  box-shadow:inset 0 0 0 1px rgba(255,122,0,.08);
+}
+
+.analyzer{
+  position:relative;
+  overflow:hidden;
+  margin-top:16px;
+  padding:21px;
+  border-color:rgba(22,135,255,.24);
+  background:
+    radial-gradient(circle at 100% 0%,rgba(22,135,255,.095),transparent 26%),
+    linear-gradient(135deg,#fff,#fbfdff);
+  box-shadow:0 18px 46px rgba(13,52,95,.09);
+}
+.analyzer:before{
+  content:"";
+  position:absolute;
+  left:0;right:0;top:0;height:3px;
+  background:linear-gradient(90deg,var(--blue),#725cff 58%,var(--orange));
+  box-shadow:0 0 15px rgba(22,135,255,.28);
+}
+.analyzer-title{font-size:19px}
+.ai-badge{
+  padding:7px 11px;
+  border:1px solid rgba(22,135,255,.16);
+  background:linear-gradient(90deg,#edf6ff,#fff5e9);
+  box-shadow:0 5px 16px rgba(22,135,255,.07);
+  letter-spacing:.5px;
+}
+.scorecard-box{
+  border-color:#d8e6f4;
+  background:linear-gradient(90deg,#f5f9fe,#fbfdff);
+}
+textarea{
+  min-height:250px;
+  border-color:#d2e0ee;
+  border-radius:13px;
+  background:
+    linear-gradient(rgba(22,135,255,.018),rgba(22,135,255,.018)),
+    #fbfdff;
+  box-shadow:inset 0 1px 3px rgba(15,35,65,.035);
+}
+textarea:focus{
+  border-color:#1687ff;
+  box-shadow:0 0 0 4px rgba(22,135,255,.09),0 9px 24px rgba(22,135,255,.07);
+}
+.analyze-btn{
+  position:relative;
+  overflow:hidden;
+  padding:15px;
+  border-radius:11px;
+  font-size:12px;
+  letter-spacing:.15px;
+  background:linear-gradient(90deg,#0c70ee 0,#1d8dff 45%,#675cf5 70%,#ff7a00 100%);
+  background-size:160% 100%;
+  box-shadow:0 10px 27px rgba(20,120,255,.24);
+  transition:transform .18s ease,box-shadow .18s ease,background-position .35s ease;
+}
+.analyze-btn:hover{
+  transform:translateY(-2px);
+  background-position:100% 0;
+  box-shadow:0 15px 34px rgba(20,120,255,.30);
+}
+.analyze-btn:active{transform:translateY(0)}
+
+.result-card{
+  position:relative;
+  overflow:hidden;
+  margin-top:14px;
+}
+.result-card:first-of-type:before{
+  content:"";
+  position:absolute;
+  left:0;right:0;top:0;height:3px;
+  background:linear-gradient(90deg,var(--blue),var(--orange));
+}
+.result-top{gap:11px}
+.metric{
+  position:relative;
+  overflow:hidden;
+  border-color:#e0eaf4;
+  background:linear-gradient(145deg,#f9fbfe,#f3f8fd);
+}
+.metric:after{
+  content:"";
+  position:absolute;
+  width:70px;height:70px;
+  right:-28px;top:-31px;
+  border-radius:50%;
+  background:rgba(22,135,255,.055);
+}
+.big{font-size:29px;letter-spacing:-.8px}
+
+.row{
+  padding:17px 2px;
+  align-items:flex-start;
+}
+.name{font-size:13px}
+.why{max-width:930px;font-size:10.5px;line-height:1.55}
+
+.evidence-box{
+  position:relative;
+  overflow:hidden;
+  margin-top:10px;
+  padding:11px 12px;
+  border-color:#dce9f5;
+  border-left:3px solid #1687ff;
+  border-radius:10px;
+  background:
+    linear-gradient(90deg,rgba(22,135,255,.045),rgba(255,255,255,.55)),
+    #f9fcff;
+}
+.evidence-box:after{
+  content:"";
+  position:absolute;
+  width:80px;height:80px;
+  right:-44px;top:-44px;
+  border-radius:50%;
+  background:rgba(22,135,255,.06);
+}
+.evidence-head{color:#48647f;letter-spacing:.55px}
+.evidence-time{
+  padding:2px 6px;
+  border-radius:999px;
+  color:#0b69d8;
+  background:#e9f4ff;
+}
+.evidence-quote{font-size:10.5px;color:#203b5a}
+
+.pill{
+  padding:6px 9px;
+  border:1px solid transparent;
+  letter-spacing:.25px;
+}
+.pass{border-color:rgba(21,128,61,.10);box-shadow:0 3px 10px rgba(21,128,61,.06)}
+.fail{border-color:rgba(185,28,28,.10);box-shadow:0 3px 10px rgba(185,28,28,.06)}
+.review-pill{border-color:rgba(217,104,0,.10)}
+
+@media(min-width:1000px){
+  .dashboard{grid-template-columns:repeat(4,minmax(0,1fr))}
+  .analytics{grid-template-columns:minmax(0,1.55fr) minmax(300px,.45fr)}
+}
+
+@media(max-width:760px){
+  .header-inner{padding:15px 14px 0}
+  main{padding:17px 13px 50px}
+  main>div:first-child{padding:18px 16px;border-radius:17px}
+  main>div:first-child:before{font-size:8px}
+  .page-title{font-size:29px}
+  .dashboard{gap:9px}
+  .stat{padding:13px;border-radius:14px}
+  .stat-number{font-size:24px}
+  .analyzer{padding:15px}
+  .score-ring{width:112px;height:112px}
+  .score-inner{width:84px;height:84px}
+  .result-top{grid-template-columns:1fr 1fr 1fr}
+  .big{font-size:21px}
+}
+
+@media(prefers-reduced-motion:reduce){
+  *{scroll-behavior:auto!important}
+  .live-dot{animation:none}
+  .stat,.analyze-btn{transition:none}
+}
+</style>
+
+
+<style>
+/* =========================================================
+   ServIQ Round 2 — AI intelligence + premium analytics
+   ========================================================= */
+
+/* KPI micro intelligence */
+.stat{min-height:132px}
+.stat-foot{font-weight:750}
+.stat-mini{
+  position:absolute;
+  right:17px;
+  bottom:17px;
+  width:88px;
+  height:28px;
+  opacity:.88;
+}
+.stat-mini svg{width:100%;height:100%;overflow:visible}
+.stat-mini path{
+  fill:none;
+  stroke-width:2.2;
+  stroke-linecap:round;
+  stroke-linejoin:round;
+}
+.stat.blue .stat-mini path{stroke:#1687ff}
+.stat.green .stat-mini path{stroke:#19b978}
+.stat.red .stat-mini path{stroke:#ff4d68}
+.stat.orange .stat-mini path{stroke:#ff7a00}
+.stat.red{
+  background:
+    radial-gradient(circle at 92% 18%,rgba(255,77,104,.08),transparent 27%),
+    #fff;
+}
+.stat.orange{
+  background:
+    radial-gradient(circle at 92% 18%,rgba(255,122,0,.09),transparent 27%),
+    #fff;
+}
+.stat-alert{
+  display:inline-flex;
+  align-items:center;
+  gap:5px;
+  margin-top:7px;
+  padding:4px 7px;
+  border-radius:999px;
+  font-size:7.5px;
+  font-weight:950;
+  letter-spacing:.35px;
+  text-transform:uppercase;
+}
+.stat.red .stat-alert{background:#fff0f3;color:#cf2845}
+.stat.orange .stat-alert{background:#fff4e8;color:#d76700}
+
+/* New performance intelligence chart */
+.performance-card{
+  position:relative;
+  min-height:286px;
+  padding:19px 20px 15px;
+}
+.performance-card:before{
+  content:"";
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  border-radius:19px;
+  background:
+    linear-gradient(rgba(22,135,255,.025) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(22,135,255,.025) 1px,transparent 1px);
+  background-size:38px 38px;
+  mask-image:linear-gradient(to bottom,transparent 0,#000 30%,#000 82%,transparent 100%);
+}
+.chart-head{position:relative;z-index:3}
+.performance-meta{
+  display:flex;
+  align-items:center;
+  gap:8px;
+}
+.ai-trend-pill{
+  display:flex;
+  align-items:center;
+  gap:6px;
+  padding:6px 9px;
+  border:1px solid rgba(25,216,144,.18);
+  border-radius:999px;
+  background:#effcf6;
+  color:#118458;
+  font-size:8px;
+  font-weight:950;
+}
+.ai-trend-pill:before{
+  content:"";
+  width:6px;height:6px;border-radius:50%;
+  background:#19d890;
+  box-shadow:0 0 9px rgba(25,216,144,.65);
+}
+.performance-chart{
+  position:relative;
+  z-index:2;
+  height:205px;
+  margin-top:10px;
+}
+.performance-chart svg{
+  display:block;
+  width:100%;
+  height:100%;
+  overflow:visible;
+}
+.chart-grid{
+  stroke:#dce8f4;
+  stroke-width:1;
+  stroke-dasharray:4 6;
+}
+.chart-threshold{
+  stroke:#a9bfd4;
+  stroke-width:1;
+  stroke-dasharray:3 5;
+}
+.chart-area{fill:url(#serviqArea)}
+.chart-line-glow{
+  fill:none;
+  stroke:#1687ff;
+  stroke-width:8;
+  opacity:.11;
+  stroke-linecap:round;
+  stroke-linejoin:round;
+}
+.chart-line{
+  fill:none;
+  stroke:url(#serviqLine);
+  stroke-width:3.3;
+  stroke-linecap:round;
+  stroke-linejoin:round;
+  filter:drop-shadow(0 4px 6px rgba(22,135,255,.22));
+}
+.chart-point{
+  fill:#fff;
+  stroke:#1687ff;
+  stroke-width:2.5;
+}
+.chart-point.today{
+  fill:#ff7a00;
+  stroke:#fff;
+  stroke-width:3;
+  filter:drop-shadow(0 0 7px rgba(255,122,0,.6));
+}
+.chart-label{
+  fill:#8296ad;
+  font-size:9px;
+  font-weight:750;
+}
+.chart-value{
+  fill:#35516f;
+  font-size:8.5px;
+  font-weight:900;
+}
+.today-label{
+  fill:#ff7a00;
+  font-size:9px;
+  font-weight:950;
+}
+.axis-label{
+  fill:#9aabbd;
+  font-size:8px;
+  font-weight:800;
+}
+.today-bubble{
+  fill:#071a31;
+  stroke:#1f8cff;
+  stroke-width:1;
+  filter:drop-shadow(0 7px 12px rgba(5,25,50,.18));
+}
+.today-bubble-text{
+  fill:#fff;
+  font-size:9px;
+  font-weight:950;
+}
+
+/* Intelligence strip */
+.ai-status-strip{
+  display:grid;
+  grid-template-columns:1.35fr .85fr .85fr;
+  gap:10px;
+  margin-top:14px;
+}
+.ai-status-main,.ai-status-item{
+  position:relative;
+  overflow:hidden;
+  min-height:66px;
+  border:1px solid rgba(45,132,229,.16);
+  border-radius:15px;
+}
+.ai-status-main{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  padding:13px 15px;
+  color:#fff;
+  background:
+    radial-gradient(circle at 85% 10%,rgba(22,135,255,.28),transparent 32%),
+    linear-gradient(115deg,#03101f,#07203b);
+  box-shadow:0 12px 30px rgba(3,20,42,.13);
+}
+.ai-orb{
+  position:relative;
+  flex:0 0 38px;
+  width:38px;height:38px;
+  border-radius:50%;
+  background:radial-gradient(circle at 35% 30%,#7ed0ff,#1687ff 42%,#7047eb 72%,#ff7a00 100%);
+  box-shadow:0 0 22px rgba(22,135,255,.42);
+}
+.ai-orb:before,.ai-orb:after{
+  content:"";
+  position:absolute;
+  border:1px solid rgba(126,208,255,.45);
+  border-radius:50%;
+  inset:-6px;
+  animation:orbScan 3s linear infinite;
+}
+.ai-orb:after{inset:-11px;opacity:.35;animation-duration:5s;animation-direction:reverse}
+@keyframes orbScan{to{transform:rotate(360deg)}}
+.ai-status-title{font-size:11px;font-weight:950}
+.ai-status-copy{margin-top:3px;color:#a9c0d9;font-size:8.5px}
+.ai-status-item{
+  padding:12px 14px;
+  background:rgba(255,255,255,.84);
+  box-shadow:0 9px 24px rgba(15,35,65,.045);
+}
+.ai-status-label{
+  color:#8496aa;
+  font-size:7.5px;
+  font-weight:950;
+  letter-spacing:.5px;
+  text-transform:uppercase;
+}
+.ai-status-value{
+  margin-top:5px;
+  color:#0a1a31;
+  font-size:15px;
+  font-weight:950;
+}
+.ai-status-value span{
+  color:#19a86f;
+  font-size:8px;
+  margin-left:4px;
+}
+
+/* AI insight console */
+.insight-card{min-height:230px}
+.insight-title{font-size:16px}
+.insight-console{
+  position:absolute;
+  right:18px;
+  top:18px;
+  display:flex;
+  align-items:center;
+  gap:5px;
+  color:#79c6ff;
+  font-size:7px;
+  font-weight:950;
+  letter-spacing:.65px;
+}
+.console-dot{
+  width:5px;height:5px;border-radius:50%;
+  background:#19d890;
+  box-shadow:0 0 9px #19d890;
+  animation:serviqPulse 1.8s ease-in-out infinite;
+}
+.ai-scan{
+  position:absolute;
+  z-index:1;
+  left:0;right:0;
+  height:1px;
+  top:30%;
+  opacity:.35;
+  background:linear-gradient(90deg,transparent,#42aaff,transparent);
+  box-shadow:0 0 12px rgba(66,170,255,.65);
+  animation:scanLine 5s ease-in-out infinite;
+}
+@keyframes scanLine{
+  0%,100%{top:28%;opacity:.1}
+  50%{top:82%;opacity:.45}
+}
+.insight-text{font-size:10.5px}
+.opportunity{
+  position:relative;
+  padding-left:34px;
+}
+.opportunity:before{
+  content:"✦";
+  position:absolute;
+  left:12px;top:10px;
+  color:#55b8ff;
+  font-size:10px;
+}
+
+/* Analyzer as product centerpiece */
+.analyzer{
+  border-color:rgba(22,135,255,.27);
+  background:
+    radial-gradient(circle at 100% 0%,rgba(22,135,255,.12),transparent 26%),
+    radial-gradient(circle at 0% 100%,rgba(112,71,235,.045),transparent 25%),
+    linear-gradient(135deg,#fff,#f9fcff);
+}
+.analyzer-head{
+  padding-bottom:13px;
+  border-bottom:1px solid #e8eff7;
+}
+.analyzer-engine{
+  display:flex;
+  align-items:center;
+  gap:7px;
+}
+.engine-light{
+  width:6px;height:6px;border-radius:50%;
+  background:#19d890;
+  box-shadow:0 0 9px rgba(25,216,144,.8);
+}
+.scorecard-box{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+}
+.scorecard-box:after{
+  content:"ACTIVE SCORECARD";
+  padding:4px 7px;
+  border-radius:999px;
+  background:#e9f4ff;
+  color:#1478ff;
+  font-size:7px;
+  font-weight:950;
+  letter-spacing:.35px;
+}
+.transcript-shell{position:relative}
+.transcript-shell:after{
+  content:"AI READY";
+  position:absolute;
+  right:12px;
+  top:17px;
+  padding:4px 7px;
+  border-radius:999px;
+  background:#eefaf5;
+  color:#119260;
+  font-size:7px;
+  font-weight:950;
+  pointer-events:none;
+}
+
+/* Dramatic result summary */
+.result-hero{
+  position:relative;
+  overflow:hidden;
+  color:#fff;
+  border-color:rgba(45,132,229,.25);
+  background:
+    radial-gradient(circle at 90% 10%,rgba(22,135,255,.34),transparent 29%),
+    radial-gradient(circle at 4% 100%,rgba(112,71,235,.12),transparent 30%),
+    linear-gradient(125deg,#03101f,#071f3a 62%,#07182b);
+  box-shadow:0 18px 46px rgba(3,20,42,.18);
+}
+.result-hero .card-title{color:#fff}
+.result-hero .card-sub{color:#a9bdd3}
+.result-hero .metric{
+  border-color:rgba(119,181,244,.14);
+  background:rgba(255,255,255,.055);
+  backdrop-filter:blur(10px);
+}
+.result-hero .muted{color:#8fa8c2}
+.result-hero .big{color:#fff}
+.result-hero .metric:nth-child(1) .big{color:#64c0ff}
+.result-hero .metric:nth-child(2) .big{color:#ffb454}
+.result-hero .metric:nth-child(3) .big{color:#ff6680}
+.result-hero:after{
+  content:"SERVIQ AI • EXPLAINABLE QA";
+  position:absolute;
+  right:18px;
+  top:18px;
+  color:rgba(121,198,255,.48);
+  font-size:7px;
+  font-weight:950;
+  letter-spacing:.8px;
+}
+
+/* Evaluation rows: confidence visualization */
+.confidence-wrap{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  margin-top:8px;
+}
+.confidence-track{
+  width:105px;height:4px;
+  overflow:hidden;
+  border-radius:99px;
+  background:#e5edf5;
+}
+.confidence-fill{
+  height:100%;
+  border-radius:99px;
+  background:linear-gradient(90deg,#1687ff,#7047eb,#ff7a00);
+}
+.confidence-text{
+  color:#73859a;
+  font-size:8px;
+  font-weight:850;
+}
+
+/* Give evaluation rows a modern hover state */
+.result-card .row{
+  margin:0 -8px;
+  padding-left:8px;
+  padding-right:8px;
+  border-radius:11px;
+  transition:background .18s ease,transform .18s ease;
+}
+.result-card .row:hover{
+  background:#f8fbff;
+  transform:translateX(2px);
+}
+
+@media(max-width:900px){
+  .ai-status-strip{grid-template-columns:1fr 1fr}
+  .ai-status-main{grid-column:1/-1}
+}
+@media(max-width:760px){
+  .performance-card{min-height:250px;padding:15px}
+  .performance-chart{height:175px}
+  .ai-status-strip{grid-template-columns:1fr}
+  .ai-status-main{grid-column:auto}
+  .stat-mini{width:62px;right:10px;bottom:12px}
+  .insight-console{display:none}
+  .scorecard-box:after{display:none}
+}
+@media(prefers-reduced-motion:reduce){
+  .ai-orb:before,.ai-orb:after,.ai-scan{animation:none}
+}
+</style>
+
+
+<style>
+/* =========================================================
+   ServIQ Round 3 — final dashboard polish
+   ========================================================= */
+
+/* tighter hero / more intelligence above the fold */
+main>div:first-child{padding:17px 22px 19px}
+main>div:first-child:before{margin-bottom:5px}
+.page-title{font-size:34px}
+.page-sub{margin-top:4px}
+
+/* richer Quality Score intelligence panel */
+.quality-intel{
+  margin-top:10px;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:7px;
+}
+.quality-chip{
+  padding:8px 9px;
+  border:1px solid #e3ebf4;
+  border-radius:10px;
+  background:linear-gradient(145deg,#fbfdff,#f5f9fd);
+}
+.quality-chip-label{
+  color:#8496aa;
+  font-size:7px;
+  font-weight:950;
+  letter-spacing:.45px;
+  text-transform:uppercase;
+}
+.quality-chip-value{
+  margin-top:3px;
+  color:#0a1a31;
+  font-size:11px;
+  font-weight:950;
+}
+.quality-chip-value.good{color:#159865}
+.quality-assessment{
+  margin-top:8px;
+  padding:8px 9px;
+  border-radius:10px;
+  background:#f0f7ff;
+  border:1px solid #dcecff;
+  color:#48637f;
+  font-size:8px;
+  line-height:1.45;
+}
+.quality-assessment strong{color:#1264d6}
+
+/* turn status strip into one connected intelligence rail */
+.ai-status-strip{
+  gap:0;
+  overflow:hidden;
+  border:1px solid rgba(45,132,229,.16);
+  border-radius:16px;
+  background:white;
+  box-shadow:0 12px 30px rgba(15,35,65,.055);
+}
+.ai-status-main,.ai-status-item{
+  min-height:66px;
+  border:0;
+  border-radius:0;
+  box-shadow:none;
+}
+.ai-status-item{
+  border-left:1px solid #e4edf6;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+}
+.ai-status-main{box-shadow:none}
+
+/* coaching opportunity visual intelligence */
+.coaching-row{
+  position:relative;
+  padding-left:11px;
+}
+.coaching-row:before{
+  content:"";
+  position:absolute;
+  left:0;
+  top:14px;
+  bottom:14px;
+  width:3px;
+  border-radius:99px;
+  background:#ffad38;
+}
+.coaching-row:nth-child(2):before{background:#ff4d68}
+.coaching-row:nth-child(3):before{background:#1687ff}
+.coaching-trend{
+  display:inline-flex;
+  align-items:center;
+  gap:3px;
+  margin-left:7px;
+  color:#8294a8;
+  font-size:7px;
+  font-weight:900;
+}
+.coaching-trend.up{color:#d96800}
+.coaching-trend.risk{color:#d32d49}
+.coaching-trend.down{color:#16835b}
+
+/* analyzer workspace */
+.analyzer{padding:0;overflow:hidden}
+.analyzer-head{
+  margin:0;
+  padding:17px 20px 14px;
+  background:
+    radial-gradient(circle at 100% 0%,rgba(22,135,255,.14),transparent 31%),
+    linear-gradient(135deg,#fbfdff,#f2f8ff);
+}
+.analyzer-body{padding:16px 20px 20px}
+.workspace-toolbar{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+  margin-bottom:11px;
+  padding:9px 11px;
+  border:1px solid #e0eaf4;
+  border-radius:11px;
+  background:#f8fbff;
+}
+.workspace-source{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  color:#526b85;
+  font-size:8px;
+  font-weight:900;
+}
+.workspace-source-icon{
+  width:25px;height:25px;
+  display:flex;align-items:center;justify-content:center;
+  border-radius:8px;
+  color:#1478ff;
+  background:#e8f3ff;
+}
+.workspace-actions{
+  display:flex;
+  gap:6px;
+}
+.workspace-action{
+  padding:5px 8px;
+  border:1px solid #dce8f4;
+  border-radius:8px;
+  background:white;
+  color:#667d95;
+  font-size:7px;
+  font-weight:900;
+}
+.transcript-shell{
+  border:1px solid #d9e6f3;
+  border-radius:14px;
+  overflow:hidden;
+  background:#fbfdff;
+  box-shadow:inset 0 1px 3px rgba(15,35,65,.03);
+}
+.transcript-head{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+  padding:9px 11px;
+  color:#b9cce0;
+  background:linear-gradient(90deg,#06172a,#092b50);
+}
+.transcript-head-left{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  font-size:8px;
+  font-weight:950;
+  letter-spacing:.4px;
+}
+.transcript-wave{
+  display:flex;
+  align-items:center;
+  gap:2px;
+  height:13px;
+}
+.transcript-wave i{
+  display:block;
+  width:2px;
+  border-radius:4px;
+  background:#49adff;
+}
+.transcript-wave i:nth-child(1){height:5px}
+.transcript-wave i:nth-child(2){height:11px}
+.transcript-wave i:nth-child(3){height:7px;background:#ff8a18}
+.transcript-wave i:nth-child(4){height:13px;background:#ff8a18}
+.transcript-wave i:nth-child(5){height:6px}
+.transcript-meta{
+  color:#7896b5;
+  font-size:7px;
+  font-weight:900;
+}
+.transcript-shell textarea{
+  margin:0;
+  border:0;
+  border-radius:0;
+  min-height:225px;
+  background:transparent;
+  box-shadow:none;
+}
+.transcript-shell textarea:focus{
+  border:0;
+  box-shadow:inset 0 0 0 2px rgba(22,135,255,.08);
+}
+.transcript-shell:after{top:48px}
+
+/* button loading / scan behavior */
+.analyze-btn{
+  min-height:47px;
+  isolation:isolate;
+}
+.analyze-btn:before{
+  content:"";
+  position:absolute;
+  z-index:-1;
+  top:0;
+  bottom:0;
+  left:-35%;
+  width:28%;
+  transform:skewX(-18deg);
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,.34),transparent);
+  transition:left .55s ease;
+}
+.analyze-btn:hover:before{left:110%}
+.analyze-btn.is-analyzing{
+  cursor:wait;
+  background:linear-gradient(90deg,#071b33,#0d4f92,#6a4ff0,#ff7a00);
+  background-size:220% 100%;
+  animation:analyzeFlow 1.5s linear infinite;
+}
+.analyze-btn.is-analyzing:after{
+  content:"";
+  display:inline-block;
+  width:10px;height:10px;
+  margin-left:8px;
+  vertical-align:-1px;
+  border:2px solid rgba(255,255,255,.4);
+  border-top-color:#fff;
+  border-radius:50%;
+  animation:spin .7s linear infinite;
+}
+@keyframes analyzeFlow{to{background-position:220% 0}}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* premium evaluation findings */
+.result-card:not(.result-hero){padding:15px 17px}
+.finding-row{
+  --finding:#1687ff;
+  position:relative;
+  overflow:hidden;
+  margin:8px 0 0 !important;
+  padding:14px 13px 14px 16px !important;
+  border:1px solid #e6edf5 !important;
+  border-radius:13px !important;
+  background:linear-gradient(145deg,#fff,#fbfdff);
+}
+.finding-row:before{
+  content:"";
+  position:absolute;
+  left:0;top:0;bottom:0;
+  width:4px;
+  background:var(--finding);
+  box-shadow:0 0 14px color-mix(in srgb,var(--finding) 40%,transparent);
+}
+.finding-row[data-result="FAIL"]{--finding:#ff4d68;background:linear-gradient(90deg,rgba(255,77,104,.035),#fff 16%)}
+.finding-row[data-result="PARTIAL"]{--finding:#ff8a18;background:linear-gradient(90deg,rgba(255,138,24,.035),#fff 16%)}
+.finding-row[data-result="PASS"]{--finding:#19b978;background:linear-gradient(90deg,rgba(25,185,120,.03),#fff 16%)}
+.finding-row[data-result="N/A"]{--finding:#8798aa}
+.finding-row .name{
+  font-size:12.5px;
+  letter-spacing:-.1px;
+}
+.finding-row .why{max-width:1040px}
+.finding-row .evidence-box{
+  max-width:950px;
+  background:linear-gradient(90deg,rgba(22,135,255,.035),#fafdff);
+}
+.finding-row .confidence-track{
+  width:125px;
+  height:5px;
+}
+.finding-row[data-result="FAIL"] .confidence-fill{background:linear-gradient(90deg,#ff4d68,#ff8a18)}
+.finding-row[data-result="PARTIAL"] .confidence-fill{background:linear-gradient(90deg,#ffad38,#ff7a00)}
+.finding-row[data-result="PASS"] .confidence-fill{background:linear-gradient(90deg,#19d890,#1687ff)}
+.finding-signal{
+  display:inline-flex;
+  align-items:center;
+  gap:5px;
+  margin-top:7px;
+  color:#8293a7;
+  font-size:7px;
+  font-weight:950;
+  letter-spacing:.35px;
+  text-transform:uppercase;
+}
+.finding-signal:before{
+  content:"";
+  width:5px;height:5px;border-radius:50%;
+  background:var(--finding);
+  box-shadow:0 0 7px color-mix(in srgb,var(--finding) 55%,transparent);
+}
+
+/* result hero tightening */
+.result-hero{padding:17px 18px}
+.result-hero .result-top{margin-top:11px}
+.result-hero .metric{padding:12px 13px}
+.result-hero .big{font-size:28px}
+
+/* small futuristic ambient polish */
+.card,.stat,.ai-status-strip{
+  backdrop-filter:saturate(115%);
+}
+@media(max-width:760px){
+  main>div:first-child{padding:15px}
+  .page-title{font-size:28px}
+  .quality-intel{grid-template-columns:1fr}
+  .ai-status-strip{border-radius:14px}
+  .ai-status-item{border-left:0;border-top:1px solid #e4edf6}
+  .analyzer-head,.analyzer-body{padding-left:14px;padding-right:14px}
+  .workspace-toolbar{align-items:flex-start;flex-direction:column}
+  .workspace-actions{width:100%}
+  .workspace-action{flex:1;text-align:center}
+  .finding-row{display:block}
+}
+@media(prefers-reduced-motion:reduce){
+  .analyze-btn.is-analyzing,.analyze-btn.is-analyzing:after{animation:none}
+}
+</style>
+
 </head>
 
 <body>
@@ -1009,9 +2217,9 @@ Dashboard
 Calls
 </a>
 
-<a href="#">
-<span class="nav-icon">▣</span>
-Scorecards
+<a href="/analytics">
+<span class="nav-icon">▥</span>
+Analytics
 </a>
 
 <a href="#">
@@ -1019,9 +2227,9 @@ Scorecards
 Coaching
 </a>
 
-<a href="/analytics">
-<span class="nav-icon">▥</span>
-Analytics
+<a href="#">
+<span class="nav-icon">▣</span>
+Scorecards
 </a>
 
 </nav>
@@ -1035,8 +2243,8 @@ Analytics
 <main>
 
 <div>
-<div class="page-title">QA Command Center</div>
-<div class="page-sub">Mortgage servicing quality intelligence</div>
+<div class="page-title">AI Quality Command Center</div>
+<div class="page-sub">Real-time mortgage servicing quality intelligence, risk detection and explainable AI</div>
 </div>
 
 
@@ -1051,6 +2259,7 @@ Analytics
 </div>
 <div class="stat-number">1,248</div>
 <div class="stat-foot">↑ 12% this month</div>
+<div class="stat-mini" aria-hidden="true"><svg viewBox="0 0 88 28"><path d="M2 22 C12 20,16 14,25 16 S39 20,47 12 S61 15,69 8 S80 7,86 3"/></svg></div>
 </div>
 
 
@@ -1061,6 +2270,7 @@ Analytics
 </div>
 <div class="stat-number">91%</div>
 <div class="stat-foot">↑ 3.2% vs last month</div>
+<div class="stat-mini" aria-hidden="true"><svg viewBox="0 0 88 28"><path d="M2 23 C10 22,15 18,23 19 S35 13,43 15 S56 10,64 11 S77 5,86 4"/></svg></div>
 </div>
 
 
@@ -1071,6 +2281,8 @@ Analytics
 </div>
 <div class="stat-number">18</div>
 <div class="stat-foot">1.4% of analyzed calls</div>
+<div class="stat-alert">● Risk queue</div>
+<div class="stat-mini" aria-hidden="true"><svg viewBox="0 0 88 28"><path d="M2 18 C12 10,18 21,27 15 S42 8,51 14 S65 22,73 12 S82 9,86 7"/></svg></div>
 </div>
 
 
@@ -1081,6 +2293,8 @@ Analytics
 </div>
 <div class="stat-number">42</div>
 <div class="stat-foot">AI confidence threshold</div>
+<div class="stat-alert">✦ Review queue</div>
+<div class="stat-mini" aria-hidden="true"><svg viewBox="0 0 88 28"><path d="M2 20 C11 20,16 13,25 15 S38 9,47 13 S61 8,70 10 S80 5,86 6"/></svg></div>
 </div>
 
 </div>
@@ -1090,58 +2304,74 @@ Analytics
 
 <div class="analytics">
 
-<div class="card">
+<div class="card performance-card">
 
 <div class="chart-head">
-
 <div>
-<div class="card-title">QA Performance</div>
-<div class="card-sub">Average quality score over the last 7 days</div>
+<div class="card-title">QA Performance Intelligence</div>
+<div class="card-sub">7-day quality trend • AI-detected movement and threshold monitoring</div>
+</div>
+<div class="performance-meta">
+<div class="ai-trend-pill">QUALITY TREND +3.2%</div>
+</div>
 </div>
 
-<div class="trend">↑ 3.2%</div>
+<div class="performance-chart">
+<svg viewBox="0 0 820 205" preserveAspectRatio="none" role="img" aria-label="Seven day QA score trend from 86 to 91 percent">
+<defs>
+  <linearGradient id="serviqArea" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0%" stop-color="#1687ff" stop-opacity=".24"/>
+    <stop offset="65%" stop-color="#1687ff" stop-opacity=".06"/>
+    <stop offset="100%" stop-color="#1687ff" stop-opacity="0"/>
+  </linearGradient>
+  <linearGradient id="serviqLine" x1="0" y1="0" x2="1" y2="0">
+    <stop offset="0%" stop-color="#1687ff"/>
+    <stop offset="72%" stop-color="#1687ff"/>
+    <stop offset="100%" stop-color="#ff7a00"/>
+  </linearGradient>
+</defs>
 
+<line class="chart-grid" x1="42" y1="42" x2="790" y2="42"/>
+<line class="chart-grid" x1="42" y1="90" x2="790" y2="90"/>
+<line class="chart-grid" x1="42" y1="138" x2="790" y2="138"/>
+<text class="axis-label" x="5" y="45">95%</text>
+<text class="axis-label" x="5" y="93">90%</text>
+<text class="axis-label" x="5" y="141">85%</text>
+<line class="chart-threshold" x1="42" y1="90" x2="790" y2="90"/>
+<text class="axis-label" x="690" y="84">TARGET 90%</text>
+
+<path class="chart-area" d="M55 128 C95 120,135 108,165 110 S245 122,275 112 S350 86,385 89 S465 80,495 75 S575 70,605 65 S690 57,735 52 L735 166 L55 166 Z"/>
+<path class="chart-line-glow" d="M55 128 C95 120,135 108,165 110 S245 122,275 112 S350 86,385 89 S465 80,495 75 S575 70,605 65 S690 57,735 52"/>
+<path class="chart-line" d="M55 128 C95 120,135 108,165 110 S245 122,275 112 S350 86,385 89 S465 80,495 75 S575 70,605 65 S690 57,735 52"/>
+
+<circle class="chart-point" cx="55" cy="128" r="4.5"/>
+<circle class="chart-point" cx="165" cy="110" r="4.5"/>
+<circle class="chart-point" cx="275" cy="112" r="4.5"/>
+<circle class="chart-point" cx="385" cy="89" r="4.5"/>
+<circle class="chart-point" cx="495" cy="75" r="4.5"/>
+<circle class="chart-point" cx="605" cy="65" r="4.5"/>
+<circle class="chart-point today" cx="735" cy="52" r="6"/>
+
+<text class="chart-value" x="45" y="116">86%</text>
+<text class="chart-value" x="155" y="98">88%</text>
+<text class="chart-value" x="265" y="100">88%</text>
+<text class="chart-value" x="375" y="77">90%</text>
+<text class="chart-value" x="485" y="63">90%</text>
+<text class="chart-value" x="595" y="53">91%</text>
+
+<rect class="today-bubble" x="704" y="17" width="62" height="24" rx="12"/>
+<text class="today-bubble-text" x="719" y="33">91% • LIVE</text>
+
+<text class="chart-label" x="43" y="190">Mon</text>
+<text class="chart-label" x="153" y="190">Tue</text>
+<text class="chart-label" x="263" y="190">Wed</text>
+<text class="chart-label" x="373" y="190">Thu</text>
+<text class="chart-label" x="483" y="190">Fri</text>
+<text class="chart-label" x="593" y="190">Sat</text>
+<text class="today-label" x="721" y="190">Today</text>
+</svg>
 </div>
 
-
-<div class="chart">
-
-<div class="bar-wrap">
-<div class="bar" style="height:75px"></div>
-<div class="bar-label">Mon</div>
-</div>
-
-<div class="bar-wrap">
-<div class="bar" style="height:88px"></div>
-<div class="bar-label">Tue</div>
-</div>
-
-<div class="bar-wrap">
-<div class="bar" style="height:82px"></div>
-<div class="bar-label">Wed</div>
-</div>
-
-<div class="bar-wrap">
-<div class="bar" style="height:101px"></div>
-<div class="bar-label">Thu</div>
-</div>
-
-<div class="bar-wrap">
-<div class="bar" style="height:108px"></div>
-<div class="bar-label">Fri</div>
-</div>
-
-<div class="bar-wrap">
-<div class="bar" style="height:114px"></div>
-<div class="bar-label">Sat</div>
-</div>
-
-<div class="bar-wrap">
-<div class="bar today" style="height:121px"></div>
-<div class="bar-label">Today</div>
-</div>
-
-</div>
 </div>
 
 
@@ -1166,9 +2396,39 @@ Analytics
 <div class="score-foot">
 ↑ 3.2% from previous period
 </div>
+<div class="quality-intel">
+  <div class="quality-chip">
+    <div class="quality-chip-label">Target</div>
+    <div class="quality-chip-value">90%</div>
+  </div>
+  <div class="quality-chip">
+    <div class="quality-chip-label">Status</div>
+    <div class="quality-chip-value good">Above Target</div>
+  </div>
+</div>
+<div class="quality-assessment"><strong>AI assessment:</strong> Quality is trending upward with authentication remaining the primary risk signal.</div>
 
 </div>
 
+</div>
+
+
+<div class="ai-status-strip">
+  <div class="ai-status-main">
+    <div class="ai-orb"></div>
+    <div>
+      <div class="ai-status-title">ServIQ AI is monitoring quality signals</div>
+      <div class="ai-status-copy">Explainable QA • risk detection • confidence routing • transcript evidence</div>
+    </div>
+  </div>
+  <div class="ai-status-item">
+    <div class="ai-status-label">AI coverage</div>
+    <div class="ai-status-value">100% <span>ACTIVE</span></div>
+  </div>
+  <div class="ai-status-item">
+    <div class="ai-status-label">Primary risk signal</div>
+    <div class="ai-status-value">Authentication</div>
+  </div>
 </div>
 
 
@@ -1177,6 +2437,8 @@ Analytics
 <div class="insight-grid">
 
 <div class="card insight-card">
+<div class="ai-scan"></div>
+<div class="insight-console"><span class="console-dot"></span> INTELLIGENCE STREAM ACTIVE</div>
 
 <div class="insight-title">
 <div class="ai-icon">✦</div>
@@ -1213,7 +2475,7 @@ Authentication findings account for the highest-risk critical failures in the cu
 
 <div>
 <div class="coaching-name">Empathy & Acknowledgement</div>
-<div class="coaching-desc">Hardship conversations</div>
+<div class="coaching-desc">Hardship conversations <span class="coaching-trend up">↗ +6 this week</span></div>
 </div>
 
 <div class="count">31</div>
@@ -1225,7 +2487,7 @@ Authentication findings account for the highest-risk critical failures in the cu
 
 <div>
 <div class="coaching-name">Authentication</div>
-<div class="coaching-desc">Critical compliance behavior</div>
+<div class="coaching-desc">Critical compliance behavior <span class="coaching-trend risk">● highest risk</span></div>
 </div>
 
 <div class="count">18</div>
@@ -1237,7 +2499,7 @@ Authentication findings account for the highest-risk critical failures in the cu
 
 <div>
 <div class="coaching-name">Closing Expectations</div>
-<div class="coaching-desc">Clear next-step communication</div>
+<div class="coaching-desc">Clear next-step communication <span class="coaching-trend down">↘ improving</span></div>
 </div>
 
 <div class="count">14</div>
@@ -1265,19 +2527,29 @@ Analyze a Call
 </div>
 
 <div class="card-sub">
-Run a synthetic conversation through ServIQ QA
+Analyze a synthetic mortgage conversation with explainable AI quality intelligence
 </div>
 
 </div>
 
-<div class="ai-badge">
-AI QA ENGINE
-</div>
+<div class="ai-badge analyzer-engine"><span class="engine-light"></span> AI QA ENGINE ONLINE</div>
 
 </div>
 
 
 <form method="post">
+
+<div class="analyzer-body">
+<div class="workspace-toolbar">
+  <div class="workspace-source">
+    <span class="workspace-source-icon">⌁</span>
+    <span>SYNTHETIC QA WORKSPACE • MORTGAGE SERVICING</span>
+  </div>
+  <div class="workspace-actions">
+    <span class="workspace-action">TRANSCRIPT</span>
+    <span class="workspace-action">EVIDENCE MODE</span>
+  </div>
+</div>
 
 <label>SCORECARD</label>
 
@@ -1288,7 +2560,16 @@ Mortgage Servicing — General v1
 
 <label>SYNTHETIC TRANSCRIPT</label>
 
-<textarea name="transcript">{{ transcript }}</textarea>
+<div class="transcript-shell">
+  <div class="transcript-head">
+    <div class="transcript-head-left">
+      <span class="transcript-wave"><i></i><i></i><i></i><i></i><i></i></span>
+      CALL TRANSCRIPT
+    </div>
+    <div class="transcript-meta">TIMESTAMPED • EVIDENCE ENABLED</div>
+  </div>
+  <textarea name="transcript">{{ transcript }}</textarea>
+</div>
 
 
 <button class="analyze-btn" type="submit">
@@ -1304,7 +2585,7 @@ Mortgage Servicing — General v1
 
 {% if result %}
 
-<div class="card result-card">
+<div class="card result-card result-hero">
 
 <div class="card-title">
 Evaluation Summary
@@ -1346,13 +2627,13 @@ AI Evaluation
 </div>
 
 <div class="card-sub">
-Scorecard analysis, explanations and confidence
+Explainable AI findings with transcript evidence, timestamps and confidence
 </div>
 
 
 {% for r in result["items"] %}
 
-<div class="row">
+<div class="row finding-row" data-result="{{ r.result }}">
 
 <div>
 
@@ -1377,9 +2658,11 @@ Scorecard analysis, explanations and confidence
 </div>
 {% endif %}
 
-<div class="muted" style="margin-top:6px">
-AI confidence {{ r.confidence }}%
+<div class="confidence-wrap">
+  <div class="confidence-track"><div class="confidence-fill" style="width:{{ r.confidence }}%"></div></div>
+  <div class="confidence-text">AI CONFIDENCE {{ r.confidence }}%</div>
 </div>
+<div class="finding-signal">ServIQ evidence-linked finding</div>
 
 </div>
 
@@ -1409,6 +2692,20 @@ HUMAN REVIEW
 {% endif %}
 
 </main>
+
+
+<script>
+(function(){
+  const form = document.querySelector('.analyzer form');
+  const btn = form ? form.querySelector('.analyze-btn') : null;
+  if(!form || !btn) return;
+  form.addEventListener('submit', function(){
+    if(btn.classList.contains('is-analyzing')) return;
+    btn.classList.add('is-analyzing');
+    btn.textContent = 'ServIQ AI analyzing call';
+  });
+})();
+</script>
 
 </body>
 </html>

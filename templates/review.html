@@ -774,52 +774,279 @@ h1 {
         display: none;
     }
 }
+
+/* ServIQ premium AI review layer */
+:root{--ai-blue:#1684ff;--ai-orange:#ff7900;--ai-navy:#02172c;--ai-green:#16c784}
+body{background:radial-gradient(circle at 8% 8%,rgba(22,132,255,.09),transparent 25%),radial-gradient(circle at 94% 16%,rgba(255,121,0,.07),transparent 24%),linear-gradient(180deg,#eef6ff,#f8fbff 42%,#eef5fb);color:#071b35}
+header{position:relative;overflow:hidden;padding:18px 28px;background:linear-gradient(108deg,#020f20,#052746 58%,#18171d);border:0;box-shadow:0 12px 34px rgba(2,20,39,.18)}
+header:after{content:"";position:absolute;width:52%;height:70px;right:-2%;top:-35px;border-bottom:2px solid var(--ai-blue);border-radius:0 0 55% 55%;box-shadow:0 13px 0 -11px var(--ai-orange);pointer-events:none}.brand,.header-right{position:relative;z-index:2}.brand-name{color:white;font-size:29px}.brand-sub{color:#afc3dc;font-size:12px}.online{background:rgba(22,199,132,.12);border:1px solid rgba(22,199,132,.38);color:#61e6b0}.user{color:white}.user-circle{background:linear-gradient(135deg,#4b63ff,#6c63ff 55%,#ff7900);color:white}
+nav{justify-content:flex-start;gap:8px;padding:0 28px;background:linear-gradient(90deg,#020f20,#071a2d);border:0}nav a{padding:15px 18px;color:#aebdd0;border-bottom:3px solid transparent}nav a:hover{color:white;background:rgba(22,132,255,.08)}nav a.active{color:white;background:rgba(22,132,255,.12);border-bottom-color:#ff7900}
+main{max-width:1600px;padding:28px}.back{padding:9px 13px;border:1px solid #cfe1f3;border-radius:10px;background:rgba(255,255,255,.8)}h1{font-size:36px;letter-spacing:-1.2px}.page-sub{font-size:14px}.call-id{color:#1677ff;font-weight:900}.card{border-color:#d4e5f6;border-radius:20px;box-shadow:0 12px 34px rgba(12,54,94,.07)}
+.overview{position:relative;overflow:hidden;padding:24px;background:linear-gradient(105deg,#fff,#f7fbff 70%,#eef7ff);border-top:2px solid #1684ff}.overview:after{content:"SERVIQ AI • EVIDENCE-LINKED QA";position:absolute;right:22px;top:15px;font-size:8px;font-weight:900;letter-spacing:1.6px;color:#7fa3c7}.avatar{border-radius:16px;background:linear-gradient(135deg,#1684ff,#5f68ff 55%,#ff7900);color:white;box-shadow:0 9px 22px rgba(22,132,255,.22)}.agent-name{font-size:24px}.badge{padding:6px 11px;letter-spacing:.25px}.score-ring{box-shadow:0 0 0 8px rgba(22,132,255,.05),0 10px 28px rgba(9,48,87,.12);background:conic-gradient(#1684ff calc(var(--score)*1%),#e7eef7 0)}.stats{background:rgba(255,255,255,.82);border-color:#d3e5f7}
+.grid{grid-template-columns:minmax(0,1.75fr) minmax(360px,.8fr);gap:22px}.card-pad{padding:22px}.recording{position:relative;overflow:hidden;background:linear-gradient(115deg,#02172c,#063a69 70%,#0d4d84);border:1px solid #1c5685;box-shadow:0 16px 36px rgba(1,28,55,.18)}.recording:after{content:"AI AUDIO INTELLIGENCE";position:absolute;right:20px;top:18px;color:#6fb9ff;font-size:8px;font-weight:900;letter-spacing:1.5px}.play{box-shadow:0 0 0 7px rgba(38,132,255,.13),0 0 28px rgba(38,132,255,.28)}.wave{background:linear-gradient(90deg,#23a5ff,#695cff,#ff7900);-webkit-background-clip:text;color:transparent}
+.question{position:relative;overflow:hidden;background:linear-gradient(90deg,#fff,#fbfdff);padding:18px;border-color:#dbe8f5;box-shadow:0 5px 16px rgba(12,54,94,.035)}.question:after{content:"EVIDENCE LINKED";position:absolute;right:16px;bottom:9px;font-size:7px;font-weight:900;letter-spacing:1.2px;color:#a2b6ca}.question.partial{background:linear-gradient(90deg,#fff,#fffaf4)}.question.fail{background:linear-gradient(90deg,#fff,#fff7f8)}.evidence{border:1px solid #d5e8fb;border-left:3px solid #1684ff;background:linear-gradient(100deg,#eef7ff,#f8fbff)}.points{font-size:22px;color:#102d50}.confidence{font-weight:800}.override{transition:.18s}.override:hover{background:#1677ff;color:white;transform:translateY(-1px)}.human-override{border-left:4px solid #ff7900;box-shadow:0 6px 18px rgba(255,121,0,.07)}
+.right-col .card{background:rgba(255,255,255,.93)}.search input{background:#f7fbff;border-color:#d3e3f4;padding:12px}.transcript-line{grid-template-columns:55px 78px 1fr;padding:12px 0}.action{padding:13px;transition:.18s}.action:hover{transform:translateY(-1px);box-shadow:0 8px 18px rgba(12,54,94,.1)}.primary{background:linear-gradient(90deg,#ff7900,#ff9b32);border:0}.modal{backdrop-filter:blur(7px)}.modal-box{border:1px solid #d5e6f6;box-shadow:0 28px 70px rgba(2,22,43,.25)}.save{background:linear-gradient(90deg,#1677ff,#4c62ff);border:0}
+@media(max-width:1100px){.grid{grid-template-columns:1fr}.overview{grid-template-columns:1fr 130px 260px}}@media(max-width:900px){main{padding:16px}h1{font-size:30px}.overview{grid-template-columns:1fr}.overview:after,.recording:after{display:none}}
+
+/* ===== FINAL ServIQ Review Workspace polish ===== */
+.serviq-mark{
+    position:relative;width:58px;height:48px;min-width:58px;border:0!important;
+    background:transparent!important;box-shadow:none!important;border-radius:0!important;
+}
+.serviq-mark .bubble{position:absolute;border:3px solid;border-radius:12px;width:37px;height:29px;top:4px}
+.serviq-mark .bubble:after{content:"";position:absolute;width:8px;height:8px;bottom:-7px;transform:rotate(45deg);background:#061a30;border-right:3px solid;border-bottom:3px solid}
+.serviq-mark .bubble-blue{left:0;border-color:#168cff}
+.serviq-mark .bubble-blue:after{left:7px;border-color:#168cff}
+.serviq-mark .bubble-orange{right:0;top:13px;border-color:#ff7900}
+.serviq-mark .bubble-orange:after{right:7px;border-color:#ff7900}
+.serviq-mark .sig{position:absolute;z-index:3;width:4px;border-radius:4px;top:15px;background:linear-gradient(#1ca1ff,#ff8a00);box-shadow:0 0 8px rgba(24,142,255,.35)}
+.serviq-mark .s1{height:14px;left:20px}.serviq-mark .s2{height:25px;left:27px;top:10px}.serviq-mark .s3{height:18px;left:34px;top:14px}
+
+.recording{padding:0!important;background:linear-gradient(118deg,#03182d 0%,#063a6a 65%,#0a4b82 100%)!important}
+.recording>.section-title{padding:20px 22px 0}
+.recording-console{margin-top:14px;border-top:1px solid rgba(126,190,255,.16);background:linear-gradient(180deg,rgba(4,26,49,.35),rgba(1,14,29,.45));padding:14px 20px 16px}
+.recording-topline{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;font-size:8px;font-weight:900;letter-spacing:1.35px;color:#8fb8df}
+.recording-live{display:flex;align-items:center;gap:7px;color:#d9ecff}
+.recording-live span{width:7px;height:7px;border-radius:50%;background:#18d79b;box-shadow:0 0 12px #18d79b}
+.recording-main{display:grid;grid-template-columns:64px minmax(0,1fr) 90px;gap:16px;align-items:center}
+.play-large{width:56px!important;height:56px!important;font-size:20px!important;background:linear-gradient(145deg,#168cff,#4967ff)!important;border:1px solid rgba(255,255,255,.18)!important;box-shadow:0 0 0 8px rgba(22,140,255,.10),0 0 30px rgba(22,140,255,.30)!important;cursor:pointer}
+.timeline-wrap{height:86px;position:relative;display:flex;align-items:center;border-left:1px solid rgba(255,255,255,.08);border-right:1px solid rgba(255,255,255,.08);padding:0 8px}
+.waveform{height:64px;display:flex;align-items:center;gap:3px;width:100%;opacity:.98}
+.waveform span{flex:1;max-width:8px;height:var(--h);min-height:8px;border-radius:5px;background:linear-gradient(180deg,#28a9ff,#4e73ff 56%,#8b5ee8);box-shadow:0 0 8px rgba(45,145,255,.12)}
+.waveform span:nth-child(5n){background:linear-gradient(180deg,#ff9b34,#ff7900)}
+.timeline-progress{position:absolute;left:8px;right:8px;bottom:7px;height:3px;border-radius:4px;background:linear-gradient(90deg,#ff7900 0 8%,rgba(255,255,255,.15) 8%)}
+.ai-marker{position:absolute;bottom:-1px;transform:translateX(-50%);font-size:6px;font-weight:900;letter-spacing:.7px;color:#9dc9f4;text-align:center}
+.ai-marker span{display:block;margin:auto;width:7px;height:7px;border-radius:50%;background:#ff7900;box-shadow:0 0 0 4px rgba(255,121,0,.12),0 0 10px rgba(255,121,0,.5)}
+.ai-marker b{display:block;margin-top:4px;white-space:nowrap}.marker-auth{left:18%}.marker-empathy{left:52%}.marker-resolution{left:79%}
+.marker-empathy span{background:#26a7ff;box-shadow:0 0 0 4px rgba(38,167,255,.12),0 0 10px rgba(38,167,255,.5)}
+.recording-clock{text-align:right}.recording-clock strong{font-size:16px}.recording-clock span{display:block;color:#8eb4d8;font-size:10px;margin-top:3px}
+.recording-controls{display:flex;align-items:center;justify-content:space-between;margin-top:14px;padding-top:11px;border-top:1px solid rgba(134,193,248,.13)}
+.control-group{display:flex;gap:7px}.mini-control{border:1px solid rgba(151,204,255,.2);background:rgba(255,255,255,.05);color:#b9d6ef;border-radius:8px;padding:6px 9px;font-size:8px;font-weight:900;cursor:pointer}.active-control{color:white;border-color:rgba(30,151,255,.45);background:rgba(30,151,255,.15)}
+.ai-listening{font-size:8px;font-weight:900;letter-spacing:.8px;color:#80b9e9;text-transform:uppercase}.ai-listening i{display:inline-block;width:6px;height:6px;border-radius:50%;background:#18d79b;margin-right:6px;box-shadow:0 0 10px #18d79b}.volume{color:#77b8ef;font-size:10px;letter-spacing:1px}
+
+.overview{box-shadow:0 16px 42px rgba(10,63,111,.09)!important}
+.overview:before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 78% 35%,rgba(22,132,255,.08),transparent 24%);pointer-events:none}
+.score-ring{filter:drop-shadow(0 0 12px rgba(22,132,255,.12))}
+.question:hover{border-color:#b9d9f7;box-shadow:0 10px 26px rgba(12,54,94,.07);transform:translateY(-1px);transition:.18s ease}
+.evidence{position:relative;overflow:hidden}.evidence:after{content:"";position:absolute;right:-35px;top:-35px;width:80px;height:80px;border-radius:50%;background:rgba(22,132,255,.05)}
+.right-col .card{backdrop-filter:blur(10px)}
+.section-title{letter-spacing:-.2px}
+
+@media(max-width:900px){
+  .recording-main{grid-template-columns:55px 1fr}.recording-clock{grid-column:2;text-align:left}
+  .recording-controls{gap:10px;flex-wrap:wrap}.recording-meta{display:none}
+}
+
+
+/* ===== ServIQ FINAL Review v2: Dashboard-matched + premium recording ===== */
+.dash-header{
+  position:relative;overflow:hidden;color:#fff;
+  border-bottom:1px solid rgba(94,170,255,.16);
+  box-shadow:0 18px 55px rgba(2,12,28,.24);
+  background:
+    radial-gradient(circle at 72% -45%,rgba(22,135,255,.43),transparent 34%),
+    radial-gradient(circle at 100% 0%,rgba(255,122,0,.19),transparent 26%),
+    linear-gradient(125deg,#020915,#061a31 55%,#061225);
+}
+.dash-header:before{content:"";position:absolute;inset:0;pointer-events:none;opacity:.22;background-image:linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);background-size:32px 32px}
+.header-inner{position:relative;z-index:2;max-width:none;margin:auto;padding:18px 26px 0}
+.header-swirl{position:absolute;width:780px;height:155px;right:-70px;top:-72px;border-radius:50%;border-bottom:2px solid rgba(22,135,255,.95);transform:rotate(-7deg);filter:drop-shadow(0 0 9px rgba(22,135,255,.45))}
+.header-swirl:after{content:"";position:absolute;width:630px;height:132px;right:5px;top:17px;border-radius:50%;border-bottom:2px solid rgba(255,122,0,.95);filter:drop-shadow(0 0 8px rgba(255,122,0,.32))}
+.brand-row{display:flex;justify-content:space-between;align-items:center;gap:18px}
+.logo-wrap{display:flex;align-items:center;gap:11px}.new-logo-icon{width:58px;height:49px;filter:drop-shadow(0 0 12px rgba(22,135,255,.24))}.new-logo-icon svg{width:100%;height:100%;overflow:visible}
+.dash-brand{font-size:30px;line-height:1;font-weight:950;letter-spacing:-1.4px}.dash-brand span{color:#ff7900;text-shadow:0 0 18px rgba(255,122,0,.3)}.dash-sub{color:#9eb2cc;font-size:11px;margin-top:5px}
+.header-right{display:flex;align-items:center;gap:13px}.dash-live{padding:8px 13px;border-radius:999px;background:rgba(25,216,144,.09);border:1px solid rgba(80,245,183,.30);color:#74f1be;font-size:10px;font-weight:900;letter-spacing:.45px}.dash-live i{display:inline-block;width:7px;height:7px;border-radius:50%;background:#18d98a;margin-right:6px;box-shadow:0 0 12px #18d98a}.dash-user{display:flex;align-items:center;gap:8px;padding:6px 10px 6px 6px;border:1px solid rgba(255,255,255,.09);border-radius:999px;background:rgba(255,255,255,.045);font-size:11px;font-weight:800}.dash-user b{display:grid;place-items:center;width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,#1687ff,#6957ff 60%,#ff7a00)}
+.nav-shell{margin-top:16px}.dash-nav{display:flex;justify-content:flex-start;gap:3px;background:transparent;padding:0}.dash-nav a{position:relative;text-decoration:none;color:#aebdd0;padding:14px 17px;border-radius:9px 9px 0 0;border-bottom:3px solid transparent;font-weight:800;font-size:12px}.dash-nav a:hover{color:#fff;background:rgba(255,255,255,.045)}.dash-nav a.active{color:#fff;background:linear-gradient(180deg,rgba(22,135,255,.12),rgba(22,135,255,.025));border-bottom-color:#ff7900}.dash-nav a.active:first-letter{color:#ff7900}
+
+main{max-width:none;padding:28px 22px 54px}.back{margin-bottom:15px;display:inline-flex}
+.review-hero{position:relative;overflow:hidden;display:flex;align-items:center;justify-content:space-between;gap:25px;margin-bottom:18px;padding:25px 28px;border:1px solid #cfe4f7;border-radius:22px;background:radial-gradient(circle at 90% 30%,rgba(22,135,255,.10),transparent 28%),linear-gradient(105deg,#fff,#f9fcff 62%,#edf7ff);box-shadow:0 15px 40px rgba(13,63,109,.07)}
+.review-hero:after{content:"";position:absolute;width:420px;height:100px;right:-55px;top:-65px;border-radius:50%;border-bottom:1px solid rgba(255,121,0,.65);transform:rotate(-7deg)}
+.hero-eyebrow{color:#1478ff;font-size:9px;font-weight:950;letter-spacing:1.8px;margin-bottom:8px}.review-hero h1{margin:0;font-size:38px;letter-spacing:-1.45px}.review-hero .page-sub{margin-top:5px}.hero-meta{display:flex;gap:8px;align-items:center;margin-top:13px;color:#2872bf;font-size:9px;font-weight:900;letter-spacing:.65px}
+.hero-ai{position:relative;z-index:2;min-width:270px;padding:15px 17px;border:1px solid #d4e7f7;border-radius:15px;background:rgba(255,255,255,.72);box-shadow:inset 0 0 22px rgba(22,135,255,.035)}.hero-ai-label{font-size:8px;font-weight:950;letter-spacing:1.3px;color:#7693af}.hero-ai-status{margin-top:8px;font-size:12px;font-weight:900;color:#0d754e}.hero-ai-status i{display:inline-block;width:7px;height:7px;border-radius:50%;background:#18d98a;margin-right:6px;box-shadow:0 0 11px #18d98a}.hero-ai-small{margin-top:5px;color:#71879d;font-size:9px}
+
+.recording{border-radius:20px!important;border:1px solid rgba(53,155,255,.28)!important;box-shadow:0 18px 45px rgba(1,32,62,.18),inset 0 0 45px rgba(24,137,255,.035)!important}
+.recording-console{padding:13px 20px 15px!important}.recording-main{grid-template-columns:64px minmax(0,1fr) 105px!important}
+.timeline-wrap{height:104px!important;padding:0 9px 23px!important;background:linear-gradient(180deg,rgba(14,69,112,.14),rgba(0,10,24,.16));border-radius:10px}
+.waveform{height:68px!important;gap:2px!important}.waveform span{max-width:none!important;min-width:3px;border-radius:2px!important;background:linear-gradient(180deg,#2cb6ff,#2587ff 55%,#6265f3)!important;box-shadow:none!important}.waveform span:nth-child(5n){background:linear-gradient(180deg,#ffb13b,#ff7900)!important}.waveform span:nth-child(7n){background:linear-gradient(180deg,#8a70ff,#6554df)!important}
+.timeline-track{position:absolute;left:9px;right:9px;bottom:20px;height:4px;border-radius:999px;background:rgba(171,211,244,.18)}.timeline-track span{display:block;width:8%;height:100%;border-radius:inherit;background:linear-gradient(90deg,#168cff,#ff7900);box-shadow:0 0 9px rgba(22,140,255,.3)}
+.timeline-playhead{position:absolute;left:8%;top:10px;bottom:19px;width:1px;background:rgba(255,255,255,.5)}.timeline-playhead i{position:absolute;bottom:-4px;left:-4px;width:9px;height:9px;border-radius:50%;background:#fff;box-shadow:0 0 0 4px rgba(22,140,255,.25),0 0 14px #168cff}
+.time-ticks{position:absolute;left:9px;right:9px;bottom:3px;display:flex;justify-content:space-between;color:#6f9bc1;font-size:6px;font-weight:800}
+.ai-marker{bottom:24px!important}.marker-auth{left:18%}.marker-empathy{left:52%}.marker-resolution{left:79%}
+.recording-clock strong{font-size:19px!important}.recording-clock span{font-size:10px!important}
+.recording-controls{margin-top:10px!important}.mini-control{font-size:9px!important}.volume{font-size:12px!important}
+
+@media(max-width:900px){
+ .header-inner{padding:14px 14px 0}.dash-sub{display:none}.dash-user span{display:none}.dash-nav{overflow-x:auto}.dash-nav a{white-space:nowrap}
+ .review-hero{display:block;padding:20px}.review-hero h1{font-size:31px}.hero-ai{margin-top:16px;min-width:0}.hero-meta{flex-wrap:wrap}
+}
+
+
+/* ===== v3 LAYOUT FIX: true full-width Dashboard header ===== */
+.dash-header{
+    display:block !important;
+    width:100% !important;
+    padding:0 !important;
+    margin:0 !important;
+    min-height:0 !important;
+}
+.dash-header .header-inner{
+    width:100% !important;
+    max-width:none !important;
+    margin:0 !important;
+    padding:18px 24px 0 !important;
+    box-sizing:border-box !important;
+}
+.dash-header .brand-row{
+    width:100% !important;
+    display:flex !important;
+    justify-content:space-between !important;
+    align-items:center !important;
+}
+.dash-header .logo-wrap{margin:0 !important}
+.dash-header .header-right{margin-left:auto !important}
+.dash-header .nav-shell{
+    width:100% !important;
+    margin-top:15px !important;
+}
+.dash-header .dash-nav{
+    width:100% !important;
+    margin:0 !important;
+    padding:0 !important;
+    display:flex !important;
+    justify-content:flex-start !important;
+}
+.dash-header .dash-nav a{flex:0 0 auto !important}
+
+/* Match the Dashboard's stronger logo/header scale */
+.new-logo-icon{width:62px !important;height:52px !important}
+.dash-brand{font-size:32px !important}
+.dash-sub{font-size:12px !important}
+
+/* Give the review workspace the same wide, premium spacing */
+main{
+    width:100% !important;
+    max-width:none !important;
+    box-sizing:border-box !important;
+    padding:30px 24px 56px !important;
+}
+.review-hero{width:100%;box-sizing:border-box}
+.overview{width:100%;box-sizing:border-box}
+
+/* Recording console: more like a real enterprise audio player */
+.recording-main{
+    grid-template-columns:72px minmax(0,1fr) 105px !important;
+    gap:18px !important;
+}
+.timeline-wrap{
+    min-width:0 !important;
+    border:1px solid rgba(99,177,245,.12) !important;
+    box-shadow:inset 0 0 30px rgba(2,17,33,.22) !important;
+}
+.waveform{
+    overflow:hidden !important;
+    align-items:center !important;
+}
+.recording-clock{
+    min-width:90px !important;
+    text-align:center !important;
+}
+.recording-clock strong{
+    display:block !important;
+    font-variant-numeric:tabular-nums;
+}
+.recording-clock span{
+    display:block !important;
+    margin-top:3px !important;
+}
+.recording-topline{padding:0 2px}
+.recording-controls{padding-left:2px;padding-right:2px}
+
+/* Keep content balanced on large desktop displays */
+.grid{
+    grid-template-columns:minmax(0,1.9fr) minmax(350px,.82fr) !important;
+    align-items:start !important;
+}
+@media(max-width:1100px){
+    .grid{grid-template-columns:1fr !important}
+}
+@media(max-width:900px){
+    .dash-header .header-inner{padding:14px 14px 0 !important}
+    main{padding:18px 14px 40px !important}
+    .recording-main{grid-template-columns:58px minmax(0,1fr) !important}
+    .recording-clock{grid-column:2;text-align:left !important}
+}
+
 </style>
 </head>
 
 <body>
 
-<header>
-    <div class="brand">
-        <div class="logo">IQ</div>
-
-        <div>
-            <div class="brand-name">Serv<span>IQ</span></div>
-            <div class="brand-sub">AI Quality Assurance · Mortgage Servicing</div>
+<header class="dash-header">
+    <div class="header-swirl"></div>
+    <div class="header-inner">
+        <div class="brand-row">
+            <div class="logo-wrap">
+                <div class="new-logo-icon" aria-label="ServIQ logo">
+                    <svg viewBox="0 0 72 58" role="img" aria-hidden="true">
+                        <defs>
+                            <linearGradient id="lgBlue" x1="0" x2="1"><stop stop-color="#18a6ff"/><stop offset="1" stop-color="#1478ff"/></linearGradient>
+                            <linearGradient id="lgOrange" x1="0" x2="1"><stop stop-color="#ff9b22"/><stop offset="1" stop-color="#ff6f00"/></linearGradient>
+                            <filter id="logoGlow"><feGaussianBlur stdDeviation="1.2" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+                        </defs>
+                        <path d="M7 8h34a8 8 0 0 1 8 8v20a8 8 0 0 1-8 8H24l-9 8v-8H7a8 8 0 0 1-8-8V16A8 8 0 0 1 7 8Z" fill="none" stroke="url(#lgBlue)" stroke-width="4" filter="url(#logoGlow)"/>
+                        <path d="M30 16h32a8 8 0 0 1 8 8v19a8 8 0 0 1-8 8H53v8l-9-8H30a8 8 0 0 1-8-8V24a8 8 0 0 1 8-8Z" fill="none" stroke="url(#lgOrange)" stroke-width="4" filter="url(#logoGlow)"/>
+                        <g stroke-linecap="round" stroke-width="4" filter="url(#logoGlow)">
+                            <path d="M25 28v10" stroke="#1ca4ff"/><path d="M32 23v20" stroke="#3f8fff"/>
+                            <path d="M39 18v29" stroke="#7c75ff"/><path d="M46 22v22" stroke="#ff9a22"/>
+                            <path d="M53 27v12" stroke="#ff7900"/>
+                        </g>
+                    </svg>
+                </div>
+                <div>
+                    <div class="dash-brand">Serv<span>IQ</span></div>
+                    <div class="dash-sub">AI Quality Intelligence for Every Conversation</div>
+                </div>
+            </div>
+            <div class="header-right">
+                <div class="dash-live"><i></i> AI ONLINE</div>
+                <div class="dash-user"><b>BT</b><span>Bronson Taylor</span></div>
+            </div>
         </div>
-    </div>
-
-    <div class="header-right">
-        <div class="online">● AI ONLINE</div>
-
-        <div class="user">
-            <div class="user-circle">BT</div>
-            Bronson Taylor
+        <div class="nav-shell">
+            <nav class="dash-nav">
+                <a href="/">⌂ <span>Dashboard</span></a>
+                <a href="/calls" class="active">☎ <span>Calls</span></a>
+                <a href="/analytics">▥ <span>Analytics</span></a>
+                <a href="#">◉ <span>Coaching</span></a>
+                <a href="#">▣ <span>Scorecards</span></a>
+            </nav>
         </div>
     </div>
 </header>
-
-<nav>
-    <a href="/">Dashboard</a>
-    <a href="/calls" class="active">Calls</a>
-    <a href="/analytics">Analytics</a>
-    <a href="#">Coaching</a>
-    <a href="#">Scorecards</a>
-</nav>
 
 <main>
 
 <a class="back" href="/calls">← Back to Calls</a>
 
-<h1>Call Review</h1>
-
-<div class="page-sub">
-    AI evaluation, evidence and human review
-</div>
-
-<div class="call-id">
-    Interaction {{ call.id }}
-</div>
+<section class="review-hero">
+    <div>
+        <div class="hero-eyebrow">SERVIQ REVIEW INTELLIGENCE</div>
+        <h1>AI Call Review Workspace</h1>
+        <div class="page-sub">Evidence-linked quality intelligence, human review and call-level AI analysis</div>
+        <div class="hero-meta">
+            <span>INTERACTION {{ call.id }}</span>
+            <span>•</span>
+            <span>{{ call.department }}</span>
+            <span>•</span>
+            <span>{{ call.duration }}</span>
+        </div>
+    </div>
+    <div class="hero-ai">
+        <div class="hero-ai-label">SERVIQ AI REVIEW ENGINE</div>
+        <div class="hero-ai-status"><i></i> Evidence synchronized</div>
+        <div class="hero-ai-small">Transcript · Scorecard · Recording</div>
+    </div>
+</section>
 
 
 {% if override_saved %}
@@ -945,20 +1172,51 @@ h1 {
                 Call Recording
             </div>
 
-            <div class="player">
-                <button class="play" type="button">▶</button>
-
-                <div class="wave">
-                    ▂▅▇▄▆▃▇▅▂▆▇▄▃▆▅▂▇▆▄▃
+            
+            <div class="recording-console">
+                <div class="recording-topline">
+                    <div class="recording-live"><span></span> AI CALL RECORDING</div>
+                    <div class="recording-meta">EVIDENCE SYNCED · TIMESTAMPED</div>
                 </div>
 
-                <div class="time">
-                    0:00 / {{ call.duration }}
+                <div class="recording-main">
+                    <button class="play play-large" type="button" aria-label="Play call">▶</button>
+
+                    <div class="timeline-wrap">
+                        <div class="waveform" aria-hidden="true"><span style="--h:22%"></span><span style="--h:38%"></span><span style="--h:55%"></span><span style="--h:32%"></span><span style="--h:46%"></span><span style="--h:67%"></span><span style="--h:42%"></span><span style="--h:30%"></span><span style="--h:58%"></span><span style="--h:76%"></span><span style="--h:49%"></span><span style="--h:35%"></span><span style="--h:63%"></span><span style="--h:82%"></span><span style="--h:54%"></span><span style="--h:39%"></span><span style="--h:70%"></span><span style="--h:48%"></span><span style="--h:31%"></span><span style="--h:60%"></span><span style="--h:74%"></span><span style="--h:45%"></span><span style="--h:28%"></span><span style="--h:52%"></span><span style="--h:69%"></span><span style="--h:40%"></span><span style="--h:33%"></span><span style="--h:57%"></span><span style="--h:79%"></span><span style="--h:50%"></span><span style="--h:36%"></span><span style="--h:65%"></span><span style="--h:44%"></span><span style="--h:27%"></span><span style="--h:55%"></span><span style="--h:72%"></span><span style="--h:47%"></span><span style="--h:34%"></span><span style="--h:62%"></span><span style="--h:81%"></span><span style="--h:53%"></span><span style="--h:38%"></span><span style="--h:68%"></span><span style="--h:46%"></span><span style="--h:29%"></span><span style="--h:59%"></span><span style="--h:75%"></span><span style="--h:43%"></span><span style="--h:32%"></span><span style="--h:56%"></span><span style="--h:71%"></span><span style="--h:41%"></span><span style="--h:26%"></span><span style="--h:51%"></span><span style="--h:66%"></span><span style="--h:37%"></span><span style="--h:30%"></span><span style="--h:54%"></span><span style="--h:73%"></span><span style="--h:45%"></span></div>
+                        <div class="timeline-track"><span></span></div>
+       <div class="timeline-playhead"><i></i></div>
+       <div class="time-ticks"><span>0:00</span><span>2:18</span><span>4:37</span><span>6:55</span><span>{{ call.duration }}</span></div>
+
+                        <div class="ai-marker marker-auth" title="Authentication evidence">
+                            <span></span><b>AUTH</b>
+                        </div>
+                        <div class="ai-marker marker-empathy" title="Empathy evidence">
+                            <span></span><b>AI</b>
+                        </div>
+                        <div class="ai-marker marker-resolution" title="Resolution evidence">
+                            <span></span><b>NEXT STEP</b>
+                        </div>
+                    </div>
+
+                    <div class="recording-clock">
+                        <strong>0:00</strong>
+                        <span>/ {{ call.duration }}</span>
+                    </div>
+                </div>
+
+                <div class="recording-controls">
+                    <div class="control-group">
+                        <button type="button" class="mini-control">↶ 10</button>
+                        <button type="button" class="mini-control active-control">1×</button>
+                        <button type="button" class="mini-control">10 ↷</button>
+                    </div>
+                    <div class="ai-listening"><i></i> ServIQ AI evidence map active</div>
+                    <div class="volume">⌁▮▮▮</div>
                 </div>
             </div>
 
         </div>
-
 
         <div class="card card-pad">
 
@@ -968,7 +1226,7 @@ h1 {
             </div>
 
             <div class="section-sub">
-                Mortgage Servicing — General v1
+                {{ call.department }} — Active Scorecard
             </div>
 
 
