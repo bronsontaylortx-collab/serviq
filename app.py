@@ -1,10 +1,12 @@
 import os
 import copy
+import json
 from datetime import datetime, timezone
 
 from dotenv import load_dotenv
 from flask import Flask, render_template, request, abort
 from flask_sqlalchemy import SQLAlchemy
+from openai import OpenAI
 
 load_dotenv()
 
@@ -1047,191 +1049,135 @@ CALLS = {
 # =========================================================
 
 def evaluate(text):
+    """Grade a synthetic mortgage-servicing transcript with OpenAI."""
+    api_key = os.environ.get("OPENAI_API_KEY", "").strip()
+    if not api_key:
+        raise RuntimeError("OPENAI_API_KEY is not set.")
 
-    low = text.lower()
+    client = OpenAI(api_key=api_key)
+
+    schema = {
+        "type": "object",
+        "properties": {
+            "items": {
+                "type": "array",
+                "minItems": len(QUESTIONS),
+                "maxItems": len(QUESTIONS),
+                "items": {
+                    "type": "object",
+                    "properties": {
+                        "id": {"type": "string", "enum": [q["id"] for q in QUESTIONS]},
+                        "result": {"type": "string", "enum": ["PASS", "PARTIAL", "FAIL", "N/A"]},
+                        "confidence": {"type": "integer", "minimum": 0, "maximum": 100},
+                        "reason": {"type": "string"},
+                        "evidence": {"type": "string"},
+                        "timestamp": {"type": "string"},
+                    },
+                    "required": ["id", "result", "confidence", "reason", "evidence", "timestamp"],
+                    "additionalProperties": False,
+                },
+            }
+        },
+        "required": ["items"],
+        "additionalProperties": False,
+    }
+
+    scorecard_text = "\n".join(
+        f"- {q['id']} | {q['name']} | {q['points']} points"
+        + (" | CRITICAL" if q["critical"] else "")
+        for q in QUESTIONS
+    )
+
+    instructions = f"""
+You are ServIQ, a mortgage-servicing quality-assurance grader.
+Grade ONLY the transcript supplied by the user. Do not assume a required action
+occurred unless the transcript provides evidence. This development version uses
+synthetic transcripts only.
+
+Scorecard:
+{scorecard_text}
+
+Rules:
+- Authentication: PASS only when the transcript supports that required
+  verification/authentication was completed before account-specific servicing
+  information was disclosed. Asking to verify is not proof verification was
+  completed. If account-specific information is disclosed first, FAIL.
+- Discovery: evaluate whether the reason for the call and relevant servicing
+  need or hardship were adequately identified.
+- Empathy: evaluate appropriate acknowledgement of borrower concern/hardship.
+  Use N/A only when empathy truly was not applicable.
+- Resolution / Next Step: evaluate whether a clear resolution, action, or next
+  step was provided.
+- Professional Communication: evaluate clarity and professionalism throughout.
+- Closing / Expectations: evaluate whether expectations were set and the
+  interaction was closed clearly.
+- Use PARTIAL when a requirement is only partly satisfied.
+- Evidence must be a short exact transcript excerpt. Use an empty string if no
+  supporting evidence exists.
+- Timestamp must match the best evidence when present, otherwise empty string.
+- Confidence means confidence in the grading decision.
+Return exactly one item for every scorecard id.
+"""
+
+    response = client.responses.create(
+        model=os.environ.get("OPENAI_MODEL", "gpt-6-luna"),
+        instructions=instructions,
+        input=text,
+        text={
+            "format": {
+                "type": "json_schema",
+                "name": "serviq_qa_grade",
+                "strict": True,
+                "schema": schema,
+            }
+        },
+    )
+
+    payload = json.loads(response.output_text)
+    by_id = {item.get("id"): item for item in payload.get("items", [])}
 
     results = []
-
-    auth = "verify" in low or "verification" in low
-
-    hardship = any(x in low for x in [
-
-        "lost my job",
-
-        "hardship",
-
-        "cannot make",
-
-        "can't make",
-
-        "worried",
-
-        "losing the house",
-
-    ])
-
-    empathy = any(x in low for x in [
-
-        "sorry to hear",
-
-        "understand how",
-
-        "i understand",
-
-        "sorry you're",
-
-        "sorry you",
-
-    ])
-
-    resolution = any(x in low for x in [
-
-        "next step",
-
-        "assistance",
-
-        "documents may be needed",
-
-        "review the available",
-
-    ])
-
-    closing = any(x in low for x in [
-
-        "anything else",
-
-        "next step",
-
-        "what happens next",
-
-    ])
-
-    configs = [
-
-        (
-
-            "auth",
-
-            auth,
-
-            0.98,
-
-            "Authentication language was found."
-
-            if auth else
-
-            "No clear authentication evidence was found.",
-
-        ),
-
-        (
-
-            "discovery",
-
-            True,
-
-            0.92,
-
-            "The borrower clearly states the reason for the call.",
-
-        ),
-
-        (
-
-            "empathy",
-
-            empathy if hardship else True,
-
-            0.96 if hardship else 0.80,
-
-            "A hardship/empathy trigger is present and explicit acknowledgement was found."
-
-            if empathy else
-
-            "A hardship/empathy trigger is present, but no explicit acknowledgement was found.",
-
-        ),
-
-        (
-
-            "resolution",
-
-            resolution,
-
-            0.93,
-
-            "A resolution path or actionable next step was found."
-
-            if resolution else
-
-            "No clear resolution or next step was found.",
-
-        ),
-
-        (
-
-            "communication",
-
-            True,
-
-            0.89,
-
-            "No obvious unprofessional language was detected in this prototype.",
-
-        ),
-
-        (
-
-            "closing",
-
-            closing,
-
-            0.86,
-
-            "Closing/expectation language was found."
-
-            if closing else
-
-            "No clear closing expectations were found.",
-
-        ),
-
-    ]
-
-    total = 0
-
-    for qid, passed, conf, why in configs:
-
-        q = next(q for q in QUESTIONS if q["id"] == qid)
-
-        pts = q["points"] if passed else 0
-
-        total += pts
-
-        review = conf < 0.90
+    total_awarded = 0
+    total_possible = 0
+
+    for q in QUESTIONS:
+        ai = by_id.get(q["id"])
+        if not ai:
+            raise RuntimeError(f"AI response missing scorecard item: {q['id']}")
+
+        result = ai["result"]
+        confidence = int(ai["confidence"])
+
+        if result == "N/A":
+            awarded, possible = 0, 0
+        elif result == "PASS":
+            awarded, possible = q["points"], q["points"]
+        elif result == "PARTIAL":
+            awarded, possible = round(q["points"] / 2), q["points"]
+        else:
+            awarded, possible = 0, q["points"]
+
+        total_awarded += awarded
+        total_possible += possible
 
         results.append({
-
             **q,
-
-            "result": "PASS" if passed else "FAIL",
-
-            "awarded": pts,
-
-            "confidence": round(conf * 100),
-
-            "why": why,
-
-            "review": review,
-
+            "result": result,
+            "awarded": awarded,
+            "confidence": confidence,
+            "why": ai["reason"],
+            "reason": ai["reason"],
+            "evidence": ai["evidence"],
+            "timestamp": ai["timestamp"],
+            "review": result == "PARTIAL" or confidence < 90,
         })
 
-    return round(total), results
+    score = round((total_awarded / total_possible) * 100) if total_possible else 0
+    return score, results
+
 
 # =========================================================
-
 # ROUTES
-
 # =========================================================
 
 @app.route("/", methods=["GET", "POST"])
